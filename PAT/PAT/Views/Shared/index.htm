@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%;" lang="en_US"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script async="" src="File/www-widgetapi.js" id="www-widgetapi-script" type="text/javascript"></script>
+<title>PAT demo</title>
+<meta name="keyrds" content="DEAD OR ALIVE 5 Last Round, DOA5LR ,DOA ,KOEITECMO ,TECMO ">
+<meta name="description" content="Experience Dead or Alive 5 on PS4™ and Xbox One!">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<!--▼meta-->
+<meta property="og:title" content="DEAD OR ALIVE 5 Last Round">
+<meta property="og:type" content="activity">
+<meta property="og:description" content="Experience Dead or Alive 5 on PS4 and Xbox One!">
+<meta property="og:url" content="http://teamninja-studio.com/doa5/lastround">
+
+<meta property="og:site_name" content="DEAD OR ALIVE 5 Last Round">
+<meta property="og:locale" content="en_US">
+<style>
+
+#slider_features li img {
+   
+    margin-top: 120px;
+}
+
+
+#features_base .flex-control-nav {
+    bottom: -20px !important;
+}
+
+.flexslider {
+    border-radius: 4px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2) !important;
+    margin: 0;
+    position: relative;
+}
+
+#hotnew{
+
+   background-color: #cae8ca;
+    border-style: solid;
+    border-width: 3px;
+    bottom: 0;
+    max-width: 300px;
+    padding: 5px;
+    position: fixed;
+    right: 0;
+    z-index: 999;
+
+}
+
+.right_3_1 {
+    float: left;
+    padding-right: 5px;
+}
+
+
+
+<!-------------------------------->
+
+#loginBar {
+    background-color: #032a46;
+    border-bottom: 1px solid #65a5d1;
+    color: #a5cae4;
+    position: relative;
+    z-index: 1;
+}
+#loginBar {
+    margin: 0 20px !important;
+}
+
+#loginBarHandle {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #1794d4 0%, #1691b6 100%) repeat scroll 0 0;
+}
+.pageWidth {
+    padding-left: 0;
+    padding-right: 0;
+}
+.pageWidth {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 1040px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+}
+
+#loginBar .pageContent {
+    padding-top: 5px;
+    position: relative;
+}
+
+#loginBar #loginBarHandle {
+    background-color: #032a46;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    bottom: -20px;
+    box-shadow: 0 2px 5px #032a46;
+    color: #f0f7fc;
+    font-size: 11px;
+    line-height: 20px;
+    margin-right: 20px;
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+}
+
+.concealed, .concealed a, .cloaked, .cloaked a {
+    color: inherit !important;
+    text-decoration: inherit !important;
+}
+
+</style>
+
+
+
+<!-- 
+
+
+
+
+
+
+
+<script type="text/javascript" src="../js/jquery.flexslider.js"></script>
+
+<script type="text/javascript" src="../js/jquery.tubular.1.0.js"></script>
+
+<script type="text/javascript" src="../js/jquery.color-2.1.1.js"></script>
+
+
+-->
+<script src="File/widgets.js" id="twitter-wjs"></script>
+<script src="File/iframe_api"></script>
+<script src="File/analytics.js" async=""></script>
+<!--<script async="" src="File/cbgapi.loaded_0"></script> -->
+<script src="File/jquery_005.js"></script>
+
+<script gapi_processed="true" type="text/javascript" src="File/plusone.js"></script>
+<script type="text/javascript" src="File/shadowbox.js"></script>
+<script type="text/javascript" src="File/jquery_002.js"></script>
+<script type="text/javascript" src="File/ga.js"></script>
+<script type="text/javascript" src="File/main.js"></script>
+<script type="text/javascript" src="File/init.js"></script>
+<script type="text/javascript" src="File/top.js"></script>
+<script type="text/javascript" src="File/jquery_003.js"></script>
+<!--<script type="text/javascript" src="File/jquery_004.js"></script> -->
+<script type="text/javascript" src="File/agecheck.js"></script>
+<script type="text/javascript" src="File/jquery.js"></script>
+
+<script src="File/xenforo.js"></script>
+
+<!-- <script type="text/javascript" src="File/jquery.flexslider.js"></script>
+
+<script type="text/javascript" src="File/jquery.color-2.1.1.js"></script> -->
+<script type="text/javascript" src="File/jquery.tubular.1.0.js"></script>
+<link href="File/shadowbox.css" rel="stylesheet" type="text/css">
+<link href="File/default.css" rel="stylesheet" type="text/css">
+<link href="File/common.css" rel="stylesheet" type="text/css">
+<link href="File/top.css" rel="stylesheet" type="text/css">
+<link href="File/flexslider.css" rel="stylesheet" type="text/css">
+
+<link rel="apple-touch-icon" href="http://teamninja-studio.com/doa5/lastround/us/img/common/icon.jpg">
+
+
+<link href="File/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+ <script src="File/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<!--▼▼loadObjct-->
+<script type="text/javascript">
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide"
+  });
+});
+
+$(document).ready(function(){
+var options = { videoId: 'ix6gnsUvTdU',start: 22,end:103};
+
+
+var listColorSwitch = false;
+
+setInterval(function(){
+
+if(listColorSwitch){
+$("li.new").animate({"backgroundColor":"#666"},800);
+listColorSwitch = false;
+}else{
+$("li.new").animate({"backgroundColor":"#d90"},800);
+listColorSwitch = true;
+}
+
+
+},1000);
+
+});
+
+
+
+
+</script>
+<!--△△loadObjct-->
+
+<script src="File/timeline.js" async="" charset="utf-8" type="text/javascript"></script></head>
+
+
+
+<body style="width: 100%; height: 100%;" id="main"><div id="tubular-container" style="overflow: hidden; position: fixed; z-index: 1; width: 100%; height: 100%"><iframe src="File/ix6gnsUvTdU.htm" title="YouTube video player" allowfullscreen="1" id="tubular-player" style="position: absolute; width: 1349px; height: 759px; left: 0px; top: -76px;" frameborder="0" height="769" width="1366"></iframe></div><div id="tubular-shield" style="width: 100%; height: 100%; z-index: 2; position: absolute; left: 0; top: 0;"></div>
+
+
+
+<!------------------------------------->
+<div id="window">
+
+
+
+<div style="position: relative; z-index: 99; display: block;" id="contents">
+<!--------------------------------------------------->
+
+
+
+
+<!-------------------------------------------------------->
+
+<div style="opacity: 1; top: 0px;" id="menu">
+<div class="inner">
+	<a href="javascript:scrollTo('#visual','.menu_top','top.html');" class="menu_logo hide_sp"><img src="File/menu_logo.png" alt="DEAD OR ALIVE 5 Last Round"></a>
+	
+	<ul class="hide_sp">
+	<li class="menu_top"><a href="javascript:scrollTo('#visual','.menu_top','top.html');"></a></li>
+	<li class="menu_features"><a href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');"></a>
+	<img src="File/newicon.gif" class="icon"></li>
+	<li class="menu_characters"><a href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');"></a>
+	<img src="File/newicon.gif" class="icon"></li>
+	<li class="menu_stages"><a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');"></a><img src="File/newicon.gif" class="icon"></li>
+	<li class="menu_movies"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');"></a><img src="File/newicon.gif" class="icon"></li>
+	<li class="menu_contact"><a href="javascript:scrollTo('#contact','.menu_contact','top.html#Contact');"></a></li>
+	<li class="menu_langue">
+	<a href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_map();">
+      <img src = "File/img/common/lang_vn.png" />
+	</a>
+	
+	<a style="float:right;margin-left:2px" href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_map();">
+      <img src = "File/img/common/lang_jp.png" />
+	</a>
+	
+	<a style="float:right" href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_map();">
+      <img src = "File/img/common/lang_en.png" />
+	</a>
+	
+	
+	
+	</li>
+	
+	<li class="menu_login"><a href="javascript:scrollTo('#contact','.menu_contact','top.html#Contact');"></a></li>
+	</ul>
+	
+
+
+
+
+</div>
+
+
+</div>
+<!--△△MENU-->
+
+
+
+
+<!--▼▼visual-->
+<div style="opacity: 1;" id="visual">
+<img src="img/common/bg.jpg" class="hide_pc">
+</div>
+<!--△△visual-->
+
+<div id="wrapper">
+
+
+
+<!--▼▼TOP-->
+<div id="top">
+
+
+<!--▼▼logo-->
+<h1 style="opacity: 1;" class="hide_sp"><img src="File/logo.png" alt="DEAD OR ALIVE 5 Last Round"></h1>
+<!--△△logo-->
+
+
+<!--▼▼information-->
+<div id="information">
+	<h3 style="opacity: 1; left: 0px;"><img src="File/information_h.png" alt="Information"></h3>
+	<div style="height: 189px;" class="inner">
+		<ul>
+
+      <li style="opacity: 1; top: 0px; background-color: rgb(213, 149, 6);" class="new num_0"><a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup();"><img src="File/patcompany.jpg"><span class="text"><span class="inner">
+      <br>giới thiệu công ty
+      </span></span></a></li>
+
+      <li style="opacity: 1; top: 0px; background-color: rgb(213, 149, 6);" class="new num_1"><a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_industry();">
+      <img src="File/land.jpg"><span class="text"><span class="inner">
+      <br>Giới thiệu khu công nghiệp
+      </span></span></a></li>
+
+      <li style="opacity: 1; top: 0px;" class="num_2"><a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_industry_land();">
+        <img src="File/patland.jpg"><span class="text"><span class="inner">
+      <br>Đất công nghiệp
+      </span></span></a></li>
+
+	  
+	 
+     
+</ul>
+    
+	</div>
+	
+	<div style="height: 189px;" class="inner">
+		<ul>
+
+      <li style="opacity: 1; top: 0px; background-color: rgb(213, 149, 6);" class="new num_0"><a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_environment();"><img src="File/environment.jpg"><span class="text"><span class="inner">
+      <br>Thân thiện môi trường
+      </span></span></a></li>
+
+      <li style="opacity: 0; top: 0px;" class="new num_1"></li>
+
+      <li style="opacity: 1; top: 0px;" class="num_2"><a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_map();">
+        <img src="File/map.jpg"><span class="text"><span class="inner">
+      <br>Bản đồ
+      </span></span></a></li>
+
+	  
+	 
+     
+</ul>
+    
+	</div>
+	
+</div>
+
+
+<!--△△information-->
+
+
+<!--▼▼spec-->
+
+<!--△△spec-->
+
+
+</div>
+<!--△△TOP-->
+
+
+
+
+<div class="line"></div>
+
+
+
+
+<!--▼▼FEATURES-->
+<div id="features">
+<h2><img style="opacity: 0; left: -100px;" src="File/features_h.png"></h2>
+
+<div style="" id="features_layerTop">
+</div>
+
+<div id="features_base">
+
+<!--▼▼slider-->
+<div id = "slider_features" >
+<div class="flexslider">
+  <ul class="slides">
+    <li>
+	  <a href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_map();">
+      <img src = "File/location.jpg" />
+	</a>
+	
+    </li>
+    <li>
+	  <a href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_totalmap();">
+      <img src = "File/totalmap.jpg" />
+	  </a>
+    </li>
+	
+  </ul>
+</div>
+</div>
+<!--△△slider-->
+<div id = "exp_features">
+<h3><img src ="File/features_h2.png"></h3>
+<p></p>
+</div>
+
+</div>
+
+</div>
+<!--△△FEATURES-->
+
+
+
+<div class="line"></div>
+
+
+
+<!--▼▼CHARACTERS-->
+<div style="height: 1208px;" id="characters">
+<h2><img style="opacity: 0; left: -100px;" src="File/characters_h.png"></h2>
+
+<div style="opacity: 1; display: none;" id="characters_layerTop"></div>
+
+<div style="opacity: 1; display: block;" id="characters_base">
+<div class="inner">
+<h3><img src="File/characters_h2E.png"></h3>
+
+<div class="thumBox">
+<div class="thumBox_inner">
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t01"><img src="File/electricity/electricity [www.imagesplitter.net]-0-0.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t01"><img src="File/electricity/electricity [www.imagesplitter.net]-0-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t02"><img src="File/electricity/electricity [www.imagesplitter.net]-0-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t03"><img src="File/electricity/electricity [www.imagesplitter.net]-0-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t04"><img src="File/electricity/electricity [www.imagesplitter.net]-0-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t05"><img src="File/electricity/electricity [www.imagesplitter.net]-0-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t06"><img src="File/electricity/electricity [www.imagesplitter.net]-0-6.jpeg"></a>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t07"><img src="File/electricity/electricity [www.imagesplitter.net]-1-0.jpeg"></a>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t08"><img src="File/electricity/electricity [www.imagesplitter.net]-1-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t09"><img src="File/electricity/electricity [www.imagesplitter.net]-1-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t10"><img src="File/electricity/electricity [www.imagesplitter.net]-1-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t11"><img src="File/electricity/electricity [www.imagesplitter.net]-1-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t12"><img src="File/electricity/electricity [www.imagesplitter.net]-1-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t13"><img src="File/electricity/electricity [www.imagesplitter.net]-1-6.jpeg"></a>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t08"><img src="File/electricity/electricity [www.imagesplitter.net]-2-0.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t09"><img src="File/electricity/electricity [www.imagesplitter.net]-2-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t10"><img src="File/electricity/electricity [www.imagesplitter.net]-2-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t11"><img src="File/electricity/electricity [www.imagesplitter.net]-2-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t12"><img src="File/electricity/electricity [www.imagesplitter.net]-2-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t13"><img src="File/electricity/electricity [www.imagesplitter.net]-2-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t13"><img src="File/electricity/electricity [www.imagesplitter.net]-2-6.jpeg"></a>
+
+
+<h3><img src="File/characters_h2W.png"></h3>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t14"><img src="File/watersupply/watersupply [www.imagesplitter.net]-0-0.jpeg"></a>
+
+
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t15"><img src="File/watersupply/watersupply [www.imagesplitter.net]-0-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t16"><img src="File/watersupply/watersupply [www.imagesplitter.net]-0-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t17"><img src="File/watersupply/watersupply [www.imagesplitter.net]-0-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t18"><img src="File/watersupply/watersupply [www.imagesplitter.net]-0-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t19"><img src="File/watersupply/watersupply [www.imagesplitter.net]-0-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t20"><img src="File/watersupply/watersupply [www.imagesplitter.net]-0-6.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t21"><img src="File/watersupply/watersupply [www.imagesplitter.net]-1-0.jpeg"></a>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t22"><img src="File/watersupply/watersupply [www.imagesplitter.net]-1-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t23"><img src="File/watersupply/watersupply [www.imagesplitter.net]-1-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t24"><img src="File/watersupply/watersupply [www.imagesplitter.net]-1-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t25"><img src="File/watersupply/watersupply [www.imagesplitter.net]-1-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t26"><img src="File/watersupply/watersupply [www.imagesplitter.net]-1-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t27"><img src="File/watersupply/watersupply [www.imagesplitter.net]-1-6.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t28"><img src="File/watersupply/watersupply [www.imagesplitter.net]-2-0.jpeg"></a>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t29"><img src="File/watersupply/watersupply [www.imagesplitter.net]-2-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t30"><img src="File/watersupply/watersupply [www.imagesplitter.net]-2-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t31"><img src="File/watersupply/watersupply [www.imagesplitter.net]-2-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t32"><img src="File/watersupply/watersupply [www.imagesplitter.net]-2-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t33"><img src="File/watersupply/watersupply [www.imagesplitter.net]-2-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t34"><img src="File/watersupply/watersupply [www.imagesplitter.net]-2-6.jpeg"></a>
+
+<h3><img src="File/characters_h2P.png"></h3>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t14"><img src="File/waterpollution/waterp [www.imagesplitter.net]-0-0.jpeg"></a>
+
+
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t15"><img src="File/waterpollution/waterp [www.imagesplitter.net]-0-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t16"><img src="File/waterpollution/waterp [www.imagesplitter.net]-0-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t17"><img src="File/waterpollution/waterp [www.imagesplitter.net]-0-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t18"><img src="File/waterpollution/waterp [www.imagesplitter.net]-0-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t19"><img src="File/waterpollution/waterp [www.imagesplitter.net]-0-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t20"><img src="File/waterpollution/waterp [www.imagesplitter.net]-0-6.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t21"><img src="File/waterpollution/waterp [www.imagesplitter.net]-1-0.jpeg"></a>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t22"><img src="File/waterpollution/waterp [www.imagesplitter.net]-1-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t23"><img src="File/waterpollution/waterp [www.imagesplitter.net]-1-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t24"><img src="File/waterpollution/waterp [www.imagesplitter.net]-1-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t25"><img src="File/waterpollution/waterp [www.imagesplitter.net]-1-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t26"><img src="File/waterpollution/waterp [www.imagesplitter.net]-1-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t27"><img src="File/waterpollution/waterp [www.imagesplitter.net]-1-6.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t28"><img src="File/waterpollution/waterp [www.imagesplitter.net]-2-0.jpeg"></a>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t29"><img src="File/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t30"><img src="File/waterpollution/waterp [www.imagesplitter.net]-2-2.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t31"><img src="File/waterpollution/waterp [www.imagesplitter.net]-2-3.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t32"><img src="File/waterpollution/waterp [www.imagesplitter.net]-2-4.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t33"><img src="File/waterpollution/waterp [www.imagesplitter.net]-2-5.jpeg"></a>
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t34"><img src="File/waterpollution/waterp [www.imagesplitter.net]-2-6.jpeg"></a>
+
+
+<div class="clearfix"></div>
+
+</div>
+</div>
+
+<a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_garbage();" class="bnr mo"><img src="File/bnr_cos.jpg"><!--<img src = "img/common/updateicon.gif" class ="icon"/>--></a>
+
+
+
+
+</div>
+</div>
+
+<!---------------------------------->
+
+
+
+<!----------------------------------->
+
+</div>
+<!--△△CHARACTERS-->
+
+
+
+
+<div class="line"></div>
+
+
+
+
+<!--▼▼STAGES-->
+<div style="height: 1349px;" id="stages">
+<h2><img style="opacity: 0; left: -100px;" src="File/stages_h.png"></h2>
+
+<div style="opacity: 1; display: block;" id="stages_layerTop">
+<div id="slider_stages">
+
+<div class="flexslider">
+  
+<div style="overflow: hidden; position: relative;" class="flex-viewport"><ul style="width: 1000%; transition-duration: 0s; transform: translate3d(-4047px, 0px, 0px);" class="slides"><li style="width: 1349px; float: left; display: block;" aria-hidden="true" class="clone"><img draggable="false" src="File/004_03.jpg"></li>
+    <li class="" style="width: 1349px; float: left; display: block;"><img draggable="false" src="File/004_01.jpg"></li>
+    <li class="" style="width: 1349px; float: left; display: block;"><img draggable="false" src="File/004_02.jpg"></li>
+    <li class="flex-active-slide" style="width: 1349px; float: left; display: block;"><img draggable="false" src="File/004_03.jpg"></li>
+  <li aria-hidden="true" class="clone" style="width: 1349px; float: left; display: block;"><img draggable="false" src="File/004_01.jpg"></li></ul></div><ol class="flex-control-nav flex-control-paging"><li><a class="">1</a></li><li><a class="">2</a></li><li><a class="flex-active">3</a></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul></div>
+</div>
+
+
+
+
+</div>
+
+<div style="opacity: 0; display: none;" id="stages_base">
+<div class="inner">
+
+
+
+<a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_land();" class="mo"><img src="File/thum_azuchi.jpg" class="thum"></a>
+<a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_saving();" class="mo"><img src="File/saving.jpg" class="thum right"></a>
+
+<a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_develop();" class="mo"><img src="File/develop.jpg" class="thum"></a>
+<a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_savethetime();" class="mo"><img src="File/savethetime.jpg" class="thum right"></a>
+<div class="clearfix"></div>
+</div>
+
+
+</div>
+
+</div>
+<!--△△STAGES-->
+
+
+<div class="line"></div>
+
+
+
+<!--▼▼MOVIES-->
+<div id="movies">
+
+<h2><img style="opacity: 0; left: -100px;" src="File/movies_h.png"></h2>
+
+	<div class="inner">
+	<ul>
+
+  <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();" ><img src="File/law.jpg"><span class="text"><span class="inner">PHÁP LUẬT KINH DOANH</span></span> <img src="File/newicon.gif" class="icon"> </a></li>
+
+  <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();" ><img src="File/new.jpg"><span class="text"><span class="inner">THÔNG TIN PAT</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+
+  <li style="opacity: 1; top: 0px;" class="num_2"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup();" ><img src="File/video.jpg"><span class="text"><span class="inner">VIDEO</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+
+  <li style="opacity: 1; top: 0px;" class="num_3"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_photo();" ><img src="File/photo.jpg"><span class="text"><span class="inner">HÌNH ẢNH HOẠT ĐỘNG</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+
+  <li style="opacity: 1; top: 0px;" class="num_4"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();" ><img src="File/question.jpg"><span class="text"><span class="inner">HỎI ĐÁP</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+
+ </ul>
+	<div class="clearfix"></div>
+	</div>
+</div>
+<!--△△MOVIES-->
+
+<!--▼▼CONTACT-->
+<div id="contact">
+
+<h2><img style="opacity: 0; left: -100px;" src="File/contact_h.png"></h2>
+
+	<div id = "spec">
+	
+	<a href="javascript:scrollTo('#contact','.menu_contact','top.html#Contact');" onclick="openpopup_contact();" class ="btn_productInfo right mo">NHẬP THÔNG TIN LIÊN HỆ</a>
+	<span class ="clearfix"></span>
+</div>
+</div>
+<!--△△CONTACT-->
+
+
+
+
+
+<div class="line hide_sp"></div>
+
+
+
+
+<!--▼▼SOCIAL-->
+<div id="social" class="hide_sp">
+
+
+</div>
+
+<div id="social_frontshadow"></div>
+
+</div>
+<!--△△SOCIAL-->
+
+
+
+
+<div class="line"></div>
+
+
+<!--▼▼FOOTER-->
+<div id="footer">
+	<ul id="link_site">
+		<li><a ><img src="File/btn_doa5u.png"></a></li>
+		<li class="right"><a ><img src="File/btn_doa5p.png"></a></li>
+		<span class="clearfix"></span>
+	</ul>
+	
+	
+	
+	
+
+</div>
+<!--△△FOOTER-->
+
+</div>
+
+<div  style="border-width:1px ;border-style:solid;border-color:#B0B0B0;position:fixed;padding:5px;right:0;max-width:14%;z-index:999;top:50px">
+
+<div class="right_3">
+        <div class="right_3_1">
+        <img width="66" height="66" src="File/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg" />
+		 <span> <p class="date_time_1">31/8/2015</p>
+	   </span>
+		</div>	
+        <div class="right_3_2">
+            <span ><a href="#" onclick="openpopup_new();" >Hiệp định Thương mại Đối tác Xuyên Thái Bình Dương...</a></span>
+          
+            <p class="text_1"></p>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+      
+      <div class="right_3">
+        <div class="right_3_1">
+      <img width="66" height="66" src="File/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg" />
+	   <span> <p class="date_time_1">31/8/2015</p>
+	   </span>
+	  </div>	
+        <div class="right_3_2">
+            <span class="tile_1"><a href="#" onclick="openpopup_new();">Quản lý quy hoạch và xây dựng trong các khu công nghiệp...</a></span>
+          
+            <p class="text_1"></p>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+      
+      <div class="right_3">
+        <div class="right_3_1">
+       <img width="66" height="66" src="File/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg" />
+	   <span> <p class="date_time_1">31/8/2015</p>
+	   </span>
+	   </div>		
+	   
+        <div class="right_3_2">
+            <span class="tile_1"><a href="#" onclick="openpopup_new();">UBND tỉnh Long An tiếp tục ủy quyền cho Ban Quản lý Khu kinh tế...</a></span>
+           
+            <p class="text_1"></p>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+			
+</div>
+<!----------------------------------->
+
+</div></div><div style="display: none; height: 607px; width: 1349px; visibility: hidden;" id="sb-container"><div style="background-color: rgb(0, 0, 0); opacity: 0;" id="sb-overlay"></div><div style="top: 54px; left: 273px; width: 802px; visibility: hidden;" id="sb-wrapper"><div id="sb-title"><div style="margin-top: 26px;" id="sb-title-inner"></div></div><div style="height: 450px;" id="sb-wrapper-inner"><div id="sb-body"><div id="sb-body-inner"></div><div style="display: none;" id="sb-loading"><div id="sb-loading-inner"><span>loading</span></div></div></div></div><div id="sb-info"><div style="margin-top: 0px;" id="sb-info-inner"><div id="sb-counter"></div><div id="sb-nav"><a id="sb-nav-close" title="Close" onclick="Shadowbox.close()"></a><a style="display: none;" id="sb-nav-next" title="Next" onclick="Shadowbox.next()"></a><a style="display: none;" id="sb-nav-play" title="Play" onclick="Shadowbox.play()"></a><a style="display: none;" id="sb-nav-pause" title="Pause" onclick="Shadowbox.pause()"></a><a style="display: none;" id="sb-nav-previous" title="Previous" onclick="Shadowbox.previous()"></a></div></div></div></div></div><iframe style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" allowfullscreen="true" allowtransparency="true" scrolling="no" id="rufous-sandbox" frameborder="0"></iframe></body></html>
+
+
+<!-- Modal Popup-->
+    <div class="modal fade" id="windowpopup" tabindex="-1" role="dialog" aria-labelledby="windowpopup_title"
+         aria-hidden="true">
+        <div id="windowpopup_size" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ClosePopup();" >
+                              &times;
+                          </button>
+                    <a href='#' onclick="Maximinepopup();" style="float:right;margin-right:15px">
+                        <input id="windowpopup_size_hidden_maximine" type="hidden" value="min" />
+                        <i class=" popup_maximine glyphicon glyphicon-resize-full"></i>
+                    </a>
+                    <h4 class="modal-title" id="windowpopup_title"></h4>
+                </div>
+                <div class="modal-body" id="windowpopup_content">
+
+<!--                     <iframe id="modal-body-iframe" width="600px" height="600px"> -->
+<!--                         </iframe> -->
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    
+	
+<script>
+
+var checkparameterURL = function (url) {
+    if (url.indexOf("?") > 0) {
+        return true;
+    }
+    return false;
+}
+
+var loadpopup = function (url, title, width, isblank) {
+    var _para = '';
+    if (checkparameterURL(url) == true) {
+        _para = '&_isbl=' + isblank;
+    }
+    else {
+        _para = '?_isbl=' + isblank;
+    }
+//    alert(url);
+    url = url + _para;
+    if (isblank == false) {
+    	
+    	var _process = '<div class="progress">'
+   		 + '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">'
+   		   + '<span class="sr-only">Vui lòng chờ trong giây lát</span>'
+   		 + '</div>'
+   		 + '</div>';
+
+        $('#windowpopup_content').html(_process);
+        $('#windowpopup_title').html(title);
+        $('#windowpopup_content').load(url);
+        //$('modal-body-iframe').attr("src", url);
+        // $('#windowpopup').modal();
+        $('#windowpopup').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
+        if (width != "none") {
+            $('#windowpopup_size').css(
+                {
+                    width: function () {
+                        if (width == "") {
+                            return "80%";
+                        }
+                        else {
+                            return width;
+                        }
+                    }
+                });
+        }
+    }
+    else {
+        var w = 630, h = 440; // default sizes
+        if (window.screen) {
+            w = window.screen.availWidth * 85 / 100;
+            h = window.screen.availHeight * 85 / 100;
+        }
+        //  javascript: OpenWindow(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+
+        //  var randomnumber = Math.floor((Math.random() * 100) + 1);
+        //  window.open(url, "_blank", title,  "channelmode = 1, scrollbars = 1, status = 0, titlebar = 0, toolbar = 0, resizable = 1, menubar = no, resizable = 1, top = 20, left = 20, fullscreen = yes, location = yes, Width = " + w + ", height = " + h + "");
+        //  window.open(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+        //javascript: OpenWindow(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+        var d = new Date();
+        var n = d.getTime();
+        title = title + n;
+        var _window = window.open(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+        _window.focus();
+    }
+    
+    
+}
+
+function openpopup()
+{
+	loadpopup('File/introduce.html','Giới thiệu công ty','80%',false);
+	//alert('mở trang mới. đanh làm');
+}
+
+function openpopup_introduce_industry()
+{
+	loadpopup('File/introduce_industry.html','Giới thiệu khu công nghiệp','80%',false);
+}
+function openpopup_industry_land()
+{
+	loadpopup('File/introduce_industry_land.html','Đất công nghiệp','80%',false);
+}
+function openpopup_introduce_environment()
+{
+	loadpopup('File/introduce_environment.html','Thân thiên môi trường','80%',false);
+}
+function openpopup_introduce_map()
+{
+	loadpopup('File/introduce_map.html','Bản đồ','80%',false);
+}
+
+function openpopup_location_map()
+{
+	loadpopup('File/introduce_map.html','Vị trí khu công nghiệp','80%',false);
+}
+
+function openpopup_location_totalmap()
+{
+	loadpopup('File/location_totalmap.html','Bản đồ tổng thể','80%',false);
+}
+
+function openpopup_construction_electricity()
+{
+	loadpopup('File/construction_electricity.html','Hệ thống cấp điện','80%',false);
+}
+function openpopup_construction_water()
+{
+	loadpopup('File/construction_water.html','Hệ thống cung cấp nước sạch','80%',false);
+}
+function openpopup_construction_water_filter()
+{
+	loadpopup('File/construction_water_filter.html','Hệ thống xử lý nước thải','80%',false);
+}
+function openpopup_construction_garbage()
+{
+	loadpopup('File/construction_garbage.html','Thu gom và xử lý chất thải','80%',false);
+}
+
+function openpopup_benefit_land()
+{
+	loadpopup('File/benefit_land.html','Giá thuê đất và các loại chi phí','80%',false);
+}
+
+function openpopup_benefit_saving()
+{
+	loadpopup('File/benefit_saving.html','Tiết kiệm chi phí','80%',false);
+}
+function openpopup_benefit_develop()
+{
+	loadpopup('File/benefit_develop.html','Phát triển bền vững','80%',false);
+}
+
+function openpopup_benefit_savethetime()
+{
+	loadpopup('File/benefit_savethetime.html','Tiết kiệm thời gian','80%',false);
+}
+function openpopup_contact()
+{
+	loadpopup('File/contact.html','Liên hệ','80%',false);
+}
+function openpopup_library_law()
+{
+	loadpopup('File/library_law.html','Pháp luật kinh doanh','80%',false);
+}
+
+function openpopup_library_pat()
+{
+	loadpopup('File/library_pat.html','thông tin PAT','80%',false);
+}
+
+function openpopup_library_photo()
+{
+	loadpopup('File/library_photo.html','Hình ảnh','80%',false);
+}
+
+function openpopup_library_question()
+{
+	loadpopup('File/library_question.html','Hỏi đáp','80%',false);
+}
+
+function openpopup_new()
+{
+	loadpopup('File/new.html','Tin tức','80%',false);
+}
+
+</script>
