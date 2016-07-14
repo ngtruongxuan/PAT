@@ -200,6 +200,14 @@
                 scrollTop: $("#contact").offset().top
             }, 2000);
         }
+        function scrollTo2(targetName) {
+            var $scrollTarget = $(targetName);
+            var amount = $scrollTarget.offset().top;
+            amount -= 58;
+
+            $('html,body').animate({ scrollTop: amount }, 'swing');
+
+        }
     </script>
     <!--△△loadObjct-->
     <!-- End Script-->
@@ -219,7 +227,7 @@
                             <img src="~/Template/newicon.gif" class="icon">
                         </li>
                         <li class="menu_characters">
-                            <a @*href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');*@ onclick="contructorclick()"></a>
+                            <a @*href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');*@ onclick="scrollTo2('#characters')"></a>
                             <img src="~/Template/newicon.gif" class="icon">
                         </li>
                         <li class="menu_stages"><a @*href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');"*@ onclick="gainclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
