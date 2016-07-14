@@ -578,7 +578,7 @@
     <Content Include="Template\thum_azuchi.psd" />
     <Content Include="Template\waterpollution\waterp [www.imagesplitter.net].zip" />
     <Content Include="Template\watersupply\watersupply [www.imagesplitter.net].zip" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

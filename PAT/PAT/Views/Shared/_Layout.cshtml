@@ -57,62 +57,7 @@
             padding-right: 5px;
         }
 
-        #loginBar {
-            background-color: #032a46;
-            border-bottom: 1px solid #65a5d1;
-            color: #a5cae4;
-            position: relative;
-            z-index: 1;
-        }
-
-        #loginBar {
-            margin: 0 20px !important;
-        }
-
-        #loginBarHandle {
-            background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #1794d4 0%, #1691b6 100%) repeat scroll 0 0;
-        }
-
-        .pageWidth {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .pageWidth {
-            box-sizing: border-box;
-            margin: 0 auto;
-            max-width: 1040px;
-            padding-left: 5px;
-            padding-right: 5px;
-            width: 100%;
-        }
-
-        #loginBar .pageContent {
-            padding-top: 5px;
-            position: relative;
-        }
-
-        #loginBar #loginBarHandle {
-            background-color: #032a46;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            bottom: -20px;
-            box-shadow: 0 2px 5px #032a46;
-            color: #f0f7fc;
-            font-size: 11px;
-            line-height: 20px;
-            margin-right: 20px;
-            padding: 0 10px;
-            position: absolute;
-            right: 0;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .concealed, .concealed a, .cloaked, .cloaked a {
-            color: inherit !important;
-            text-decoration: inherit !important;
-        }
+       
     </style>
     <!-- Style -->
     <link href="~/Template/shadowbox.css" rel="stylesheet" type="text/css">
@@ -244,7 +189,11 @@
                                 <img src="~/Template/img/common/lang_en.png" />
                             </a>
                         </li>
-                        <li class="menu_login"><a href="javascript:scrollTo('#contact','.menu_contact','top.html#Contact');"></a></li>
+                        <li id="admin"><a style="cursor:pointer" onclick="adminclick()"></a></li>
+                        <li id="login" class="menu_login"><a style="cursor:pointer" onclick="openpopup_login()"></a></li>
+                        <li id="logout"><a style="cursor:pointer" onclick="logoutclick()"></a></li>
+
+
                     </ul>
                 </div>
             </div>
@@ -615,6 +564,46 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <!-- login -->
+    <div class="modal fade" id="windowpopup_login" tabindex="-1" role="dialog" aria-labelledby="windowpopup_title"
+         aria-hidden="true">
+        <div id="windowpopup_login_size" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ClosePopup();">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="windowpopup_login_title"><img class="logoSCM" src="/Content/AdminTemplate/images/logo.png"></h4>
+                </div>
+                <div class="modal-body" id="windowpopup_login_content">
+                    @*begin content*@
+                    <div class="login-box-body">
+
+                        <h4>Vui lòng đăng nhập</h4>
+
+                        <div class="form-group has-feedback">
+                            <input id="loginformpopup_txtusername" class="form-control" maxlength="40" placeholder="Tên đăng nhập">
+                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input id="loginformpopup_txtpassword" class="form-control" type="password" maxlength="100" placeholder="Mật khẩu">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button id="loginformpopup_btnlogin" class="btn btn-primary btn-block btn-flat" onclick="loginpopup_click();">Đăng nhập</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    @*end content*@
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <script>
         var checkparameterURL = function (url) {
@@ -756,6 +745,55 @@
         function openpopup_new() {
             loadpopup('~/Template/new.html', 'Tin tức', '80%', false);
         }
+
+        function openpopup_login() {
+            $('#windowpopup_login').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+
+        function loginpopup_click()
+        {
+            $.ajax({
+                url: "/Account/Login",
+                type: "Post",
+                data: JSON.stringify({
+                    User: 'admin',
+                    Pass: 'admin'
+                }),
+                // data:postData,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    $('#login').removeClass('menu_login');
+                    $('#logout').addClass('menu_logout');
+                    $('#admin').addClass('menu_admin');
+                    $('#windowpopup_login').modal('hide');
+                   // window.location.href = "/Home/Admin";
+                },
+                Error: function () {
+                    //alert("Không thể kết nối tới máy chủ");
+                    show(false, "Không thể kết nối tới máy chủ", true);
+                }
+            });
+        }
+
+        function adminclick()
+        {
+            window.location.href = "/Home/Admin";
+        }
+
+        function logoutclick()
+        {
+            $('#login').addClass('menu_login');
+            $('#logout').removeClass('menu_logout');
+            $('#admin').removeClass('menu_admin');
+        }
+
+        $(document).ready(function () {
+            
+        });
     </script>
     @RenderBody()
 

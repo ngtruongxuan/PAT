@@ -53,6 +53,10 @@ namespace ManageShop.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        public string User { get; set; }
+
+        public string Pass { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]

@@ -7,7 +7,7 @@
 ----------------------------------------*/
 
 body{
-background-color:#8dcbeb;
+background-color:#f0eddb;
 }
 
 #wrapper{
@@ -19,7 +19,7 @@ width:100%;
 min-width:1000px;
 height:8px;
 
-background-color:#8dcbeb;
+background-color:#f0eddb;
 }
 
 .hide_pc{
@@ -424,6 +424,8 @@ top:14px;
 left:750px;
 }
 
+
+
 #menu li.menu_login{
 display:block;
 width:43px;
@@ -448,4 +450,48 @@ bottom:-12px;
 left:18px;
 }
 
+/*-------------------------------------*/
+
+#menu li.menu_logout{
+display:block;
+width:52px;
+height:15px;
+position:absolute;
+top:17px;
+left:900px;
+}
+
+#menu li.menu_logout a{
+display:block;
+width:100%;
+height:100%;
+background-image:url("img/common/menu_logout.png");
+background-position:center top;
+}
+
+#menu li.menu_logout .icon{
+display:block;
+position:absolute;
+bottom:-12px;
+left:18px;
+}
+
+/*---------------------------------------*/
+
+#menu li.menu_admin{
+display:block;
+width:43px;
+height:15px;
+position:absolute;
+top:17px;
+left:850px;
+}
+
+#menu li.menu_admin a{
+display:block;
+width:100%;
+height:100%;
+background-image:url("img/common/menu_admin.png");
+background-position:center top;
+}
 

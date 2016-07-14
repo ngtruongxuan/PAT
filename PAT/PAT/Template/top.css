@@ -243,7 +243,7 @@ background-repeat:no-repeat;
 background-size:150%;
 overflow:hidden;
 padding:0 0 0px;
-background-color:#8dcbeb;
+background-color:#f0eddb;
 }
 
 #features h2{
@@ -394,7 +394,7 @@ background-image:url("../img/characters/characters_bg.jpg");
 background-position:center top;
 background-repeat:no-repeat;
 overflow:hidden;
-background-color:#8dcbeb;
+background-color:#f0eddb;
 }
 
 #characters h2{
@@ -960,7 +960,7 @@ background-image:url("../img/movies/movies_bg.jpg");
 background-repeat:repeat-x;
 background-position:center top;
 padding:130px 0 80px;
-background-color:#8dcbeb;
+background-color:#f0eddb;
 }
 
 #movies h2{
@@ -1044,7 +1044,7 @@ background-image:url("../img/movies/movies_bg.jpg");
 background-repeat:repeat-x;
 background-position:center top;
 padding:130px 0 80px;
-background-color:#8dcbeb;
+background-color:#f0eddb;
 }
 
 #contact h2{
