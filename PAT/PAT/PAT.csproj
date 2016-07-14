@@ -243,6 +243,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scrollAnimate.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="TemplateAdmin\css\AdminLTE.css" />
     <Content Include="TemplateAdmin\css\AdminLTE.min.css" />
@@ -305,8 +306,6 @@
     <Content Include="TemplateAdmin\js\demo.js" />
     <Content Include="TemplateAdmin\js\pages\dashboard.js" />
     <Content Include="TemplateAdmin\js\pages\dashboard2.js" />
-    <Content Include="Template\001.jpg" />
-    <Content Include="Template\001_01.jpg" />
     <Content Include="Template\004_h.png" />
     <Content Include="Template\a.htm" />
     <Content Include="Template\agecheck.js" />
