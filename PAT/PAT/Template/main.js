@@ -119,14 +119,14 @@ function checkLocation() {
 ////////////////////////
 
 function menuSet() {
-    $('#menu').load('common/menu.html',
-    function () { setTimeout(function () { setMenuControl(); }, 2000); }
-    );
+    //$('#menu').load('common/menu.html',
+    //function () { setTimeout(function () { setMenuControl(); }, 2000); }
+    //);
 
 }
 
 function footerSet() {
-    $('#footer').load('common/footer.html');
+    //$('#footer').load('common/footer.html');
 }
 
 

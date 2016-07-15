@@ -60,7 +60,7 @@
        
     </style>
     <!-- Style -->
-    <link href="~/Template/shadowbox.css" rel="stylesheet" type="text/css">
+    @*<link href="~/Template/shadowbox.css" rel="stylesheet" type="text/css">*@
     <link href="~/Template/default.css" rel="stylesheet" type="text/css">
     <link href="~/Template/common.css" rel="stylesheet" type="text/css">
     <link href="~/Template/top.css" rel="stylesheet" type="text/css">
@@ -68,35 +68,36 @@
     <link href="~/Template/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- End Style -->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="">
     <!-- Script -->
     <script src="~/Template/widgets.js" id="twitter-wjs"></script>
     @*<script src="~/Template/iframe_api"></script>*@
-    <script src="~/Template/analytics.js" async=""></script>
+    @*<script src="~/Template/analytics.js" async=""></script>*@
     <script src="~/Template/jquery_005.js"></script>
     <script type="text/javascript" src="~/Template/shadowbox.js"></script>
     <script type="text/javascript" src="~/Template/jquery_002.js"></script>
-    <script type="text/javascript" src="~/Template/ga.js"></script>
+    @*<script type="text/javascript" src="~/Template/ga.js"></script>*@
+    @*<script type="text/javascript" src="~/Scripts/scrollAnimate.js"></script>*@
     <script type="text/javascript" src="~/Template/main.js"></script>
-    <script type="text/javascript" src="~/Template/init.js"></script>
+    @*<script type="text/javascript" src="~/Template/init.js"></script>*@
     <script type="text/javascript" src="~/Template/top.js"></script>
     <script type="text/javascript" src="~/Template/jquery_003.js"></script>
-    <script type="text/javascript" src="~/Template/agecheck.js"></script>
+    @*<script type="text/javascript" src="~/Template/agecheck.js"></script>*@
     <script type="text/javascript" src="~/Template/jquery.js"></script>
-    <script src="~/Template/xenforo.js"></script>
+    @*<script src="~/Template/xenforo.js"></script>*@
     @*<script type="text/javascript" src="~/Template/jquery.color-2.1.1.js"></script>*@
     @*<script type="text/javascript" src="~/Template/jquery.tubular.1.0.js"></script>*@
     <script src="~/Template/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     @*<script gapi_processed="true" type="text/javascript" src="~/Template/plusone.js"></script>*@
     @*<link rel="apple-touch-icon" href="http://teamninja-studio.com/doa5/lastround/us/img/common/icon.jpg">*@
-    <script src="~/Template/timeline.js" async="" charset="utf-8" type="text/javascript"></script>
+    @*<script src="~/Template/timeline.js" async="" charset="utf-8" type="text/javascript"></script>*@
     <!--▼▼loadObjct-->
     <script type="text/javascript">
-        //$(window).load(function () {
-        //    $('.flexslider').flexslider({
-        //        animation: "slide"
-        //    });
-        //});
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide"
+            });
+        });
         //$(document).ready(function () {
         //    var options = { videoId: 'ix6gnsUvTdU', start: 22, end: 103 };
         //    var listColorSwitch = false;
@@ -149,9 +150,7 @@
             var $scrollTarget = $(targetName);
             var amount = $scrollTarget.offset().top;
             amount -= 58;
-
             $('html,body').animate({ scrollTop: amount }, 'swing');
-
         }
     </script>
     <!--△△loadObjct-->
@@ -166,18 +165,18 @@
                 <div class="inner">
                     <a href="javascript:scrollTo('#visual','.menu_top','top.html');" class="menu_logo hide_sp"><img src="~/Template/menu_logo.png" alt="DEAD OR ALIVE 5 Last Round"></a>
                     <ul class="hide_sp">
-                        <li class="menu_top"><a @*href="javascript:scrollTo('#top','.menu_top','#');"*@ onclick="topclick()"></a></li>
+                        <li class="menu_top"><a  class="active" href="#top" onclick="topclick()"></a></li>
                         <li class="menu_features">
-                            <a @*href="javascript:scrollTo('#features','.menu_features','#','#');"*@ onclick="locationclick()"></a>
+                            <a href="#features" onclick="locationclick()"></a>
                             <img src="~/Template/newicon.gif" class="icon">
                         </li>
                         <li class="menu_characters">
-                            <a @*href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');*@ onclick="scrollTo2('#characters')"></a>
+                            <a href="#characters" onclick="scrollTo2('#characters')"></a>
                             <img src="~/Template/newicon.gif" class="icon">
                         </li>
-                        <li class="menu_stages"><a @*href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');"*@ onclick="gainclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
-                        <li class="menu_movies"><a @*href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');"*@ onclick="libraryclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
-                        <li class="menu_contact"><a @*href="javascript:scrollTo('#contact','.menu_contact','top.html#Contact');"*@ onclick="contactclick()"></a></li>
+                        <li class="menu_stages"><a href="#stages" onclick="gainclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
+                        <li class="menu_movies"><a href="#movies" onclick="libraryclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
+                        <li class="menu_contact"><a href="#contact" onclick="contactclick()"></a></li>
                         <li class="menu_langue">
                             <a href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_map();">
                                 <img src="~/Template/img/common/lang_vn.png" />
@@ -398,7 +397,7 @@
                     <div style="opacity: 1; display: block;" id="stages_layerTop">
                         <div id="slider_stages">
                             <div class="flexslider">
-                                <div style="overflow: hidden; position: relative;" class="flex-viewport">
+                                @*<div style="overflow: hidden; position: relative;" class="flex-viewport">
                                     <ul style="width: 1000%; transition-duration: 0s; transform: translate3d(-4047px, 0px, 0px);" class="slides">
                                         <li style="width: 1349px; float: left; display: block;" aria-hidden="true" class="clone"><img draggable="false" src="~/Template/004_03.jpg"></li>
                                         <li class="" style="width: 1349px; float: left; display: block;"><img draggable="false" src="~/Template/004_01.jpg"></li>
@@ -406,7 +405,7 @@
                                         <li class="flex-active-slide" style="width: 1349px; float: left; display: block;"><img draggable="false" src="~/Template/004_03.jpg"></li>
                                         <li aria-hidden="true" class="clone" style="width: 1349px; float: left; display: block;"><img draggable="false" src="~/Template/004_01.jpg"></li>
                                     </ul>
-                                </div><ol class="flex-control-nav flex-control-paging"><li><a class="">1</a></li><li><a class="">2</a></li><li><a class="flex-active">3</a></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul>
+                                </div><ol class="flex-control-nav flex-control-paging"><li><a class="">1</a></li><li><a class="">2</a></li><li><a class="flex-active">3</a></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul>*@
                             </div>
                         </div>
                     </div>
