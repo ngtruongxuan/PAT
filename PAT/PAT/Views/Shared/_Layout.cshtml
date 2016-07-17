@@ -123,7 +123,13 @@
         }
         function locationclick() {
             $('html, body').animate({
-                scrollTop: $("#features").offset().top
+                scrollTop: $("#industryzone").offset().top
+            }, 2000);
+        }
+        function residentclick()
+        {
+            $('html, body').animate({
+                scrollTop: $("#resident").offset().top
             }, 2000);
         }
         function contructorclick() {
@@ -168,8 +174,14 @@
                         <li class="menu_top"><a  class="active" href="#top" onclick="topclick()"></a></li>
                         <li class="menu_features">
                             <a href="#features" onclick="locationclick()"></a>
-                            <img src="~/Template/newicon.gif" class="icon">
+                            
                         </li>
+
+                        <li class="menu_resident">
+                            <a href="#resident" onclick="residentclick()"></a>
+                           
+                        </li>
+
                         <li class="menu_characters">
                             <a href="#characters" onclick="scrollTo2('#characters')"></a>
                             <img src="~/Template/newicon.gif" class="icon">
@@ -255,12 +267,21 @@
                                         </span>
                                     </a>
                                 </li>
-                                <li style="opacity: 0; top: 0px;" class="new num_1"></li>
+                                <li style="opacity: 0; top: 0px;" class="new num_1">
+                                    <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_map();">
+                                        <img src="~/Template/map.jpg"><span class="text">
+                                            <span class="inner">
+                                                <br>Vị trí khu công nghiệp
+                                            </span>
+                                        </span>
+                                    </a>
+
+                                </li>
                                 <li style="opacity: 1; top: 0px;" class="num_2">
                                     <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_map();">
                                         <img src="~/Template/map.jpg"><span class="text">
                                             <span class="inner">
-                                                <br>Bản đồ
+                                                <br>Vị trí khu dân cư
                                             </span>
                                         </span>
                                     </a>
@@ -274,40 +295,39 @@
                 </div>
                 <!--△△TOP-->
                 <div class="line"></div>
-                <!--▼▼FEATURES-->
-                <div id="features">
-                    <h2><img style="opacity: 0; left: -100px;" src="~/Template/features_h.png"></h2>
-                    <div style="" id="features_layerTop">
+                <!--▼▼FEATURES resident-->
+                <div id="resident">
+                    <h2><img style="opacity: 0; left: -100px;" src="~/Template/resident_h.png"></h2>
+                    <div class="inner">
+                        <ul>
+                            <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/law.jpg"><span class="text"><span class="inner">NHÀ PHỐ LOẠI I</span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/new.jpg"><span class="text"><span class="inner">NHÀ PHỐ LOẠI II</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_2"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup();"><img src="~/Template/video.jpg"><span class="text"><span class="inner">NHÀ LIÊN KẾ</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_3"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_photo();"><img src="~/Template/photo.jpg"><span class="text"><span class="inner">NHÀ Ở CÔNG NHÂN</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_4"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">CĂN HỘ CHUNG CƯ</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_4"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">NHÀ VƯỜN</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                        </ul>
+                        <div class="clearfix"></div>
                     </div>
-                    <div id="features_base">
-                        <!--▼▼slider-->
-                        <div id="slider_features">
-                            <div class="flexslider">
-                                <ul class="slides">
-                                    <li>
-                                        <a href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_map();">
-                                            <img src="~/Template/location.jpg" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:scrollTo('#features','.menu_features','top.html','top.html#Features');" onclick="openpopup_location_totalmap();">
-                                            <img src="~/Template/totalmap.jpg" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--△△slider-->
-                        <div id="exp_features">
-                            <h3><img src="~/Template/features_h2.png"></h3>
-                            <p></p>
-                        </div>
-
-                    </div>
-
                 </div>
                 <!--△△FEATURES-->
                 <div class="line"></div>
+
+                <!--▼▼FEATURES resident-->
+                <div id="industryzone">
+                    <h2><img style="opacity: 0; left: -100px;" src="~/Template/industryzone_h.png"></h2>
+                    <div class="inner">
+                        <ul>
+                            <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/law.jpg"><span class="text"><span class="inner">NHÀ PHỐ LOẠI I</span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/new.jpg"><span class="text"><span class="inner">NHÀ PHỐ LOẠI II</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                           
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--△△FEATURES-->
+                <div class="line"></div>
+
                 <!--▼▼CHARACTERS-->
                 <div style="height: 1208px;" id="characters">
                     <h2><img style="opacity: 0; left: -100px;" src="~/Template/characters_h.png"></h2>

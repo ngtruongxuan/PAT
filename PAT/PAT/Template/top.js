@@ -51,7 +51,9 @@ $(function(){
 		setMoveList('#information h3',{'opacity':1,left: '0px'},{'opacity':0, left :'40px'}, '200' , '600' , 'false');
 		setMoveList('#spec',{'opacity':1},{'opacity':0}, '200' , '500' , 'false');
 		
-		setMoveList('#features h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
+		setMoveList('#resident h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
+		setMoveList('#industryzone h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
+		
 		setMoveList('#characters h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
 		setMoveList('#movies h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
 		setMoveList('#stages h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');

@@ -20,7 +20,7 @@ width:100%;
 margin:0 auto 0;
 position:relative;
 padding:0 0 50px;
-background-color: #f0eddb;
+background-color: #fff;
 background-image:url("../img/top/spec_bg.png");
 background-position:center bottom;
 background-repeat:repeat-x;
@@ -1032,6 +1032,168 @@ margin:0 auto 0;
 }
 
 
+
+/*-------resident-------*/
+
+#resident{
+width:100%;
+min-width:1000px;
+position:relative;
+background-image:url("../img/movies/movies_bg.jpg");
+background-repeat:repeat-x;
+background-position:center top;
+padding:130px 0 80px;
+background-color:#fff;
+}
+
+#resident h2{
+position:absolute;
+top:30px;
+left:20px;
+z-index:50;
+filter:alpha(opacity=50);
+-moz-opacity: 0.8;
+opacity: 0.8;
+}
+
+#resident h2 img{
+display:block;
+position:absolute;
+top:0;
+left:0;
+}
+
+#resident .inner{
+display:block;
+width:960px;
+margin:0px auto 0;
+}
+
+#resident .inner li{
+position:relative;
+display:block;
+width:290px;
+border:1px solid #666;
+float:left;
+margin:0 0 20px 20px;
+}
+
+#resident .inner li .icon{
+position:absolute;
+display:block;
+top:4px;
+left:4px;
+width:auto;
+}
+
+
+#resident .inner li img{
+display:block;
+}
+
+
+#resident li .text{
+position:absolute;
+padding:6px 0 6px;
+bottom:0px;
+left:0px;
+text-align:center;
+color:#fff;
+width:100%;
+background-color:#8dcbeb;
+background-color:rgba(0,0,0,0.5);
+
+font-size:15px;
+font-weight:600;
+}
+
+
+#resident li .text .inner{
+display:block;
+width:94%;
+margin:0 auto 0;
+}
+
+/*-------industryzone-------*/
+
+#industryzone{
+width:100%;
+min-width:1000px;
+position:relative;
+background-image:url("../img/movies/movies_bg.jpg");
+background-repeat:repeat-x;
+background-position:center top;
+padding:130px 0 80px;
+background-color:#fff;
+}
+
+#industryzone h2{
+position:absolute;
+top:30px;
+left:20px;
+z-index:50;
+filter:alpha(opacity=50);
+-moz-opacity: 0.8;
+opacity: 0.8;
+}
+
+#industryzone h2 img{
+display:block;
+position:absolute;
+top:0;
+left:0;
+}
+
+#industryzone .inner{
+display:block;
+width:960px;
+margin:0px auto 0;
+}
+
+#industryzone .inner li{
+position:relative;
+display:block;
+width:290px;
+border:1px solid #666;
+float:left;
+margin:0 0 20px 20px;
+}
+
+#industryzone .inner li .icon{
+position:absolute;
+display:block;
+top:4px;
+left:4px;
+width:auto;
+}
+
+
+#industryzone .inner li img{
+display:block;
+}
+
+
+#industryzone li .text{
+position:absolute;
+padding:6px 0 6px;
+bottom:0px;
+left:0px;
+text-align:center;
+color:#fff;
+width:100%;
+background-color:#8dcbeb;
+background-color:rgba(0,0,0,0.5);
+
+font-size:15px;
+font-weight:600;
+}
+
+
+#industryzone li .text .inner{
+display:block;
+width:94%;
+margin:0 auto 0;
+}
 
 
 /*-------contact-------*/
