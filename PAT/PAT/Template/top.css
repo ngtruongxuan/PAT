@@ -394,7 +394,7 @@ background-image:url("../img/characters/characters_bg.jpg");
 background-position:center top;
 background-repeat:no-repeat;
 overflow:hidden;
-background-color:#f0eddb;
+background-color:#fff;
 }
 
 #characters h2{
@@ -791,7 +791,7 @@ background-image:url("../img/stages/stages_bg.jpg");
 background-position:center top;
 background-repeat:no-repeat;
 overflow:hidden;
-background-color:#f0eddb;
+background-color:#fff;
 }
 
 #stages h2{
@@ -950,6 +950,9 @@ margin-top:2%;
 }
 
 
+
+
+
 /*-------movies-------*/
 
 #movies{
@@ -960,7 +963,7 @@ background-image:url("../img/movies/movies_bg.jpg");
 background-repeat:repeat-x;
 background-position:center top;
 padding:130px 0 80px;
-background-color:#f0eddb;
+background-color:#fff;
 }
 
 #movies h2{
@@ -1153,7 +1156,7 @@ margin:0px auto 0;
 #industryzone .inner li{
 position:relative;
 display:block;
-width:290px;
+width:451px;
 border:1px solid #666;
 float:left;
 margin:0 0 20px 20px;
@@ -1195,6 +1198,86 @@ width:94%;
 margin:0 auto 0;
 }
 
+/*-------benefit-------*/
+
+#benefit{
+width:100%;
+min-width:1000px;
+position:relative;
+background-image:url("../img/movies/movies_bg.jpg");
+background-repeat:repeat-x;
+background-position:center top;
+padding:130px 0 80px;
+background-color:#fff;
+}
+
+#benefit h2{
+position:absolute;
+top:30px;
+left:20px;
+z-index:50;
+filter:alpha(opacity=50);
+-moz-opacity: 0.8;
+opacity: 0.8;
+}
+
+#benefit h2 img{
+display:block;
+position:absolute;
+top:0;
+left:0;
+}
+
+#benefit .inner{
+display:block;
+width:960px;
+margin:0px auto 0;
+}
+
+#benefit .inner li{
+position:relative;
+display:block;
+width:451px;
+border:1px solid #666;
+float:left;
+margin:0 0 20px 20px;
+}
+
+#benefit .inner li .icon{
+position:absolute;
+display:block;
+top:4px;
+left:4px;
+width:auto;
+}
+
+
+#benefit .inner li img{
+display:block;
+}
+
+
+#benefit li .text{
+position:absolute;
+padding:6px 0 6px;
+bottom:0px;
+left:0px;
+text-align:center;
+color:#fff;
+width:100%;
+background-color:#8dcbeb;
+background-color:rgba(0,0,0,0.5);
+
+font-size:15px;
+font-weight:600;
+}
+
+
+#benefit li .text .inner{
+display:block;
+width:94%;
+margin:0 auto 0;
+}
 
 /*-------contact-------*/
 
@@ -1206,7 +1289,7 @@ background-image:url("../img/movies/movies_bg.jpg");
 background-repeat:repeat-x;
 background-position:center top;
 padding:130px 0 80px;
-background-color:#f0eddb;
+background-color:#fff;
 }
 
 #contact h2{

@@ -53,6 +53,7 @@ $(function(){
 		
 		setMoveList('#resident h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
 		setMoveList('#industryzone h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
+		setMoveList('#benefit h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
 		
 		setMoveList('#characters h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');
 		setMoveList('#movies h2 img',{'opacity':1,left: '0px'},{'opacity':0, left :'-100px'}, '200' , '10' , 'true');

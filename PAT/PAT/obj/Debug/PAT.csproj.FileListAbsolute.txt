@@ -202,6 +202,5 @@ C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.OAuth.xm
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\obj\Debug\PAT.csprojResolveAssemblyReference.cache
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\obj\Debug\ManageShop.dll
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\obj\Debug\ManageShop.pdb

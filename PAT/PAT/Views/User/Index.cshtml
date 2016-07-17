@@ -1,0 +1,573 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .row::before, .row::after {
+        content: " ";
+        display: table;
+        margin-top: 1px;
+    }
+
+
+</style>
+<div class="row">
+    <div class="col-sm-12">
+        <section style="background:white; width:1041px; height:120px;margin-left: 22px;">
+            <div id="form" style="margin-left:20px">
+                <div class="row">
+                    <div class="col-md-6 row" style="margin-top: 8px;">
+                        <label class="col-md-4">UserName</label>
+                        <div class="col-md-8">
+                            <input id="txt_username" class="k-textbox"
+                                   style="width: 100% ;" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 row" style="margin-top: 8px;">
+                        <label class="col-md-4">Email</label>
+                        <div class="col-md-8">
+                            <input id="txt_email" class="k-textbox"
+                                   style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 row">
+                        <label class="col-md-4">FullName</label>
+                        <div class="col-md-8">
+                            <input id="txt_fullname" class="k-textbox"
+                                   style="width: 100% ;" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 row">
+                        <label class="col-md-4">Group</label>
+                        <div class="col-md-8">
+                            <input id="txt_group"
+                                   style="width: 100%;" />
+                        </div>
+                    </div>
+                </div>
+             
+               
+                <div class="row">
+                    <div class="col-md-6 row">
+                        <label class="col-md-4 ">From Date</label>
+                        <div class="col-md-8">
+                            <input id="txt_startdate" class="k-textbox"
+                                   style="width: 100%"
+                                   onkeydown="return DisableKeyboard(event);" onkeyup="return DisableKeyboard(event);" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 row">
+                        <label class="col-md-4 ">To Date</label>
+                        <div class="col-md-8">
+                            <input id="txt_finishdate" class="k-textbox"
+                                   style="width: 100%"
+                                   onkeydown="return DisableKeyboard(event);" onkeyup="return DisableKeyboard(event);" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="notification" style="display:none;"></span>
+            <div id="modal_box"></div>
+        </section>
+        <br />
+        <div class="form-group row" style="margin: 20px 0px 0px 22px;text-align:left;">
+            <button id="btnCreate" class="btn btn-md btn-primary"
+                    onclick="btnCreateOnClick()">
+                <i class="fa fa-plus"></i>Add
+            </button>
+            <button id="btnSearch" class="btn btn-md btn-info"
+                    onclick="btnSearchOnClick()">
+                <i class="fa fa-search"></i>Search
+            </button>
+            <button id="btnRepresh" class="btn btn-md btn-warning"
+                    onclick="btnRefreshOnClick()">
+                <i class="fa fa-refresh"></i>Refresh
+            </button>
+        </div>
+        <br />
+        <div id="grid_user" style="margin: 0px 20px 0px 20px"></div>
+    </div>
+</div>
+
+<script>
+    function DisableKeyboard(event) {
+        return false
+
+    }
+
+
+    $(document).ready(function () {
+        $("#txt_startdate").datepicker({
+
+        });
+        $("#txt_finishdate").datepicker({
+
+        });
+        $("#txt_partner").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "name",
+            dataValueField: "partner_id",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "user/getPartner",
+                                dataType: "json",
+                                type: "POST",
+                            }
+                        },
+                    },
+            change: partner_onChange,
+            //          filter: "contains",
+            suggest: true,
+            // index: -1
+        });
+
+        function partner_onChange() {
+            var value = $("#txt_partner").val();
+            var text = $("#txt_partner").data('kendoComboBox').text();
+            if (value == text) {
+                $("#txt_partner").data('kendoComboBox').value("");
+            }
+        }
+
+        $("#txt_group").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "name",
+            dataValueField: "group_id",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "user/getGroup",
+                                dataType: "json",
+                                type: "POST",
+                            }
+                        },
+                    },
+            change: group_onChange,
+            //          filter: "contains",
+            suggest: true,
+            // index: -1
+        });
+
+        function group_onChange() {
+            var value = $("#txt_group").val();
+            var text = $("#txt_group").data('kendoComboBox').text();
+            if (value == text) {
+                $("#txt_group").data('kendoComboBox').value("");
+            }
+        }
+
+        $("#txt_region").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "RegionName",
+            dataValueField: "ID",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "user/getRegion",
+                                dataType: "json",
+                                type: "POST",
+                            }
+                        },
+                    },
+            change: region_onChange,
+            //          filter: "contains",
+            suggest: true,
+            // index: -1
+        });
+
+        function Data() {
+            return {
+                RegionID: $('#txt_region').val(),
+            };
+        }
+
+        function region_onChange() {
+            var value = $("#txt_region").val();
+            var text = $("#txt_region").data('kendoComboBox').text();
+            if (value == text) {
+                $("#txt_region").data('kendoComboBox').value("");
+            }
+            else {
+                $("#txt_branch").data('kendoComboBox').value("");
+                $("#txt_branch").kendoComboBox({
+                    placeholder: "-- Select --",
+                    dataTextField: "BranchName",
+                    dataValueField: "ID",
+                    dataSource:
+                            {
+                                // type:"json",
+                                transport: {
+                                    read: {
+                                        url: "user/getBranch",
+                                        dataType: "json",
+                                        type: "POST",
+                                        data: Data,
+                                    }
+                                },
+                            },
+                    change: branch_onChange,
+                    //          filter: "contains",
+                    suggest: true,
+                    // index: -1
+                });
+            }
+        }
+
+        $("#txt_branch").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "BranchName",
+            dataValueField: "ID",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "user/getBranch",
+                                dataType: "json",
+                                type: "POST",
+                                data: Data,
+                            }
+                        },
+                    },
+            change: branch_onChange,
+            //          filter: "contains",
+            suggest: true,
+            // index: -1
+        });
+
+        function branch_onChange() {
+            var value = $("#txt_branch").val();
+            var text = $("#txt_branch").data('kendoComboBox').text();
+            if (value == text) {
+                $("#txt_branch").data('kendoComboBox').value("");
+            }
+        }
+
+        function additionalData() {
+
+            return {
+                UserName: $.trim($('#txt_username').val()),
+                Email: $.trim($('#txt_email').val()),
+                FullName: $.trim($('#txt_fullname').val()),
+                RegionID: $.trim($('#txt_region').val()),
+                Branch: $.trim($('#txt_branch').val()),
+                Partner: $.trim($('#txt_partner').val()),
+                Group: $.trim($('#txt_group').val()),
+                DateFrom: formatDateMySQL($.trim($('#txt_startdate').val())),
+                DateTo: formatDateMySQL($.trim($('#txt_finishdate').val())),
+            };
+        }
+
+        $("#grid_user").kendoGrid({
+            dataSource: {
+                type: "json",
+                transport: {
+                    read: {
+                        url: "user/searchUser",
+                        type: "POST",
+                        dataType: "json",
+                        data: additionalData,
+                    }
+                }
+                ,
+                batch: true,
+                pageSize: 20,
+            },
+            navigatable: true,
+            pageable: true,
+            height: 550,
+            pageable: {
+                refresh: true,
+                pageSizes: [10, 15, 20, 50, 100, 200, 500]
+            },
+            resizable: true,
+            columnMenu: false,
+            columns: [
+                {
+                    field: "ID",
+                    title: "Delete",
+                    width: 50,
+                    attributes: { style: "text-align:center" },
+                    headerAttributes: {
+                        style: "text-align:center"
+                    },
+                    template: '#=checkedRemoveUser(user_id)#'
+                },
+                {
+                    title: "STT",
+                    template: "<span class='row-number'></span>", height: "5px", width: "60px",
+                    attributes: { style: "text-align:left" }
+                },
+                {
+                    field: "username",
+                    title: "Username ",
+                    width: 120,
+                    template: "#=OpenUserDetail(username)#"
+                },
+                { field: "email", title: "Email", width: 90 },
+                
+                {
+                    field: "group_name",
+                    title: "Group",
+                    width: 90,
+                },
+                {
+                    field: "status",
+                    title: "Active",
+                    width: 50,
+                    attributes: { style: "text-align:center" },
+                    headerAttributes: {
+                        style: "text-align:center"
+                    },
+                    template: '#=checkedActiveUser(user_id,status)#'
+                },
+            ],
+            dataBound: function () {
+                var rows = this.items();
+                $(rows).each(function () {
+                    var index = $(this).index() + 1;
+                    var rowLabel = $(this).find(".row-number");
+                    $(rowLabel).html(index);
+                });
+
+            }
+            // editable: true
+        });
+
+
+    })
+    function btnCreateOnClick() {
+        loadpopup("user/add", 'Add new user', '60%', false);
+        // window.open("user/add",'Add new user', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0,scrollbars=1', true);
+    }
+
+    function checkedRemoveUser(ID) {
+        var img = '<img src="images/delete-icon.gif" style="cursor:pointer" alt="Delete" title="Delete" class="btn_delete_grid" onclick="checkedRemoveUser_click(\'' + ID + '\')" />';
+        return img;
+    }
+
+    function checkedRemoveUser_click(ID) {
+        var message = 'Are you sure you want to permanently delete this user?';
+        $body = $("body");
+        if (confirm(message)) {
+            var notification = $("#notification").kendoNotification({
+                position: {
+                    pinned: true,
+                    top: 30,
+                    right: 30
+                },
+                autoHideAfter: 5000,
+                stacking: "down",
+                templates: [{
+                    type: "error",
+                    template: $("#errorTemplate").html()
+                },
+                    {
+                        type: "save",
+                        template: $("#saveTemplate").html()
+                    }]
+            }).data("kendoNotification");
+            $.ajax({
+                url: "user/deleteUser",
+                type: "post",
+                data: JSON.stringify(ID),
+                dataType: "json",
+                contentType: "application/json",
+                beforeSend: function () {
+                    $body.addClass("loading");
+                },
+                error: function (msg) {
+                    $body.removeClass("loading");
+                },
+                success: function ($result) {
+                    $body.removeClass("loading");
+                    if ($result == 1) {
+                        $(function () {
+                            notification.show({
+                                message: "Remove Successful!"
+                            }, "save");
+                        });
+                        $("#grid_user").data("kendoGrid").dataSource.read();
+                        $("#grid_user").data("kendoGrid").dataSource.page(1);
+                    }
+                },
+                error: function () {
+                    alert("Không kết nối được với máy chủ");
+                }
+            });
+        }
+    }
+
+    function checkedActiveUser(ID, Status) {
+        if (Status == 0) {
+            var img = '<a href="#"><div alt="Unpublish" title="Unpublish" class="fa fa-ban" onclick="checkedActiveUser_click(\'' + ID + '\')"></div></a>';
+            return img;
+        }
+        else
+            if (Status == 1) {
+                var img = '<a href="#"><div alt="Publish" title="Publish" class="fa fa-check" onclick="checkedDeActiveUser_click(\'' + ID + '\')"></div></a>';
+                return img;
+            }
+    }
+
+    function checkedActiveUser_click(ID) {
+        var message = 'Are you sure you want to active this user?';
+        $body = $("body");
+        if (confirm(message)) {
+            var notification = $("#notification").kendoNotification({
+                position: {
+                    pinned: true,
+                    top: 30,
+                    right: 30
+                },
+                autoHideAfter: 5000,
+                stacking: "down",
+                templates: [{
+                    type: "error",
+                    template: $("#errorTemplate").html()
+                },
+                    {
+                        type: "save",
+                        template: $("#saveTemplate").html()
+                    }]
+            }).data("kendoNotification");
+
+            $.ajax({
+                url: "user/activeUser",
+                type: "post",
+                data: JSON.stringify(ID),
+                dataType: "json",
+                contentType: "application/json",
+                beforeSend: function () {
+                    $body.addClass("loading");
+                },
+                error: function (msg) {
+                    $body.removeClass("loading");
+                },
+                success: function ($result) {
+                    $body.removeClass("loading");
+                    if ($result == 1) {
+                        $(function () {
+                            notification.show({
+                                message: "Active Successful!"
+                            }, "save");
+                        });
+                        $("#grid_user").data("kendoGrid").dataSource.read();
+                        $("#grid_user").data("kendoGrid").dataSource.page(1);
+                    }
+                },
+                error: function () {
+                    alert("Không kết nối được với máy chủ");
+                }
+            });
+        }
+    }
+
+    function checkedDeActiveUser_click(ID) {
+        var message = 'Are you sure you want to deactive this user?';
+        $body = $("body");
+        if (confirm(message)) {
+            var notification = $("#notification").kendoNotification({
+                position: {
+                    pinned: true,
+                    top: 30,
+                    right: 30
+                },
+                autoHideAfter: 5000,
+                stacking: "down",
+                templates: [{
+                    type: "error",
+                    template: $("#errorTemplate").html()
+                },
+                    {
+                        type: "save",
+                        template: $("#saveTemplate").html()
+                    }]
+            }).data("kendoNotification");
+
+            $.ajax({
+                url: "user/deactiveUser",
+                type: "post",
+                data: JSON.stringify(ID),
+                dataType: "json",
+                contentType: "application/json",
+                beforeSend: function () {
+                    $body.addClass("loading");
+                },
+                error: function (msg) {
+                    $body.removeClass("loading");
+                },
+                success: function ($result) {
+                    $body.removeClass("loading");
+                    if ($result == 1) {
+                        $(function () {
+                            notification.show({
+                                message: "Deactivate Successful!"
+                            }, "save");
+                        });
+                        $("#grid_user").data("kendoGrid").dataSource.read();
+                        $("#grid_user").data("kendoGrid").dataSource.page(1);
+                    }
+                },
+                error: function () {
+                    alert("Không kết nối được với máy chủ");
+                }
+            });
+        }
+    }
+
+    function btnSearchOnClick() {
+        try {
+            $("#grid_user").data("kendoGrid").dataSource.read();
+        } catch (err) {
+
+        }
+    }
+
+    function btnRefreshOnClick() {
+        $("#txt_username").val(" ");
+        $("#txt_email").val(" ");
+        $("#txt_fullname").val(" ");
+        $("#txt_region").data('kendoComboBox').value("");
+        $("#txt_branch").data('kendoComboBox').value("");
+        $("#txt_partner").data('kendoComboBox').value("");
+        $("#txt_group").data('kendoComboBox').value("");
+        $("#txt_startdate").val("");
+        $("#txt_finishdate").val("");
+        $("#grid_user").data("kendoGrid").dataSource.read();
+        $("#grid_user").data("kendoGrid").dataSource.page(1);
+    }
+    function OpenUserDetail(username) {
+        return '<a style="cursor:pointer"  onclick="OpenUserDetail1(\'' + username + '\')">' + username + '</a>';
+    }
+    function OpenUserDetail1(username) {
+        // window.open("user/add?username=" + username, 'User Detail', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0,scrollbars=1', true);
+        loadpopup("user/add?username=" + username, 'User Detail', '60%', false);
+    }
+
+    function formatDateMySQL(date) {
+        //      alert($('#txt_birthday').val());
+        var fdate = null;
+        if (date != '') {
+            var split = date.split('/');
+            fdate = split[2] + '-' + split[0] + '-' + split[1];
+        }
+
+
+        //alert(todate);
+        return fdate;
+    }
+</script>
+

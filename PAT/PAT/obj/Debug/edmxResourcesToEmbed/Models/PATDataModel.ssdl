@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PATModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentID" Type="bigint" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="20" />
+    <Property Name="Language" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContentName" Type="nvarchar" MaxLength="500" />
+    <Property Name="CategoryID" Type="bigint" Nullable="false" />
+    <Property Name="ContentDisplay" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Language" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CategoryID" Type="bigint" />
+    <Property Name="Type" Type="varchar" MaxLength="20" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Language" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="10" />
+    <Property Name="MessageTime" Type="datetime" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleName" Type="varchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="500" />
+    <Property Name="URL" Type="nvarchar" MaxLength="500" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NewsName" Type="nvarchar" MaxLength="500" />
+    <Property Name="NewsDecription" Type="nvarchar" MaxLength="500" />
+    <Property Name="NewsContent" Type="nvarchar(max)" />
+    <Property Name="Language" Type="varchar" MaxLength="20" />
+    <Property Name="NewsDate" Type="datetime" />
+    <Property Name="Type" Type="varchar" MaxLength="20" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="bigint" Nullable="false" />
+    <Property Name="ModuleID" Type="bigint" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="500" />
+    <Property Name="ModuleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="500" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" />
+    <Property Name="ItemID" Type="bigint" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GroupID" Type="bigint" />
+    <Property Name="Type" Type="varchar" MaxLength="10" />
+    <Property Name="Reftype" Type="varchar" MaxLength="20" />
+    <Property Name="Refcode" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PATModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

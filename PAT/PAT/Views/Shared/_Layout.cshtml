@@ -139,7 +139,7 @@
         }
         function gainclick() {
             $('html, body').animate({
-                scrollTop: $("#stages").offset().top
+                scrollTop: $("#benefit").offset().top
             }, 2000);
         }
         function libraryclick() {
@@ -186,7 +186,7 @@
                             <a href="#characters" onclick="scrollTo2('#characters')"></a>
                             <img src="~/Template/newicon.gif" class="icon">
                         </li>
-                        <li class="menu_stages"><a href="#stages" onclick="gainclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
+                        <li class="menu_stages"><a href="#benefit" onclick="gainclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
                         <li class="menu_movies"><a href="#movies" onclick="libraryclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
                         <li class="menu_contact"><a href="#contact" onclick="contactclick()"></a></li>
                         <li class="menu_langue">
@@ -318,8 +318,8 @@
                     <h2><img style="opacity: 0; left: -100px;" src="~/Template/industryzone_h.png"></h2>
                     <div class="inner">
                         <ul>
-                            <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/law.jpg"><span class="text"><span class="inner">NHÀ PHỐ LOẠI I</span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
-                            <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/new.jpg"><span class="text"><span class="inner">NHÀ PHỐ LOẠI II</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">NHÀ XƯỞNG</span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">ĐẤT CÔNG NGHIỆP</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
                            
                         </ul>
                         <div class="clearfix"></div>
@@ -412,31 +412,18 @@
                 <!--△△CHARACTERS-->
                 <div class="line"></div>
                 <!--▼▼STAGES-->
-                <div style="height: 1349px;" id="stages">
+                <div id="benefit">
                     <h2><img style="opacity: 0; left: -100px;" src="~/Template/stages_h.png"></h2>
-                    <div style="opacity: 1; display: block;" id="stages_layerTop">
-                        <div id="slider_stages">
-                            <div class="flexslider">
-                                @*<div style="overflow: hidden; position: relative;" class="flex-viewport">
-                                    <ul style="width: 1000%; transition-duration: 0s; transform: translate3d(-4047px, 0px, 0px);" class="slides">
-                                        <li style="width: 1349px; float: left; display: block;" aria-hidden="true" class="clone"><img draggable="false" src="~/Template/004_03.jpg"></li>
-                                        <li class="" style="width: 1349px; float: left; display: block;"><img draggable="false" src="~/Template/004_01.jpg"></li>
-                                        <li class="" style="width: 1349px; float: left; display: block;"><img draggable="false" src="~/Template/004_02.jpg"></li>
-                                        <li class="flex-active-slide" style="width: 1349px; float: left; display: block;"><img draggable="false" src="~/Template/004_03.jpg"></li>
-                                        <li aria-hidden="true" class="clone" style="width: 1349px; float: left; display: block;"><img draggable="false" src="~/Template/004_01.jpg"></li>
-                                    </ul>
-                                </div><ol class="flex-control-nav flex-control-paging"><li><a class="">1</a></li><li><a class="">2</a></li><li><a class="flex-active">3</a></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul>*@
-                            </div>
-                        </div>
-                    </div>
-                    <div style="opacity: 0; display: none;" id="stages_base">
-                        <div class="inner">
-                            <a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_land();" class="mo"><img src="~/Template/thum_azuchi.jpg" class="thum"></a>
-                            <a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_saving();" class="mo"><img src="~/Template/saving.jpg" class="thum right"></a>
-                            <a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_develop();" class="mo"><img src="~/Template/develop.jpg" class="thum"></a>
-                            <a href="javascript:scrollTo('#stages','.menu_stages','top.html#Stages');" onclick="openpopup_benefit_savethetime();" class="mo"><img src="~/Template/savethetime.jpg" class="thum right"></a>
-                            <div class="clearfix"></div>
-                        </div>
+                    <div class="inner">
+                        <ul>
+                            <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">GIÁ THUÊ ĐẤT VÀ CÁC LOẠI PHÍ</span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">TIẾT KIỆM CHI PHÍ</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+
+                            <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">PHÁT TRIỂN BỀN VỮNG </span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">TIẾT KIỆM THỜI GIAN</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+
+                        </ul>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
                 <!--△△STAGES-->
@@ -451,11 +438,13 @@
                             <li style="opacity: 1; top: 0px;" class="num_2"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup();"><img src="~/Template/video.jpg"><span class="text"><span class="inner">VIDEO</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
                             <li style="opacity: 1; top: 0px;" class="num_3"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_photo();"><img src="~/Template/photo.jpg"><span class="text"><span class="inner">HÌNH ẢNH HOẠT ĐỘNG</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
                             <li style="opacity: 1; top: 0px;" class="num_4"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">HỎI ĐÁP</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                            <li style="opacity: 1; top: 0px;" class="num_4"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">TUYỂN DỤNG</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                 </div>
                 <!--△△MOVIES-->
+                <div class="line"></div>
                 <!--▼▼CONTACT-->
                 <div id="contact">
                     <h2><img style="opacity: 0; left: -100px;" src="~/Template/contact_h.png"></h2>
@@ -592,7 +581,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ClosePopup();">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="windowpopup_login_title"><img class="logoSCM" src="/Content/AdminTemplate/images/logo.png"></h4>
+                    <h4 class="modal-title" id="windowpopup_login_title"></h4>
                 </div>
                 <div class="modal-body" id="windowpopup_login_content">
                     @*begin content*@
