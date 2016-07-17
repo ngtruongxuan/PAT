@@ -19,13 +19,38 @@ namespace ManageShop
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+          
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/bootstrap-datepicker.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-datepicker.css",
+                       "~/Content/datepicker.css"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
+               "~/Content/kendo/kendo.common.min.css",
+               "~/Content/kendo/kendo.default.min.css",
+               "~/Content/kendo/kendo.dataviz.min.css",
+               "~/Content/kendo/kendo.dataviz.default.min.css"//,
+                //  "~/Content/kendo/kendo.common-bootstrap.min.css",
+                //  "~/Content/kendo/kendo.bootstrap.min.css"));
+                //  "~/Content/kendo/kendo.black.min.css"
+                // "~/Content/kendo/kendo.moonlight.min.css"
+              ));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+       
+          "~/Scripts/kendo/kendo.web.min.js"
+        
+         
+                // "~/Scripts/kendo/kendo.timezones.min.js", // uncomment if using the Scheduler
+          ));
         }
     }
 }
