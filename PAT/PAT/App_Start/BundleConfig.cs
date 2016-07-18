@@ -46,7 +46,8 @@ namespace ManageShop
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
        
-          "~/Scripts/kendo/kendo.web.min.js"
+          "~/Scripts/kendo/kendo.web.min.js"  
+        
         
          
                 // "~/Scripts/kendo/kendo.timezones.min.js", // uncomment if using the Scheduler

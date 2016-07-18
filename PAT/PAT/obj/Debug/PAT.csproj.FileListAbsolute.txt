@@ -135,7 +135,6 @@ C:\Users\TuanPh\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.Twitter.x
 C:\Users\TuanPh\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\TuanPh\Desktop\13chai\PAT\PAT\PAT\obj\Debug\ManageShop.dll
 C:\Users\TuanPh\Desktop\13chai\PAT\PAT\PAT\obj\Debug\ManageShop.pdb
-C:\Users\TuanPh\Desktop\13chai\PAT\PAT\PAT\obj\Debug\PAT.csprojResolveAssemblyReference.cache
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\roslyn\csc.exe
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -204,3 +203,4 @@ C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.Twitter.
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\obj\Debug\ManageShop.dll
 C:\Users\DuySang\Desktop\13chai\PAT\PAT\PAT\obj\Debug\ManageShop.pdb
+C:\Users\TuanPh\Desktop\13chai\PAT\PAT\PAT\obj\Debug\PAT.csprojResolveAssemblyReference.cache

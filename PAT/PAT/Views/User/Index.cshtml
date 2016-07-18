@@ -108,39 +108,14 @@
         $("#txt_finishdate").datepicker({
 
         });
-        $("#txt_partner").kendoComboBox({
-            placeholder: "-- Select --",
-            dataTextField: "name",
-            dataValueField: "partner_id",
-            dataSource:
-                    {
-                        // type:"json",
-                        transport: {
-                            read: {
-                                url: "user/getPartner",
-                                dataType: "json",
-                                type: "POST",
-                            }
-                        },
-                    },
-            change: partner_onChange,
-            //          filter: "contains",
-            suggest: true,
-            // index: -1
-        });
+      
 
-        function partner_onChange() {
-            var value = $("#txt_partner").val();
-            var text = $("#txt_partner").data('kendoComboBox').text();
-            if (value == text) {
-                $("#txt_partner").data('kendoComboBox').value("");
-            }
-        }
+      
 
         $("#txt_group").kendoComboBox({
             placeholder: "-- Select --",
-            dataTextField: "name",
-            dataValueField: "group_id",
+            dataTextField: "GroupName",
+            dataValueField: "ID",
             dataSource:
                     {
                         // type:"json",
@@ -166,94 +141,10 @@
             }
         }
 
-        $("#txt_region").kendoComboBox({
-            placeholder: "-- Select --",
-            dataTextField: "RegionName",
-            dataValueField: "ID",
-            dataSource:
-                    {
-                        // type:"json",
-                        transport: {
-                            read: {
-                                url: "user/getRegion",
-                                dataType: "json",
-                                type: "POST",
-                            }
-                        },
-                    },
-            change: region_onChange,
-            //          filter: "contains",
-            suggest: true,
-            // index: -1
-        });
+     
 
-        function Data() {
-            return {
-                RegionID: $('#txt_region').val(),
-            };
-        }
+    
 
-        function region_onChange() {
-            var value = $("#txt_region").val();
-            var text = $("#txt_region").data('kendoComboBox').text();
-            if (value == text) {
-                $("#txt_region").data('kendoComboBox').value("");
-            }
-            else {
-                $("#txt_branch").data('kendoComboBox').value("");
-                $("#txt_branch").kendoComboBox({
-                    placeholder: "-- Select --",
-                    dataTextField: "BranchName",
-                    dataValueField: "ID",
-                    dataSource:
-                            {
-                                // type:"json",
-                                transport: {
-                                    read: {
-                                        url: "user/getBranch",
-                                        dataType: "json",
-                                        type: "POST",
-                                        data: Data,
-                                    }
-                                },
-                            },
-                    change: branch_onChange,
-                    //          filter: "contains",
-                    suggest: true,
-                    // index: -1
-                });
-            }
-        }
-
-        $("#txt_branch").kendoComboBox({
-            placeholder: "-- Select --",
-            dataTextField: "BranchName",
-            dataValueField: "ID",
-            dataSource:
-                    {
-                        // type:"json",
-                        transport: {
-                            read: {
-                                url: "user/getBranch",
-                                dataType: "json",
-                                type: "POST",
-                                data: Data,
-                            }
-                        },
-                    },
-            change: branch_onChange,
-            //          filter: "contains",
-            suggest: true,
-            // index: -1
-        });
-
-        function branch_onChange() {
-            var value = $("#txt_branch").val();
-            var text = $("#txt_branch").data('kendoComboBox').text();
-            if (value == text) {
-                $("#txt_branch").data('kendoComboBox').value("");
-            }
-        }
 
         function additionalData() {
 
@@ -349,7 +240,8 @@
 
     })
     function btnCreateOnClick() {
-        loadpopup("user/add", 'Add new user', '60%', false);
+        //loadpopup('../../UserRole/Edit?username=' + username, 'Thông tin chi tiết', '100%', true);
+        loadpopup("User/Detail", 'Add new user', '60%', false);
         // window.open("user/add",'Add new user', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0,scrollbars=1', true);
     }
 
