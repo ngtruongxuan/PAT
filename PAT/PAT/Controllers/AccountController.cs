@@ -9,11 +9,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ManageShop.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ManageShop.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : Base
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -66,9 +68,26 @@ namespace ManageShop.Controllers
         [HttpPost]
         [AllowAnonymous]
     //    [ValidateAntiForgeryToken]
-        public ActionResult Login(string User,string Pass)
+        public ActionResult Login(string Username,string Pass)
         {
-            return Json(User);
+            string pass = AESEncrytDecry.DecryptStringAES(Pass);
+            PATDBDataContext db = new PATDBDataContext();
+            User user = db.Users.Where(x => x.UserName == Username && x.Password == Encrypt(pass) && x.Status == "A").FirstOrDefault();
+            if(user!=null)
+            {
+                Session["UserName"] = user.UserName;
+                ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity ssE = new ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity();
+                ssE.UserName = user.UserName;
+                SessionWrapper.SetInSession("CUSTOMERLOGIN", ssE);
+                return Json(user);
+            }
+            else
+            {
+                return Json(Username);
+            }
+           
+          
+            
             //if (!ModelState.IsValid)
             //{
             //    return View(model);
@@ -91,7 +110,36 @@ namespace ManageShop.Controllers
             //        return View(model);
             //}
         }
+        public static string Encrypt(string original)
+        {
+            return Encrypt(original, "!@#$%^&*()~_+|");
+        }
 
+        public static string Encrypt(string original, string key)
+        {
+            TripleDESCryptoServiceProvider objDESProvider;
+            MD5CryptoServiceProvider objHashMD5Provider;
+            byte[] keyhash;
+            byte[] buffer;
+            try
+            {
+                objHashMD5Provider = new MD5CryptoServiceProvider();
+                keyhash = objHashMD5Provider.ComputeHash(UnicodeEncoding.Unicode.GetBytes(key));
+                objHashMD5Provider = null;
+
+                objDESProvider = new TripleDESCryptoServiceProvider();
+                objDESProvider.Key = keyhash;
+                objDESProvider.Mode = CipherMode.ECB;
+
+                buffer = UnicodeEncoding.Unicode.GetBytes(original);
+                return Convert.ToBase64String(objDESProvider.CreateEncryptor().TransformFinalBlock(buffer, 0, buffer.Length));
+            }
+            catch (Exception ex)
+            {
+                //Utils.WriteLogError("Utils Encrypt ", ex.Message);
+                return string.Empty;
+            }
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]

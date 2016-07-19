@@ -88,6 +88,7 @@
     @*<script type="text/javascript" src="~/Template/jquery.color-2.1.1.js"></script>*@
     @*<script type="text/javascript" src="~/Template/jquery.tubular.1.0.js"></script>*@
     <script src="~/Template/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/aes.js"></script>
     @*<script gapi_processed="true" type="text/javascript" src="~/Template/plusone.js"></script>*@
     @*<link rel="apple-touch-icon" href="http://teamninja-studio.com/doa5/lastround/us/img/common/icon.jpg">*@
     @*<script src="~/Template/timeline.js" async="" charset="utf-8" type="text/javascript"></script>*@
@@ -763,12 +764,26 @@
 
         function loginpopup_click()
         {
+           
+
+            var password = $("#loginformpopup_txtpassword").val();
+            var key = CryptoJS.enc.Utf8.parse('8080808080808080');
+            var iv = CryptoJS.enc.Utf8.parse('8080808080808080');
+
+            var encryptedpassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key,
+            {
+                keySize: 128 / 8,
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            }).toString();
+
             $.ajax({
                 url: "/Account/Login",
                 type: "Post",
                 data: JSON.stringify({
-                    User: 'admin',
-                    Pass: 'admin'
+                    Username: $("#loginformpopup_txtusername").val(),
+                    Pass: encryptedpassword
                 }),
                 // data:postData,
                 dataType: "json",
@@ -778,7 +793,8 @@
                     $('#logout').addClass('menu_logout');
                     $('#admin').addClass('menu_admin');
                     $('#windowpopup_login').modal('hide');
-                   // window.location.href = "/Home/Admin";
+                    // window.location.href = "/Home/Admin";
+                   
                 },
                 Error: function () {
                     //alert("Không thể kết nối tới máy chủ");
@@ -800,7 +816,7 @@
         }
 
         $(document).ready(function () {
-            
+            //alert('@Session["UserName"]');
         });
     </script>
     @RenderBody()

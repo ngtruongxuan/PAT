@@ -1,6 +1,7 @@
 ﻿@model ManageShop.Models.UserDetail
 @{
-    Layout = null;
+
+    Layout = "~/Views/Shared/_PopupInnerLayout.cshtml";
 }
 <script src="~/Scripts/jquery.easyui.min.js"></script>
 <link href="~/Content/dropdowntree/easyui.css" rel="stylesheet" />
@@ -9,6 +10,9 @@
     .star:after {
         content: "\00b*";
         color: #ff3333;
+    }
+    .t-disable {
+        background-color: #CCCCCC !important;
     }
 </style>
 
@@ -23,7 +27,7 @@
                         <label class="col-md-4 star ">Nhóm</label>
                         <div class="col-md-6">
                             <input id="txt_group_popup"
-                                   style="width: 100%;"  />
+                                   style="width: 100%;" value="@Model.GroupID" />
                         </div>
                     </div>
                    
@@ -33,21 +37,21 @@
                         <div class="col-md-6">
                           
                             <input id="txt_username_popup" class="k-textbox"
-                                   style="width: 100% ;" />
+                                   style="width: 100% ;" value="@Model.UserName" />
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-4 star ">Email</label>
                         <div class="col-md-6">
                             <input id="txt_email_popup" class="k-textbox"
-                                   style="width: 100%;"  />
+                                   style="width: 100%;" value="@Model.Email" />
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-4 star ">Tên đầy đủ</label>
                         <div class="col-md-6">
                             <input id="txt_fullname_popup" class="k-textbox"
-                                   style="width: 100% ;"  />
+                                   style="width: 100% ;" value="@Model.FullName" />
                         </div>
                     </div>
                     <div class="row">
@@ -72,25 +76,50 @@
            
         </div>
         <br />
-        <div class="row">
-            <center>
-                <div style="max-width:600px;">
-                    <!--  <button id="btnRepresh_popup" class="btn btn-md btn-warning"
-                             onclick="btnRefreshOnClick_popup()"><i class="fa fa-refresh"></i>Refresh</button> -->
-                    <button id="btnCreate_popup" class="btn btn-md btn-primary"
-                            onclick="btnCreate_popupOnClick()">
-                        <i class="fa fa-plus"></i>Save
-                    </button>
-                </div>
-            </center>
+       
+          
+        <div class="col-lg-12" style="margin: 20px 0px 0px 15px;text-align:left;">
+            <!--  <button id="btnRepresh_popup" class="btn btn-md btn-warning"
+         onclick="btnRefreshOnClick_popup()"><i class="fa fa-refresh"></i>Refresh</button> -->
+            <div style="float:left">
+                <button id="btnCreate_popup" class="btn btn-md btn-primary"
+                        onclick="btnCreate_popupOnClick()">
+                    <i class="fa fa-plus"></i>Lưu
+                </button>
+            </div>
+            <div style="float:left;margin-left:20px">
+                <button id="btnActive" class="btn btn-md btn-primary" style="display:none"
+                        onclick="btnActiveOnClick()">
+                    <i class="fa fa-plus"></i>Kích hoạt
+                </button>
+            </div>
+           
         </div>
+           
+       
         <br />
     </div>
-   
+   <input id="txt_id" class="k-textbox"
+       style="width: 100% ;display:none" value="@Model.ID" />
 <span id="centeredNotification" style="display:none;"></span>
 <script>
 $(document).ready(function () {
+    var _id = '@Model.ID';
+   // alert(_id);
+    if (_id != 0) {
+       // $("txt_username_popup").attr('disabled', 'disabled');
+        $("#txt_username_popup").prop('disabled', true);
+        $("#txt_username_popup").addClass('t-disable');
+    }
 
+    var _status = '@Model.Status';
+  //  alert(_status);
+    if (_status == 'I')
+    {
+        $('#btnActive').attr('style', "display:block");
+    }
+   
+    
     function onShow(e) {
         if (e.sender.getNotifications().length == 1) {
             var element = e.element.parent(),
@@ -155,14 +184,14 @@ $(document).ready(function () {
 
 
 
-    $("#txt_username_popup").bind('keypress', function (event) {
-            var regex = new RegExp("^[a-zA-Z0-9]+$");
-            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            if (!regex.test(key)) {
-               event.preventDefault();
-               return false;
-            }
-        });
+    //$("#txt_username_popup").bind('keypress', function (event) {
+    //        var regex = new RegExp("^[a-zA-Z0-9]+$");
+    //        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    //        if (!regex.test(key)) {
+    //           event.preventDefault();
+    //           return false;
+    //        }
+    //    });
 
 
 
@@ -189,20 +218,76 @@ function checkinput()
         var _check = false;
 
 
+        var _id = $("#txt_id").val().trim();
 
-
-        var _password = $("#txt_password_popup").val().trim();
-        var _confirm_password = $("#txt_confirm_password_popup").val().trim();
-
-         if (_password != _confirm_password)
+        //alert(_id);
+        if (_id == 0)
         {
-            setError($('#txt_confirm_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
-            _check = true;
+            var _password = $("#txt_password_popup").val().trim();
+            var _confirm_password = $("#txt_confirm_password_popup").val().trim();
+          //  alert(_password);
+            removeError($('#txt_password_popup'));
+            if (_password == '') {
+                setError($('#txt_password_popup'), 'Password is not empty');
+                _check = true;
+            }
+            else {
+                if (_password != _confirm_password) {
+                    setError($('#txt_confirm_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    setError($('#txt_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    _check = true;
+                }
+                else {
+
+                }
+            }
+
+           
+          //  alert(_confirmpassword);
+            removeError($('#txt_confirm_password_popup'));
+            if (_confirm_password == '') {
+                setError($('#txt_confirm_password_popup'), 'Confirm Password is not empty');
+                _check = true;
+            } else if (_confirm_password != _password) {
+                setError($('#txt_confirm_password_popup'), 'Confirm Password is wrong');
+                _check = true;
+            }
+            else {
+                removeError($('#txt_confirm_password_popup'));
+            }
+
+
+            //if (_password != _confirm_password) {
+            //    setError($('#txt_confirm_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+            //    _check = true;
+            //}
+            //else {
+            //    removeError($('#txt_confirm_password_popup'));
+            //}
         }
         else
         {
+            var _password = $("#txt_password_popup").val().trim();
+            var _confirm_password = $("#txt_confirm_password_popup").val().trim();
+            removeError($('#txt_password_popup'));
             removeError($('#txt_confirm_password_popup'));
+            if (_password == '') {
+               
+            }
+            else {
+                if (_password != _confirm_password) {
+                    setError($('#txt_confirm_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    setError($('#txt_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    _check = true;
+                }
+                else {
+                   
+                }
+            }
+
         }
+     
+
 
 
 
@@ -266,28 +351,7 @@ function checkinput()
             removeError($('#txt_fullname_popup'));
         }
 
-        var _password = $("#txt_password_popup").val().trim();
-        removeError($('#txt_password_popup'));
-        if (_password == '') {
-            setError($('#txt_password_popup'), 'Password is not empty');
-            _check = true;
-        }
-        else {
-            removeError($('#txt_password_popup'));
-        }
-
-        var _confirmpassword = $("#txt_confirm_password_popup").val().trim();
-        removeError($('#txt_confirm_password_popup'));
-        if (_confirmpassword == '') {
-            setError($('#txt_confirm_password_popup'), 'Confirm Password is not empty');
-            _check = true;
-        } else if (_confirmpassword != _password) {
-            setError($('#txt_confirm_password_popup'), 'Confirm Password is wrong');
-            _check = true;
-        }
-        else {
-            removeError($('#txt_confirm_password_popup'));
-        }
+       
 
         if (_check == true) {
             //$(function () {
@@ -314,7 +378,8 @@ function checkinput()
                 return;
             }
 
-         var additionalData = JSON.stringify({
+        var additionalData = JSON.stringify({
+            ID:$("#txt_id").val().trim(),
             UserName: $.trim($('#txt_username_popup').val()),
             Email: $.trim($('#txt_email_popup').val()),
             FullName: $.trim($('#txt_fullname_popup').val()),
@@ -339,14 +404,34 @@ function checkinput()
 
             success: function ($result) {
 
-                alert($result['Title']);
+                $("#txt_username_popup").prop('disabled', true);
+                $("#txt_username_popup").addClass('t-disable');
+                $("#txt_id").val($result['ID']);
+              //  alert($result['Title']);
                 showNotification("Lưu dữ liệu thành công. ", "success");
 
             },
         });
     }
 
+    function btnActiveOnClick()
+    {
 
+        $.ajax({
+            url: "User/ActiveUser",
+            type: "post",
+            data: JSON.stringify({ID:'@Model.ID'}),
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+                //  alert($result['Title']);
+                showNotification("Lưu dữ liệu thành công. ", "success");
+
+            },
+        });
+    }
 
     function DisableSpace(e)
     {
@@ -356,28 +441,7 @@ function checkinput()
            }
     }
 
-    function btnRefreshOnClick_popup()
-    {
-          $("#txt_username_popup").val("");
-          $("#txt_email_popup").val("");
-          $("#txt_fullname_popup").val("");
-          $("#txt_region_popup").data('kendoComboBox').value("");
-          $("#txt_branch_popup").data('kendoComboBox').value("");
-          $("#txt_partner_popup").data('kendoComboBox').value("");
-          $("#txt_group_popup").data('kendoComboBox').value("");
-          $("#txt_password_popup").val("");
-          $("#txt_confirm_password_popup").val("");
-
-        removeError($('#txt_username_popup'));
-        removeError($('#txt_email_popup'));
-        removeError($('#txt_fullname_popup'));
-        removeError($('#txt_password_popup'));
-        removeError($('#txt_confirm_password_popup'));
-        removeErrorKendoCombo($('#txt_region_popup'));
-        removeErrorKendoCombo($('#txt_branch_popup'));
-        removeErrorKendoCombo($('#txt_partner_popup'));
-        removeErrorKendoCombo($('#txt_group_popup'));
-    }
+   
 
     document.onkeydown = function(evt) {
     evt = evt || window.event;

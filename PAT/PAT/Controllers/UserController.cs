@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ManageShop.Controllers
 {
-    public class UserController : Controller
+    public class UserController : Base
     {
         //
         // GET: /User/
@@ -18,9 +18,32 @@ namespace ManageShop.Controllers
             return View();
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(string UserName)
         {
-            return View();
+            PATDBDataContext db = new PATDBDataContext();
+            UserDetail model = new UserDetail();
+            if(UserName!=null)
+            {
+                var user = db.Users.Where(x => x.UserName == UserName).FirstOrDefault();
+
+             
+                model.UserName = user.UserName;
+                model.GroupID = Convert.ToInt16(user.GroupID);
+                model.FullName = user.FullName;
+                model.Email = user.Email;
+                model.ID =Convert.ToInt16(user.ID);
+                model.Status = user.Status;
+                return View(model);
+            }
+            else
+            {
+
+                model.GroupID = 1;
+
+                return View(model);
+            }
+          
+           
         }
 
         public JsonResult getGroup()
@@ -33,36 +56,121 @@ namespace ManageShop.Controllers
 
         public JsonResult saveUser(UserDetail model)
         {
+
              PATDBDataContext db = new PATDBDataContext();
-             var email = db.Users.Where(x => x.Email == model.Email).FirstOrDefault();
-            if(email!=null)
-            {
-
-                return Json(new Question { Title = "email đã tồn tại", Exist = "1" });
-            }
-
-            User user_new = new User();
-            user_new.CreatedBy = "tuan_juve";
-            user_new.CreatedDateTime = DateTime.Now;
-            user_new.Email = model.Email;
-            user_new.FullName = model.FullName;
-            user_new.GroupID = model.GroupID;
-            user_new.LastUpdatedBy = "tuan_juve";
-            user_new.LastUpdatedDateTime = DateTime.Now;
-            user_new.Password = Encrypt(model.Password);
-            user_new.Status = "A";
-            user_new.UserName = model.UserName;
            
-            db.Users.InsertOnSubmit(user_new);
+            if(model.ID==0)
+            {
+                var email = db.Users.Where(x => x.Email == model.Email).FirstOrDefault();
+                if (email != null)
+                {
+
+                    return Json(new Question { Title = "email đã tồn tại", Exist = "1" });
+                }
+                User user_new = new User();
+                user_new.CreatedBy = Session["UserName"].ToString();
+                user_new.CreatedDateTime = DateTime.Now;
+                user_new.Email = model.Email;
+                user_new.FullName = model.FullName;
+                user_new.GroupID = model.GroupID;
+                user_new.LastUpdatedBy = Session["UserName"].ToString();
+                user_new.LastUpdatedDateTime = DateTime.Now;
+                user_new.Password = Encrypt(model.Password);
+                user_new.Status = "A";
+                user_new.UserName = model.UserName;
+
+                db.Users.InsertOnSubmit(user_new);
+                db.SubmitChanges();
+                var commend = "Lưu dữ liệu thành công";
+                var question = new Question { Title = commend,ID=db.Users.Where(x=>x.Email==model.Email).Select(x=>x.ID).FirstOrDefault() };
+                return Json(question);
+            }
+            else
+            {
+                var email = db.Users.Where(x => x.Email == model.Email).FirstOrDefault();
+                if(email.ID!=model.ID)
+                {
+                    return Json(new Question { Title = "email đã tồn tại", Exist = "1" });
+                }
+                User update = db.Users.Where(x => x.ID == model.ID).FirstOrDefault();
+                update.Email = model.Email;
+                update.FullName = model.FullName;
+                update.GroupID = model.GroupID;
+                update.LastUpdatedBy = Session["UserName"].ToString();
+                update.LastUpdatedDateTime = DateTime.Now;
+                if(model.Password!=null)
+                {
+                    update.Password = Encrypt(model.Password);
+                }
+                db.SubmitChanges();
+                var commend = "Lưu dữ liệu thành công";
+                var question = new Question { Title = commend };
+                return Json(question);
+            }
+            
+            //db.SubmitChanges();
+           
+        }
+        public JsonResult deleteUser(UserDetail model)
+        {
+            PATDBDataContext db = new PATDBDataContext();
+            User update = db.Users.Where(x => x.ID == model.ID).FirstOrDefault();
+            update.LastUpdatedBy = Session["UserName"].ToString();
+            update.LastUpdatedDateTime = DateTime.Now;
+            update.Status = "I";
             db.SubmitChanges();
             var commend = "Lưu dữ liệu thành công";
-            var question = new Question { Title = commend };
+            var question = new Question { Title = commend, Success = "1" };
             return Json(question);
+        }
+
+        public JsonResult ActiveUser(UserDetail model)
+        {
+            PATDBDataContext db = new PATDBDataContext();
+            User update = db.Users.Where(x => x.ID == model.ID).FirstOrDefault();
+            update.LastUpdatedBy = Session["UserName"].ToString();
+            update.LastUpdatedDateTime = DateTime.Now;
+            update.Status = "A";
+            db.SubmitChanges();
+            var commend = "Lưu dữ liệu thành công";
+            var question = new Question { Title = commend, Success ="1"};
+            return Json(question);
+        }
+        public JsonResult searchUser(UserSearch model)
+        {
+            PATDBDataContext db = new PATDBDataContext();
+            var obj = db.Users.ToList();
+
+            List<UserResult> l_result = new List<UserResult>();
+            foreach (var item in obj)
+            {
+                UserResult result = new UserResult();
+                result.ID = item.ID;
+                result.GroupName = db.Groups.Where(x => x.ID == item.GroupID).Select(x => x.GroupName).FirstOrDefault();
+                result.GroupID = Convert.ToInt16(item.GroupID);
+                result.FullName = item.FullName;
+                result.Email = item.Email;
+                result.UserName = item.UserName;
+                if(item.Status=="A")
+                {
+                    result.StatusName = "Có hiệu lực";
+                }
+                else
+                {
+                    result.StatusName = "Hết hiệu lực";
+                }
+
+                l_result.Add(result);
+            }
+
+            return Json(l_result, JsonRequestBehavior.AllowGet);
         }
         public class Question
         {
             public string Title { get; set; }
             public string Exist { get; set; }
+            public string Success { get; set; }
+            public long ID { get; set; }
 
         }
 

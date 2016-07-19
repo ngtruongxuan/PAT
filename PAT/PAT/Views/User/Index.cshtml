@@ -1,8 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+   
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+
 <style>
     .row::before, .row::after {
         content: " ";
@@ -10,8 +12,9 @@
         margin-top: 1px;
     }
 
-
+  
 </style>
+<link href="~/Plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" /> >
 <div class="row">
     <div class="col-sm-12">
         <section style="background:white; width:1041px; height:120px;margin-left: 22px;">
@@ -21,7 +24,7 @@
                         <label class="col-md-4">UserName</label>
                         <div class="col-md-8">
                             <input id="txt_username" class="k-textbox"
-                                   style="width: 100% ;" />
+                                   style="width: 100% ;"  />
                         </div>
                     </div>
 
@@ -152,10 +155,8 @@
                 UserName: $.trim($('#txt_username').val()),
                 Email: $.trim($('#txt_email').val()),
                 FullName: $.trim($('#txt_fullname').val()),
-                RegionID: $.trim($('#txt_region').val()),
-                Branch: $.trim($('#txt_branch').val()),
-                Partner: $.trim($('#txt_partner').val()),
-                Group: $.trim($('#txt_group').val()),
+               
+                GroupID: $.trim($('#txt_group').val()),
                 DateFrom: formatDateMySQL($.trim($('#txt_startdate').val())),
                 DateTo: formatDateMySQL($.trim($('#txt_finishdate').val())),
             };
@@ -166,7 +167,7 @@
                 type: "json",
                 transport: {
                     read: {
-                        url: "user/searchUser",
+                        url: "User/searchUser",
                         type: "POST",
                         dataType: "json",
                         data: additionalData,
@@ -194,7 +195,7 @@
                     headerAttributes: {
                         style: "text-align:center"
                     },
-                    template: '#=checkedRemoveUser(user_id)#'
+                    template: '#=checkedRemoveUser(ID)#'
                 },
                 {
                     title: "STT",
@@ -202,27 +203,27 @@
                     attributes: { style: "text-align:left" }
                 },
                 {
-                    field: "username",
+                    field: "UserName",
                     title: "Username ",
                     width: 120,
-                    template: "#=OpenUserDetail(username)#"
+                    template: "#=OpenUserDetail(UserName)#"
                 },
-                { field: "email", title: "Email", width: 90 },
+                { field: "Email", title: "Email", width: 90 },
                 
                 {
-                    field: "group_name",
+                    field: "GroupName",
                     title: "Nhóm",
                     width: 90,
                 },
                 {
-                    field: "status",
+                    field: "StatusName",
                     title: "Active",
                     width: 50,
                     attributes: { style: "text-align:center" },
                     headerAttributes: {
                         style: "text-align:center"
                     },
-                    template: '#=checkedActiveUser(user_id,status)#'
+                    
                 },
             ],
             dataBound: function () {
@@ -246,35 +247,20 @@
     }
 
     function checkedRemoveUser(ID) {
-        var img = '<img src="images/delete-icon.gif" style="cursor:pointer" alt="Delete" title="Delete" class="btn_delete_grid" onclick="checkedRemoveUser_click(\'' + ID + '\')" />';
+        var img = '<img src="Content/image/delete-icon.gif" style="cursor:pointer" alt="Delete" title="Delete" class="btn_delete_grid" onclick="checkedRemoveUser_click(\'' + ID + '\')" />';
         return img;
     }
 
     function checkedRemoveUser_click(ID) {
-        var message = 'Are you sure you want to permanently delete this user?';
+   // alert(ID);
+        var message = 'Bạn có muốn xóa user này không?';
         $body = $("body");
         if (confirm(message)) {
-            var notification = $("#notification").kendoNotification({
-                position: {
-                    pinned: true,
-                    top: 30,
-                    right: 30
-                },
-                autoHideAfter: 5000,
-                stacking: "down",
-                templates: [{
-                    type: "error",
-                    template: $("#errorTemplate").html()
-                },
-                    {
-                        type: "save",
-                        template: $("#saveTemplate").html()
-                    }]
-            }).data("kendoNotification");
+           
             $.ajax({
-                url: "user/deleteUser",
+                url: "User/deleteUser",
                 type: "post",
-                data: JSON.stringify(ID),
+                data: JSON.stringify({ID:ID}),
                 dataType: "json",
                 contentType: "application/json",
                 beforeSend: function () {
@@ -284,16 +270,10 @@
                     $body.removeClass("loading");
                 },
                 success: function ($result) {
-                    $body.removeClass("loading");
-                    if ($result == 1) {
-                        $(function () {
-                            notification.show({
-                                message: "Remove Successful!"
-                            }, "save");
-                        });
+                  
                         $("#grid_user").data("kendoGrid").dataSource.read();
                         $("#grid_user").data("kendoGrid").dataSource.page(1);
-                    }
+                    
                 },
                 error: function () {
                     alert("Không kết nối được với máy chủ");
@@ -302,123 +282,9 @@
         }
     }
 
-    function checkedActiveUser(ID, Status) {
-        if (Status == 0) {
-            var img = '<a href="#"><div alt="Unpublish" title="Unpublish" class="fa fa-ban" onclick="checkedActiveUser_click(\'' + ID + '\')"></div></a>';
-            return img;
-        }
-        else
-            if (Status == 1) {
-                var img = '<a href="#"><div alt="Publish" title="Publish" class="fa fa-check" onclick="checkedDeActiveUser_click(\'' + ID + '\')"></div></a>';
-                return img;
-            }
-    }
+   
 
-    function checkedActiveUser_click(ID) {
-        var message = 'Are you sure you want to active this user?';
-        $body = $("body");
-        if (confirm(message)) {
-            var notification = $("#notification").kendoNotification({
-                position: {
-                    pinned: true,
-                    top: 30,
-                    right: 30
-                },
-                autoHideAfter: 5000,
-                stacking: "down",
-                templates: [{
-                    type: "error",
-                    template: $("#errorTemplate").html()
-                },
-                    {
-                        type: "save",
-                        template: $("#saveTemplate").html()
-                    }]
-            }).data("kendoNotification");
-
-            $.ajax({
-                url: "user/activeUser",
-                type: "post",
-                data: JSON.stringify(ID),
-                dataType: "json",
-                contentType: "application/json",
-                beforeSend: function () {
-                    $body.addClass("loading");
-                },
-                error: function (msg) {
-                    $body.removeClass("loading");
-                },
-                success: function ($result) {
-                    $body.removeClass("loading");
-                    if ($result == 1) {
-                        $(function () {
-                            notification.show({
-                                message: "Active Successful!"
-                            }, "save");
-                        });
-                        $("#grid_user").data("kendoGrid").dataSource.read();
-                        $("#grid_user").data("kendoGrid").dataSource.page(1);
-                    }
-                },
-                error: function () {
-                    alert("Không kết nối được với máy chủ");
-                }
-            });
-        }
-    }
-
-    function checkedDeActiveUser_click(ID) {
-        var message = 'Are you sure you want to deactive this user?';
-        $body = $("body");
-        if (confirm(message)) {
-            var notification = $("#notification").kendoNotification({
-                position: {
-                    pinned: true,
-                    top: 30,
-                    right: 30
-                },
-                autoHideAfter: 5000,
-                stacking: "down",
-                templates: [{
-                    type: "error",
-                    template: $("#errorTemplate").html()
-                },
-                    {
-                        type: "save",
-                        template: $("#saveTemplate").html()
-                    }]
-            }).data("kendoNotification");
-
-            $.ajax({
-                url: "user/deactiveUser",
-                type: "post",
-                data: JSON.stringify(ID),
-                dataType: "json",
-                contentType: "application/json",
-                beforeSend: function () {
-                    $body.addClass("loading");
-                },
-                error: function (msg) {
-                    $body.removeClass("loading");
-                },
-                success: function ($result) {
-                    $body.removeClass("loading");
-                    if ($result == 1) {
-                        $(function () {
-                            notification.show({
-                                message: "Deactivate Successful!"
-                            }, "save");
-                        });
-                        $("#grid_user").data("kendoGrid").dataSource.read();
-                        $("#grid_user").data("kendoGrid").dataSource.page(1);
-                    }
-                },
-                error: function () {
-                    alert("Không kết nối được với máy chủ");
-                }
-            });
-        }
-    }
+   
 
     function btnSearchOnClick() {
         try {
@@ -446,7 +312,9 @@
     }
     function OpenUserDetail1(username) {
         // window.open("user/add?username=" + username, 'User Detail', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0,scrollbars=1', true);
-        loadpopup("user/add?username=" + username, 'User Detail', '60%', false);
+        //loadpopup("user/add?username=" + username, 'User Detail', '60%', false);
+        loadpopup("User/Detail", 'Add new user', '60%', false);
+        loadpopup("User/Detail?UserName=" + username, 'Thông tin chi tiết', '60%', false);
     }
 
     function formatDateMySQL(date) {
