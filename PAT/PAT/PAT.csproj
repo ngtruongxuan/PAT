@@ -187,6 +187,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PATDB.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\TreeViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
