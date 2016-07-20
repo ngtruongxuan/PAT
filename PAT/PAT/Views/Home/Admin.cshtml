@@ -6,6 +6,7 @@
 <div id="example">
     <div class="demo-section k-content">
         <ul id="treeview">
+<<<<<<< HEAD
             <li data-expanded="true" >
                 <span class="k-sprite"></span>
                 My Web Site
@@ -14,15 +15,31 @@
                     {
                         <li data-expanded="true">
                             <span class="k-sprite"></span>@item.Name
+=======
+            <li data-expanded="true">
+                <span class="k-sprite folder"></span>
+                My Web Site
+                <ul>
+                    @foreach (var item in @Model){
+                        <li data-expanded="true">
+                            <span class="k-sprite folder"></span>@item.Name
+>>>>>>> 3abe19d90e521e9ce94dc9c6b590e79fc3a5e53d
                             @if (@item.Child.Count > 0)
                             {
                                 <ul>
                                     @foreach (var child in @item.Child)
                                     {
+<<<<<<< HEAD
                                         <li><span class="k-sprite"></span><span style="cursor:pointer;" onclick="btnCreateOnClick(@child.ID)">@child.Name</span></li>
                                     }
                                 </ul>
 
+=======
+                                        <li><span class="k-sprite image"></span>@child.Name</li>
+                                    }
+                                </ul>
+                                
+>>>>>>> 3abe19d90e521e9ce94dc9c6b590e79fc3a5e53d
                             }
                         </li>
                     }
@@ -35,9 +52,12 @@
     $(document).ready(function () {
         $("#treeview").kendoTreeView();
     });
+<<<<<<< HEAD
 
     function btnCreateOnClick(id) {
         alert(id);
         loadpopup("../User/Detail", 'Add new user', '60%', false);
     }
+=======
+>>>>>>> 3abe19d90e521e9ce94dc9c6b590e79fc3a5e53d
 </script>
