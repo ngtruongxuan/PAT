@@ -167,7 +167,16 @@
 
             success: function ($result) {
 
-
+                if ($('#ck_1').is(":checked") == true && $('#ck_2').is(":checked") == true
+                && $('#ck_3').is(":checked") == true && $('#ck_4').is(":checked") == true
+                && $('#ck_5').is(":checked") == true && $('#ck_6').is(":checked") == true
+                && $('#ck_7').is(":checked") == true) {
+                    $('#checkAll').prop('checked', true);
+                }
+                else
+                {
+                    $('#checkAll').prop('checked', false);
+                }
 
             },
             error: function () {
@@ -197,10 +206,21 @@
                 {
                     $('#ck_' + i + '').prop('checked', false);
                 }
+              
                 for(var i=0;i<$result.length;i++)
                 {
                     $('#ck_' + $result[i]['ModuleID'] + '').prop('checked', true);
                     //vd
+                }
+
+                if ($('#ck_1').is(":checked") == true && $('#ck_2').is(":checked") == true
+               && $('#ck_3').is(":checked") == true && $('#ck_4').is(":checked") == true
+               && $('#ck_5').is(":checked") == true && $('#ck_6').is(":checked") == true
+               && $('#ck_7').is(":checked") == true) {
+                    $('#checkAll').prop('checked', true);
+                }
+                else {
+                    $('#checkAll').prop('checked', false);
                 }
 
             },

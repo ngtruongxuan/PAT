@@ -813,9 +813,35 @@
             $('#login').addClass('menu_login');
             $('#logout').removeClass('menu_logout');
             $('#admin').removeClass('menu_admin');
+
+            $.ajax({
+                url: "/Home/Logout",
+                type: "Post",
+                data: JSON.stringify({
+                    Username: $("#loginformpopup_txtusername").val()
+                   
+                }),
+                // data:postData,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                  
+
+                },
+                Error: function () {
+                    //alert("Không thể kết nối tới máy chủ");
+                    show(false, "Không thể kết nối tới máy chủ", true);
+                }
+            });
         }
 
         $(document).ready(function () {
+            if ('@Session["UserName"]'!='')
+            {
+                $('#login').removeClass('menu_login');
+                $('#logout').addClass('menu_logout');
+                $('#admin').addClass('menu_admin');
+            }
             //alert('@Session["UserName"]');
         });
     </script>
