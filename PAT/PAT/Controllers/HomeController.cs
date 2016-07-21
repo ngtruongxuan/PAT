@@ -7,8 +7,10 @@ using ManageShop.Models;
 
 namespace ManageShop.Controllers
 {
-    public class HomeController : Controller
+    
+    public class HomeController : Base
     {
+
         public ActionResult Index()
         {
             return View();
@@ -50,6 +52,7 @@ namespace ManageShop.Controllers
             return View();
         }
 
+        [CheckSessionTimeOutAttribute]
         public ActionResult Menu()
         {
             PATDBDataContext db = new PATDBDataContext();
@@ -60,7 +63,9 @@ namespace ManageShop.Controllers
             }
 
             User user = db.Users.Where(x => x.UserName == Session["UserName"].ToString()).FirstOrDefault();
-            var menu = db.Permissions.Where(x => x.Status == "A" && x.GroupID==user.GroupID ).ToList();
+            var menu = db.Permissions.Where(x => x.Status == "A" && x.GroupID == user.GroupID).ToList().OrderBy(x => x.ModuleID);
+           
+                      
             List<MenuItem> l_menu_item = new List<MenuItem>();
             MenuModel menu_model = new MenuModel();
             foreach (var item in menu)
@@ -74,6 +79,23 @@ namespace ManageShop.Controllers
             }
 
             return this.PartialView("_Menu", menu_model);
+
+
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Logout(string Username)
+        {
+
+            Session["UserName"] = null;
+            ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity ssE = new ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity();
+            ssE.UserName = null;
+            SessionWrapper.SetInSession("CUSTOMERLOGIN", ssE);
+            string logout = "logout";
+            return Json(logout);
+
+
 
 
         }

@@ -73,18 +73,20 @@ namespace ManageShop.Controllers
             string pass = AESEncrytDecry.DecryptStringAES(Pass);
             PATDBDataContext db = new PATDBDataContext();
             User user = db.Users.Where(x => x.UserName == Username && x.Password == Encrypt(pass) && x.Status == "A").FirstOrDefault();
+            var result = "0";
             if(user!=null)
             {
                 Session["UserName"] = user.UserName;
+              //  HttpContext.Current.Session["UserName"] = user.UserName;
                 ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity ssE = new ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity();
                 ssE.UserName = user.UserName;
                 SessionWrapper.SetInSession("CUSTOMERLOGIN", ssE);
+                result = "1";
                 return Json(user);
             }
-            else
-            {
-                return Json(Username);
-            }
+
+            return Json(result);
+            
            
           
             
@@ -110,6 +112,7 @@ namespace ManageShop.Controllers
             //        return View(model);
             //}
         }
+        
         public static string Encrypt(string original)
         {
             return Encrypt(original, "!@#$%^&*()~_+|");
