@@ -1,0 +1,85 @@
+<tbody>
+	            <tr>
+		            <td colspan="2">  
+		                <div style="padding-bottom:10px; border-bottom: 1px dotted #ccc;"> <b>Gửi câu hỏi thắc mắc của bạn tại đây. Để thuận tiện cho việc liên lạc quý khách nên điền đầy đủ thông tin dưới đây và gửi về cho chúng tôi. Chúng tôi sẽ trả lời bạn trong thời gian sớm nhất có thể</b></div>
+			         </td>
+	            </tr>
+	            <tr>
+		            <td width="100px"><label for="ContactName">Họ và Tên:</label><font color="Red">*</font></td>
+		            <td>
+			            <div class="input text"><label for="ContactName"></label><input name="ctl00$ContentPH$txtFullName" id="ctl00_ContentPH_txtFullName" type="text"></div>														
+		            </td>
+	            </tr>
+		        <tr>
+		            <td width="100px"><label for="ContactAddress">Địa chỉ:</label><font color="Red">*</font></td>
+		            <td>
+			            <div class="input text"><label for="ContactAddress"></label><input name="ctl00$ContentPH$txtAddress" id="ctl00_ContentPH_txtAddress" type="text"></div>														
+		            </td>
+	            </tr>
+	            <tr>
+		            <td><label for="ContactEmail">Email:</label><font color="Red">*</font></td>
+		            <td>
+			            <div class="input text"><label for="ContactEmail"></label><input name="ctl00$ContentPH$txtEmail" id="ctl00_ContentPH_txtEmail" type="text"></div>															
+		            </td>
+	            </tr>
+        		
+        		
+	            <tr>
+		            <td><label for="ContactPhone">Điện thoại:</label><font color="Red">*</font></td>
+		            <td><div class="input text"><label for="ContactPhone"></label><input name="ctl00$ContentPH$txtPhone" id="ctl00_ContentPH_txtPhone" type="text"></div></td>
+	            </tr>    													
+        		
+	            <tr>
+		            <td><label for="ContactContent">Nội dung câu hỏi:</label><font color="Red">*</font></td>
+		            <td>
+			            <div class="input textarea"><label for="ContactContent"></label><textarea name="ctl00$ContentPH$txtQuestion" rows="10" cols="50" id="ctl00_ContentPH_txtQuestion"></textarea></div>															
+		            </td>
+	            </tr>
+        	    
+	             <tr>
+		            <td><label for="ContactContent">Mã bảo vệ </label><font color="Red">*</font></td>
+		            <td>
+			                <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ContentPH$RadScriptManager1', 'aspnetForm', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+                            <div id="ctl00_ContentPH_RadCaptcha1" class="RadCaptcha RadCaptcha_Default ">
+	<!-- 2010.1.415.35 --><span id="ctl00_ContentPH_RadCaptcha1_ctl00" style="color:Red;visibility:hidden;"></span><div id="ctl00_ContentPH_RadCaptcha1_SpamProtectorPanel">
+		<img id="ctl00_ContentPH_RadCaptcha1_CaptchaImage" alt="" src="Telerik.Web.UI.WebResource.axd?type=rca&amp;guid=5959dc87-5659-40a5-a55c-4fba5d56ceb8" style="height:50px;width:180px;border-width:0px;display:block;"><p><input autocomplete="off" name="ctl00$ContentPH$RadCaptcha1$CaptchaTextBox" maxlength="5" id="ctl00_ContentPH_RadCaptcha1_CaptchaTextBox" type="text"><label for="ctl00_ContentPH_RadCaptcha1_CaptchaTextBox" id="ctl00_ContentPH_RadCaptcha1_CaptchaTextBoxLabel"></label></p>
+	</div><input autocomplete="off" id="ctl00_ContentPH_RadCaptcha1_ClientState" name="ctl00_ContentPH_RadCaptcha1_ClientState" type="hidden">
+</div>
+		            </td>
+	            </tr>	 
+
+                <tr>
+		            <td></td>
+		            <td><span id="ctl00_ContentPH_lblError" style="color:Red;"></span></td>
+	            </tr>
+        	    
+	            <tr>
+		            <td></td>
+		            <td><div class="submit"><input name="ctl00$ContentPH$btnSend" value="Gửi thông tin" id="ctl00_ContentPH_btnSend" type="submit"> &nbsp;<input name="button" id="btnReset" value="Nhập lại" onclick="document.getElementById('ctl00_ContentPH_txtFullName').focus();" style="width:80px;" type="reset"></div></td>
+	            </tr>
+        		
+            </tbody>
+
+
+
+
+	<script>
+	document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = evt.key == "Escape";
+    } else {
+        isEscape = evt.keyCode == 27;
+    }
+    if (isEscape) {
+       $('#windowpopup').modal('hide');
+    }
+};
+
+</script>
