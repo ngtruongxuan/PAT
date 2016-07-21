@@ -92,6 +92,7 @@ namespace ManageShop.Controllers
                     per.LastUpdatedBy = Session["UserName"].ToString();
                     per.LastUpdatedDateTime = DateTime.Now;
                     per.URL = db.Modules.Where(x => x.ID == i).Select(x => x.URL).FirstOrDefault();
+                    per.ModuleID = i;
                     per.Status = model.Status;
                     db.SubmitChanges();
                 }
