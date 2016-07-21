@@ -34,7 +34,6 @@
         $("#treeview").kendoTreeView();
     });
     function btnCreateOnClick(id) {
-        alert(id);
-        loadpopup("../User/Detail", 'Add new user', '60%', false);
+        loadpopup("../Home/CreateContent?id="+id, 'Create Content', '60%', false);
     }
 </script>

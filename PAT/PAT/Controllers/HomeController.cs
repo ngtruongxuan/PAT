@@ -37,9 +37,8 @@ namespace ManageShop.Controllers
             return View(list);
         }
 
-        public ActionResult About()
+        public ActionResult CreateContent(string id)
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
