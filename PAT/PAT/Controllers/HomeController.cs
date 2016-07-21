@@ -53,6 +53,7 @@ namespace ManageShop.Controllers
         }
 
         [CheckSessionTimeOutAttribute]
+        [ChildActionOnly]
         public ActionResult Menu()
         {
             PATDBDataContext db = new PATDBDataContext();

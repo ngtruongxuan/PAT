@@ -11,6 +11,7 @@ namespace ManageShop.Controllers
 {
     public class UserController : Base
     {
+         [CheckSessionTimeOutAttribute]
         //
         // GET: /User/
         public ActionResult Index()
@@ -139,7 +140,23 @@ namespace ManageShop.Controllers
         public JsonResult searchUser(UserSearch model)
         {
             PATDBDataContext db = new PATDBDataContext();
-            var obj = db.Users.Where(x => x.UserName == null || x.UserName == model.UserName).ToList();
+            DateTime fromdate = Convert.ToDateTime("01/01/2000");
+            DateTime todate = Convert.ToDateTime("01/12/2050");
+            if(model.DateFrom!=null)
+            {
+                   fromdate=  Convert.ToDateTime(model.DateFrom);
+            }
+            if (model.DateTo != null)
+            {
+                todate = Convert.ToDateTime(model.DateTo);
+            }
+            var obj = (from i in db.Users
+                       where (i.UserName.Contains(model.UserName) || (model.UserName == null))
+                            && (i.FullName.Contains (model.FullName) || model.FullName == null)
+                            && (i.Email.Contains(model.Email) || model.Email == null)
+                            && (i.GroupID==model.GroupID || model.Email == null)
+                            && (i.CreatedDateTime >= fromdate && i.CreatedDateTime <= todate)
+                      select i).ToList();
 
             List<UserResult> l_result = new List<UserResult>();
             foreach (var item in obj)
