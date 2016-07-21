@@ -103,7 +103,7 @@ namespace ManageShop.Controllers
                     new_per.DisplayName = db.Modules.Where(x => x.ID == i).Select(x => x.DisplayName).FirstOrDefault();
                     new_per.GroupID = model.GroupID;
                     new_per.LastUpdatedBy = Session["UserName"].ToString();
-                    new_per.ModuleID = model.ModuleID;
+                    new_per.ModuleID = i;
                     new_per.ModuleName = db.Modules.Where(x => x.ID == i).Select(x => x.ModuleName).FirstOrDefault();
                     new_per.Status = "A";
                     new_per.LastUpdatedDateTime = DateTime.Now;
