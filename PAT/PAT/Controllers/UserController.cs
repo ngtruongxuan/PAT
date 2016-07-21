@@ -139,7 +139,7 @@ namespace ManageShop.Controllers
         public JsonResult searchUser(UserSearch model)
         {
             PATDBDataContext db = new PATDBDataContext();
-            var obj = db.Users.ToList();
+            var obj = db.Users.Where(x => x.UserName == null || x.UserName == model.UserName).ToList();
 
             List<UserResult> l_result = new List<UserResult>();
             foreach (var item in obj)

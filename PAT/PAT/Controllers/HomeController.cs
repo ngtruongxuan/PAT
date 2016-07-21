@@ -7,7 +7,7 @@ using ManageShop.Models;
 
 namespace ManageShop.Controllers
 {
-    
+   
     public class HomeController : Base
     {
 

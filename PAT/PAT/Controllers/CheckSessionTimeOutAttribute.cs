@@ -24,16 +24,20 @@ namespace ManageShop.Controllers
                 }
                // string sessionCookie = Session["UserName"].ToString();
                       ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity CustomerLogin = SessionWrapper.GetFromSession<ManageShop.Controllers.SessionExpireFilterAttribute.SessionEntity>("CUSTOMERLOGIN");
-                      if (CustomerLogin.UserName == null)
-                    {
-                        //FormsAuthentication.SignOut();
-                        string redirectTo = "~/Home/Index";
-                        //if (!string.IsNullOrEmpty(context.Request.RawUrl))
-                        //{
-                        //    redirectTo = string.Format("~/Home/Login?ReturnUrl={0}", HttpUtility.UrlEncode(context.Request.RawUrl));
-                        //}
-                        filterContext.HttpContext.Response.Redirect(redirectTo, true);
-                    }
+                      if (CustomerLogin!=null)
+                      {
+                          if (CustomerLogin.UserName == null)
+                          {
+                              //FormsAuthentication.SignOut();
+                              string redirectTo = "~/Home/Index";
+                              //if (!string.IsNullOrEmpty(context.Request.RawUrl))
+                              //{
+                              //    redirectTo = string.Format("~/Home/Login?ReturnUrl={0}", HttpUtility.UrlEncode(context.Request.RawUrl));
+                              //}
+                              filterContext.HttpContext.Response.Redirect(redirectTo, true);
+                          }
+                      }
+               
                 //}
             }
             base.OnActionExecuting(filterContext);
