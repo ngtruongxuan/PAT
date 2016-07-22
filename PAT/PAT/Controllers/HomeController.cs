@@ -11,9 +11,44 @@ namespace ManageShop.Controllers
     public class HomeController : Base
     {
 
-        public ActionResult Index()
+        public ActionResult Index(string lang)
         {
-            return View();
+              PATDBDataContext db = new PATDBDataContext();
+            CategoryModel model = new CategoryModel();
+            if(lang==null)
+            {
+                lang = "VN";
+            }
+            List<Category> l_cate = db.Categories.Where(x => x.Status == "A" && x.Language == lang).ToList();
+            //gioi thieu
+            model.in_company = l_cate.Where(x => x.CategoryCode == "in_company").Select(x => x.DisplayName).FirstOrDefault();
+            model.in_environment = l_cate.Where(x => x.CategoryCode == "in_environment").Select(x => x.DisplayName).FirstOrDefault();
+            model.in_industry = l_cate.Where(x => x.CategoryCode == "in_industry").Select(x => x.DisplayName).FirstOrDefault();
+            model.in_land = l_cate.Where(x => x.CategoryCode == "in_land").Select(x => x.DisplayName).FirstOrDefault();
+            model.in_location = l_cate.Where(x => x.CategoryCode == "in_location").Select(x => x.DisplayName).FirstOrDefault();
+            model.in_map = l_cate.Where(x => x.CategoryCode == "in_map").Select(x => x.DisplayName).FirstOrDefault();
+            //loi ich nha dau tu
+            model.co_cost = l_cate.Where(x => x.CategoryCode == "co_cost").Select(x => x.DisplayName).FirstOrDefault();
+            model.co_develop = l_cate.Where(x => x.CategoryCode == "co_develop").Select(x => x.DisplayName).FirstOrDefault();
+            model.co_savecost = l_cate.Where(x => x.CategoryCode == "co_savecost").Select(x => x.DisplayName).FirstOrDefault();
+            model.co_savetime = l_cate.Where(x => x.CategoryCode == "co_savetime").Select(x => x.DisplayName).FirstOrDefault();
+             //khu cong nghiep
+            model.fa_factory = l_cate.Where(x => x.CategoryCode == "fa_factory").Select(x => x.DisplayName).FirstOrDefault();
+            model.fa_land = l_cate.Where(x => x.CategoryCode == "fa_land").Select(x => x.DisplayName).FirstOrDefault();
+            // thu vien thong tin
+            model.ne_law = l_cate.Where(x => x.CategoryCode == "ne_law").Select(x => x.DisplayName).FirstOrDefault();
+            model.ne_pat = l_cate.Where(x => x.CategoryCode == "ne_pat").Select(x => x.DisplayName).FirstOrDefault();
+            model.ne_picture = l_cate.Where(x => x.CategoryCode == "ne_picture").Select(x => x.DisplayName).FirstOrDefault();
+            model.ne_recruit = l_cate.Where(x => x.CategoryCode == "ne_recruit").Select(x => x.DisplayName).FirstOrDefault();
+            model.ne_video = l_cate.Where(x => x.CategoryCode == "ne_video").Select(x => x.DisplayName).FirstOrDefault();
+            //khu dan cu
+            model.re_flathouse = l_cate.Where(x => x.CategoryCode == "re_flathouse").Select(x => x.DisplayName).FirstOrDefault();
+            model.re_gardenhouse = l_cate.Where(x => x.CategoryCode == "re_gardenhouse").Select(x => x.DisplayName).FirstOrDefault();
+            model.re_house1 = l_cate.Where(x => x.CategoryCode == "re_house1").Select(x => x.DisplayName).FirstOrDefault();
+            model.re_house2 = l_cate.Where(x => x.CategoryCode == "re_house2").Select(x => x.DisplayName).FirstOrDefault();
+            model.re_nexthouse = l_cate.Where(x => x.CategoryCode == "re_nexthouse").Select(x => x.DisplayName).FirstOrDefault();
+            model.re_workerhouse = l_cate.Where(x => x.CategoryCode == "re_workerhouse").Select(x => x.DisplayName).FirstOrDefault();
+            return View(model);
         }
 
         public ActionResult Admin()
