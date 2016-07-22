@@ -2,12 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 13.75" name="PATDB">
   <DataContextMoniker Name="/PATDBDataContext" />
   <nestedChildShapes>
-    <classShape Id="cfbf1722-63b1-4537-a9f3-6a633fbca749" absoluteBounds="0.75, 0.75, 2, 3.3093082682291666">
-      <DataClassMoniker Name="/PATDBDataContext/Category" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9efbd89e-05d1-459f-996d-cf615a7fee42" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="a200a875-0856-41a6-af14-325d93d35b8a" absoluteBounds="3.75, 0.75, 2, 3.6939111328124996">
       <DataClassMoniker Name="/PATDBDataContext/User" />
       <nestedChildShapes>
@@ -60,6 +54,12 @@
       <DataClassMoniker Name="/PATDBDataContext/Price" />
       <nestedChildShapes>
         <elementListCompartment Id="341c43ea-edd3-4350-873f-724a7ed992c7" absoluteBounds="6.765, 10.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ea69490e-479b-4838-abb5-3444bae1ad69" absoluteBounds="1.375, 0.875, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/PATDBDataContext/Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="037a5cf7-2209-405d-87c1-0c9f34f119a5" absoluteBounds="1.3900000000000001, 1.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
