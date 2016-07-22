@@ -157,7 +157,7 @@ $(document).ready(function () {
                         // type:"json",
                         transport: {
                             read: {
-                                url: "User/getGroup",
+                                url: "../User/getGroup",
                                 dataType: "json",
                                 type: "POST",
                             }
@@ -396,7 +396,7 @@ function checkinput()
         removeError($('#txt_username_popup'));
         removeError($('#txt_email_popup'));
         $.ajax({
-            url: "User/saveUser",
+            url: "../User/saveUser",
             type: "post",
             data: additionalData,
             dataType: "json",
@@ -418,7 +418,7 @@ function checkinput()
     {
 
         $.ajax({
-            url: "User/ActiveUser",
+            url: "../User/ActiveUser",
             type: "post",
             data: JSON.stringify({ID:'@Model.ID'}),
             dataType: "json",
