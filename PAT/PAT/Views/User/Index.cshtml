@@ -14,7 +14,7 @@
 
   
 </style>
-<link href="~/Plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" /> >
+<link href="~/Plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" /> 
 <div class="row">
     <div class="col-sm-12">
         <section style="background:white; width:1041px; height:120px;margin-left: 22px;">
@@ -108,10 +108,10 @@
 
     $(document).ready(function () {
         $("#txt_startdate").datepicker({
-
+            format: 'dd/mm/yyyy'
         });
         $("#txt_finishdate").datepicker({
-
+            format: 'dd/mm/yyyy'
         });
       
 
@@ -126,7 +126,7 @@
                         // type:"json",
                         transport: {
                             read: {
-                                url: "user/getGroup",
+                                url: "../User/getGroup",
                                 dataType: "json",
                                 type: "POST",
                             }
@@ -169,7 +169,7 @@
                 type: "json",
                 transport: {
                     read: {
-                        url: "User/searchUser",
+                        url: "../User/searchUser",
                         type: "POST",
                         dataType: "json",
                         data: additionalData,
@@ -210,6 +210,13 @@
                     width: 120,
                     template: "#=OpenUserDetail(UserName)#"
                 },
+                 {
+                     field: "FullName",
+                     title: "Tên đầy đủ ",
+                     width: 150,
+                    
+                 },
+
                 { field: "Email", title: "Email", width: 90 },
                 
                 {
@@ -244,12 +251,12 @@
     })
     function btnCreateOnClick() {
         //loadpopup('../../UserRole/Edit?username=' + username, 'Thông tin chi tiết', '100%', true);
-        loadpopup("User/Detail", 'Add new user', '60%', false);
+        loadpopup("../User/Detail", 'Add new user', '60%', false);
         // window.open("user/add",'Add new user', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0,scrollbars=1', true);
     }
 
     function checkedRemoveUser(ID) {
-        var img = '<img src="Content/image/delete-icon.gif" style="cursor:pointer" alt="Delete" title="Delete" class="btn_delete_grid" onclick="checkedRemoveUser_click(\'' + ID + '\')" />';
+        var img = '<img src="../Content/image/delete-icon.gif" style="cursor:pointer" alt="Delete" title="Delete" class="btn_delete_grid" onclick="checkedRemoveUser_click(\'' + ID + '\')" />';
         return img;
     }
 
@@ -324,7 +331,7 @@
         var fdate = null;
         if (date != '') {
             var split = date.split('/');
-            fdate = split[2] + '-' + split[0] + '-' + split[1];
+            fdate = split[2] + '-' + split[1] + '-' + split[0];
         }
 
 

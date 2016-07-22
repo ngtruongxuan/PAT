@@ -1,1 +1,496 @@
-﻿
+﻿@model ManageShop.Models.CategoryModel
+<div id="window">
+    <div style="position: relative; z-index: 99; display: block;" id="contents">
+        <!-- MENU -->
+        <div style="opacity: 1; top: 0px;" id="menu">
+            <div class="inner">
+                <a href="javascript:scrollTo('#visual','.menu_top','top.html');" class="menu_logo hide_sp"><img src="~/Template/menu_logo.png" alt="DEAD OR ALIVE 5 Last Round"></a>
+                <ul class="hide_sp">
+                    <li class="menu_top"><a class="active" href="#top" onclick="topclick()"></a></li>
+                    <li class="menu_features">
+                        <a href="#features" onclick="locationclick()"></a>
+
+                    </li>
+
+                    <li class="menu_resident">
+                        <a href="#resident" onclick="residentclick()"></a>
+
+                    </li>
+
+                    <li class="menu_characters">
+                        <a href="#characters" onclick="constructionclick()"></a>
+                        <img src="~/Template/newicon.gif" class="icon">
+                    </li>
+                    <li class="menu_stages"><a href="#benefit" onclick="gainclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
+                    <li class="menu_movies"><a href="#movies" onclick="libraryclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
+                    <li class="menu_contact"><a href="#contact" onclick="contactclick()"></a></li>
+                    <li class="menu_langue">
+                        <a href="@Url.Action("Index", "Home", new { lang = "VN"})" >
+                            <img src="~/Template/img/common/lang_vn.png" />
+                        </a>
+                        <a style="float:right;margin-left:2px" href="@Url.Action("Index", "Home", new { lang = "JP"})" >
+                            <img src="~/Template/img/common/lang_jp.png" />
+                        </a>
+                        <a style="float:right" href="@Url.Action("Index", "Home", new { lang = "EN"})">
+                            <img src="~/Template/img/common/lang_en.png" />
+                        </a>
+                    </li>
+                    <li id="admin"><a style="cursor:pointer" onclick="adminclick()"></a></li>
+                    <li id="login" class="menu_login"><a style="cursor:pointer" onclick="openpopup_login()"></a></li>
+                    <li id="logout"><a style="cursor:pointer" onclick="logoutclick()"></a></li>
+
+
+                </ul>
+            </div>
+        </div>
+        <!-- END MENU-->
+        <!--▼▼visual-->
+        <div style="opacity: 1;" id="visual">
+            <img src="~/Template/bg.jpg" class="hide_pc">
+        </div>
+        <!--△△visual-->
+        <div id="wrapper">
+            <!--▼▼TOP-->
+            <div id="top">
+                <!--▼▼logo-->
+                <h1 style="opacity: 1;" class="hide_sp"><img src="~/Template/logo.png" alt="DEAD OR ALIVE 5 Last Round"></h1>
+                <!--△△logo-->
+                <!--▼▼information-->
+                <div id="information">
+                    <h3 style="opacity: 1; left: 0px;"><img src="~/Template/information_h.png" alt="Information"></h3>
+                    <div style="height: 189px;" class="inner">
+                        <ul>
+                            <!-----gioi thieu cong ty-->
+                            <li style="opacity: 1; top: 0px; background-color: rgb(213, 149, 6);" class="new num_0">
+                                <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup();">
+                                    <img src="~/Template/patcompany.jpg"><span class="text">
+                                        <span class="inner">
+                                            <br><label id="in_company"> </label> 
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <!-----gioi thieu khu cong nghiep-->
+                            <li style="opacity: 1; top: 0px; background-color: rgb(213, 149, 6);" class="new num_1">
+                                <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_industry();">
+                                    <img src="~/Template/land.jpg"><span class="text">
+                                        <span class="inner">
+                                            <br><label id="in_industry"> </label>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <!-----dat cong nghiep-->
+                            <li style="opacity: 1; top: 0px;" class="num_2">
+                                <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_industry_land();">
+                                    <img src="~/Template/patland.jpg"><span class="text">
+                                        <span class="inner">
+                                            <br><label id="in_land"> </label>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="height: 189px;" class="inner">
+                        <ul>
+                            <!-----than thien moi truong-->
+                            <li style="opacity: 1; top: 0px; background-color: rgb(213, 149, 6);" class="new num_0">
+                                <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_environment();">
+                                    <img src="~/Template/environment.jpg"><span class="text">
+                                        <span class="inner">
+                                            <br><label id="in_environment"> </label>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <!-----Vị trí khu công nghiệp-->
+                            <li style="opacity: 0; top: 0px;" class="new num_1">
+                                <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_map();">
+                                    <img src="~/Template/map.jpg"><span class="text">
+                                        <span class="inner">
+                                            <br><label id="in_map"> </label>
+                                        </span>
+                                    </span>
+                                </a>
+
+                            </li>
+                            <!-----Vị trí khu dân cư-->
+                            <li style="opacity: 1; top: 0px;" class="num_2">
+                                <a href="javascript:scrollTo('#visual','.menu_top','top.html');" onclick="openpopup_introduce_map();">
+                                    <img src="~/Template/map.jpg"><span class="text">
+                                        <span class="inner">
+                                            <br><label id="in_location"> </label>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--△△information-->
+                <!--▼▼spec-->
+                <!--△△spec-->
+            </div>
+            <!--△△TOP-->
+            <div class="line"></div>
+            <!--▼▼FEATURES resident-->
+            <div id="resident">
+                <h2><img style="opacity: 0; left: -100px;" src="~/Template/resident_h.png"></h2>
+                <div class="inner">
+                    <ul>
+                        <!----- NHÀ PHỐ LOẠI I-->
+                        <li style="opacity: 1; top: 0px;" class="num_0">
+                        <a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/law.jpg"><span class="text"><span class="inner">
+                        <label id="re_house1"> </label>
+                            </span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                        <!----- NHÀ PHỐ LOẠI II-->
+                        <li style="opacity: 1; top: 0px;" class="num_1">
+                        <a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/new.jpg"><span class="text"><span class="inner">
+                        <label id="re_house2"> </label>   
+                            </span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                        <!-----  NHÀ LIÊN KẾ-->
+                        <li style="opacity: 1; top: 0px;" class="num_2">
+                        <a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup();"><img src="~/Template/video.jpg"><span class="text"><span class="inner">
+                           <label id="re_nexthouse"> </label> 
+                            </span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                        <!-----  NHÀ Ở CÔNG NHÂN-->
+                        <li style="opacity: 1; top: 0px;" class="num_3">
+                        <a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_photo();"><img src="~/Template/photo.jpg"><span class="text"><span class="inner">
+                          <label id="re_workerhouse"> </label> 
+                            </span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                        <!-----  CĂN HỘ CHUNG CƯ-->
+                        <li style="opacity: 1; top: 0px;" class="num_4">
+                        <a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">
+                        <label id="re_flathouse"> </label> 
+                            </span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                        <!-----   NHÀ VƯỜN-->
+                        <li style="opacity: 1; top: 0px;" class="num_4">
+                        <a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">
+                           <label id="re_gardenhouse"> </label> 
+                            </span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--△△FEATURES-->
+            <div class="line"></div>
+
+            <!--▼▼FEATURES resident-->
+            <div id="industryzone">
+                <h2><img style="opacity: 0; left: -100px;" src="~/Template/industryzone_h.png"></h2>
+                <div class="inner">
+                    <ul>
+                        <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">NHÀ XƯỞNG</span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">ĐẤT CÔNG NGHIỆP</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--△△FEATURES-->
+            <div class="line"></div>
+
+            <!--▼▼CHARACTERS-->
+            <div style="height: 1208px;" id="characters">
+                <h2><img style="opacity: 0; left: -100px;" src="~/Template/characters_h.png"></h2>
+                <div style="opacity: 1; display: none;" id="characters_layerTop"></div>
+                <div style="opacity: 1; display: block;" id="characters_base">
+                    <div class="inner">
+                        <h3><img src="~/Template/characters_h2E.png"></h3>
+                        <div class="thumBox">
+                            <div class="thumBox_inner">
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t01"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-0-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t01"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-0-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t02"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-0-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t03"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-0-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t04"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-0-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t05"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-0-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t06"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-0-6.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t07"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-1-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t08"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-1-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t09"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-1-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t10"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-1-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t11"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-1-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t12"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-1-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t13"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-1-6.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t08"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-2-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t09"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-2-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t10"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-2-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t11"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-2-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t12"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-2-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t13"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-2-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_electricity();" class="thum mo t13"><img src="~/Template/electricity/electricity [www.imagesplitter.net]-2-6.jpeg"></a>
+                                <h3><img src="~/Template/characters_h2W.png"></h3>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t14"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-0-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t15"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-0-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t16"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-0-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t17"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-0-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t18"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-0-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t19"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-0-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t20"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-0-6.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t21"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-1-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t22"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-1-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t23"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-1-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t24"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-1-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t25"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-1-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t26"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-1-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t27"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-1-6.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t28"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-2-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t29"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-2-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t30"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-2-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t31"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-2-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t32"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-2-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t33"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-2-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water();" class="thum mo t34"><img src="~/Template/watersupply/watersupply [www.imagesplitter.net]-2-6.jpeg"></a>
+                                <h3><img src="~/Template/characters_h2P.png"></h3>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t14"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-0-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t15"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-0-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t16"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-0-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t17"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-0-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t18"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-0-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t19"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-0-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t20"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-0-6.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t21"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-1-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t22"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-1-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t23"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-1-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t24"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-1-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t25"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-1-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t26"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-1-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t27"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-1-6.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t28"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-0.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t29"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t30"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-2.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t31"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-3.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t32"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-4.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t33"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-5.jpeg"></a>
+                                <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_water_filter();" class="thum mo t34"><img src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-6.jpeg"></a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <a style="opacity: 1;" href="javascript:scrollTo('#characters','.menu_characters','top.html#Characters');" onclick="openpopup_construction_garbage();" class="bnr mo"><img src="~/Template/bnr_cos.jpg"><!--<img src = "img/common/updateicon.gif" class ="icon"/>--></a>
+                    </div>
+                </div>
+            </div>
+            <!--△△CHARACTERS-->
+            <div class="line"></div>
+            <!--▼▼STAGES-->
+            <div id="benefit">
+                <h2><img style="opacity: 0; left: -100px;" src="~/Template/stages_h.png"></h2>
+                <div class="inner">
+                    <ul>
+                        <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">GIÁ THUÊ ĐẤT VÀ CÁC LOẠI PHÍ</span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">TIẾT KIỆM CHI PHÍ</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+
+                        <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">PHÁT TRIỂN BỀN VỮNG </span></span> @*<img src="~/Template/newicon.gif" class="icon">*@ </a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/thum_azuchi.jpg"><span class="text"><span class="inner">TIẾT KIỆM THỜI GIAN</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--△△STAGES-->
+            <div class="line"></div>
+            <!--▼▼MOVIES-->
+            <div id="movies">
+                <h2><img style="opacity: 0; left: -100px;" src="~/Template/movies_h.png"></h2>
+                <div class="inner">
+                    <ul>
+                        <li style="opacity: 1; top: 0px;" class="num_0"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_law();"><img src="~/Template/law.jpg"><span class="text"><span class="inner">PHÁP LUẬT KINH DOANH</span></span> <img src="~/Template/newicon.gif" class="icon"> </a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_1"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_pat();"><img src="~/Template/new.jpg"><span class="text"><span class="inner">THÔNG TIN PAT</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_2"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup();"><img src="~/Template/video.jpg"><span class="text"><span class="inner">VIDEO</span></span><!-- <img src = "img/common/newicon.gif" class ="icon" /> --></a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_3"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_photo();"><img src="~/Template/photo.jpg"><span class="text"><span class="inner">HÌNH ẢNH HOẠT ĐỘNG</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_4"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">HỎI ĐÁP</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                        <li style="opacity: 1; top: 0px;" class="num_4"><a href="javascript:scrollTo('#movies','.menu_movies','top.html#Movies');" onclick="openpopup_library_question();"><img src="~/Template/question.jpg"><span class="text"><span class="inner">TUYỂN DỤNG</span></span> <!--<img src = "img/common/newicon.gif" class ="icon" />--> </a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--△△MOVIES-->
+            <div class="line"></div>
+            <!--▼▼CONTACT-->
+            <div id="contact">
+                <h2><img style="opacity: 0; left: -100px;" src="~/Template/contact_h.png"></h2>
+                <div id="spec">
+                    <a href="javascript:scrollTo('#contact','.menu_contact','top.html#Contact');" onclick="openpopup_contact();" class="btn_productInfo right mo">NHẬP THÔNG TIN LIÊN HỆ</a>
+                    <span class="clearfix"></span>
+                </div>
+            </div>
+            <!--△△CONTACT-->
+            <div class="line hide_sp"></div>
+            <!--▼▼SOCIAL-->
+            <div id="social" class="hide_sp">
+            </div>
+            <div id="social_frontshadow"></div>
+        </div>
+        <!--△△SOCIAL-->
+        <div class="line"></div>
+        <!--▼▼FOOTER-->
+        <div id="footer">
+            <ul id="link_site">
+                <li><a><img src="~/Template/btn_doa5u.png"></a></li>
+                <li class="right"><a><img src="~/Template/btn_doa5p.png"></a></li>
+                <span class="clearfix"></span>
+            </ul>
+        </div>
+        <!--△△FOOTER-->
+    </div>
+    <div style="border-width:1px ;border-style:solid;border-color:#B0B0B0;position:fixed;padding:5px;right:0;max-width:14%;z-index:999;top:50px">
+        <div class="right_3">
+            <div class="right_3_1">
+                <img width="66" height="66" src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg" />
+                <span>
+                    <p class="date_time_1">31/8/2015</p>
+                </span>
+            </div>
+            <div class="right_3_2">
+                <span><a href="#" onclick="openpopup_new();">Hiệp định Thương mại Đối tác Xuyên Thái Bình Dương...</a></span>
+                <p class="text_1"></p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="right_3">
+            <div class="right_3_1">
+                <img width="66" height="66" src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg" />
+                <span>
+                    <p class="date_time_1">31/8/2015</p>
+                </span>
+            </div>
+            <div class="right_3_2">
+                <span class="tile_1"><a href="#" onclick="openpopup_new();">Quản lý quy hoạch và xây dựng trong các khu công nghiệp...</a></span>
+                <p class="text_1"></p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="right_3">
+            <div class="right_3_1">
+                <img width="66" height="66" src="~/Template/waterpollution/waterp [www.imagesplitter.net]-2-1.jpeg" />
+                <span>
+                    <p class="date_time_1">31/8/2015</p>
+                </span>
+            </div>
+            <div class="right_3_2">
+                <span class="tile_1"><a href="#" onclick="openpopup_new();">UBND tỉnh Long An tiếp tục ủy quyền cho Ban Quản lý Khu kinh tế...</a></span>
+                <p class="text_1"></p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+
+    </div>
+</div>
+<div style="display: none; height: 607px; width: 1349px; visibility: hidden;" id="sb-container">
+    <div style="background-color: rgb(0, 0, 0); opacity: 0;" id="sb-overlay">
+    </div>
+    <div style="top: 54px; left: 273px; width: 802px; visibility: hidden;" id="sb-wrapper">
+        <div id="sb-title">
+            <div style="margin-top: 26px;" id="sb-title-inner">
+            </div>
+        </div>
+        <div style="height: 450px;" id="sb-wrapper-inner">
+            <div id="sb-body">
+                <div id="sb-body-inner"></div>
+                <div style="display: none;" id="sb-loading">
+                    <div id="sb-loading-inner">
+                        <span>loading</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="sb-info">
+            <div style="margin-top: 0px;" id="sb-info-inner">
+                <div id="sb-counter"></div><div id="sb-nav">
+                    <a id="sb-nav-close" title="Close" onclick="Shadowbox.close()"></a>
+                    <a style="display: none;" id="sb-nav-next" title="Next" onclick="Shadowbox.next()"></a>
+                    <a style="display: none;" id="sb-nav-play" title="Play" onclick="Shadowbox.play()"></a>
+                    <a style="display: none;" id="sb-nav-pause" title="Pause" onclick="Shadowbox.pause()"></a>
+                    <a style="display: none;" id="sb-nav-previous" title="Previous" onclick="Shadowbox.previous()"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><iframe style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" allowfullscreen="true" allowtransparency="true" scrolling="no" id="rufous-sandbox" frameborder="0"></iframe>
+<!-- Modal Popup-->
+<div class="modal fade" id="windowpopup" tabindex="-1" role="dialog" aria-labelledby="windowpopup_title"
+     aria-hidden="true">
+    <div id="windowpopup_size" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ClosePopup();">
+                    &times;
+                </button>
+                <a href='#' onclick="Maximinepopup();" style="float:right;margin-right:15px">
+                    <input id="windowpopup_size_hidden_maximine" type="hidden" value="min" />
+                    <i class=" popup_maximine glyphicon glyphicon-resize-full"></i>
+                </a>
+                <h4 class="modal-title" id="windowpopup_title"></h4>
+            </div>
+            <div class="modal-body" id="windowpopup_content">
+
+                <!--                     <iframe id="modal-body-iframe" width="600px" height="600px"> -->
+                <!--                         </iframe> -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!-- login -->
+<div class="modal fade" id="windowpopup_login" tabindex="-1" role="dialog" aria-labelledby="windowpopup_title"
+     aria-hidden="true">
+    <div id="windowpopup_login_size" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ClosePopup();">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="windowpopup_login_title"></h4>
+            </div>
+            <div class="modal-body" id="windowpopup_login_content">
+                @*begin content*@
+                <div class="login-box-body">
+
+                    <h4>Vui lòng đăng nhập</h4>
+
+                    <div class="form-group has-feedback">
+                        <input id="loginformpopup_txtusername" class="form-control" maxlength="40" placeholder="Tên đăng nhập">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input id="loginformpopup_txtpassword" class="form-control" type="password" maxlength="100" placeholder="Mật khẩu">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button id="loginformpopup_btnlogin" class="btn btn-primary btn-block btn-flat" onclick="loginpopup_click();">Đăng nhập</button>
+                        </div>
+                    </div>
+
+                </div>
+                @*end content*@
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script>
+    $(document).ready(function () {
+        //gioi thieu cong ty
+        $("#in_company").html('@Model.in_company');
+        $("#in_environment").html('@Model.in_environment');
+        $("#in_industry").html('@Model.in_industry');
+        $("#in_land").html('@Model.in_land');
+        $("#in_location").html('@Model.in_location');
+        $("#in_map").html('@Model.in_map');
+        //khu dan cu
+        $("#re_flathouse").html('@Model.re_flathouse');
+        $("#re_gardenhouse").html('@Model.re_gardenhouse');
+        $("#re_house1").html('@Model.re_house1');
+        $("#re_house2").html('@Model.re_house2');
+        $("#re_nexthouse").html('@Model.re_nexthouse');
+        $("#re_workerhouse").html('@Model.re_workerhouse');
+    });
+</script>
