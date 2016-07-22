@@ -41,8 +41,19 @@ namespace ManageShop.Controllers
 
         public ActionResult CreateContent(string id)
         {
-
-            return View();
+            PATDBDataContext db = new PATDBDataContext();
+            int ID = 0;
+            try
+            {
+                if(!String.IsNullOrEmpty(id))
+                    ID = Int32.Parse(id);
+            }
+            catch (FormatException e)
+            {
+                ID = 0;
+            }
+            Content content = db.Contents.Where(x => x.ID == ID).FirstOrDefault();
+            return View(content);
         }
 
         public ActionResult Contact()
