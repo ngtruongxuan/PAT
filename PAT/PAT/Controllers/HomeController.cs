@@ -19,6 +19,7 @@ namespace ManageShop.Controllers
             {
                 lang = "VN";
             }
+            Session["Language"] = lang;
             List<Category> l_cate = db.Categories.Where(x => x.Status == "A" && x.Language == lang).ToList();
             //gioi thieu
             model.in_company = l_cate.Where(x => x.CategoryCode == "in_company").Select(x => x.DisplayName).FirstOrDefault();
@@ -48,6 +49,13 @@ namespace ManageShop.Controllers
             model.re_house2 = l_cate.Where(x => x.CategoryCode == "re_house2").Select(x => x.DisplayName).FirstOrDefault();
             model.re_nexthouse = l_cate.Where(x => x.CategoryCode == "re_nexthouse").Select(x => x.DisplayName).FirstOrDefault();
             model.re_workerhouse = l_cate.Where(x => x.CategoryCode == "re_workerhouse").Select(x => x.DisplayName).FirstOrDefault();
+            //LIEN HE
+            model.contact_in = l_cate.Where(x => x.CategoryCode == "contact_in").Select(x => x.DisplayName).FirstOrDefault();
+            //ha tang tien ich
+            model.sy_electric = l_cate.Where(x => x.CategoryCode == "sy_electric").Select(x => x.DisplayName).FirstOrDefault();
+            model.sy_water = l_cate.Where(x => x.CategoryCode == "sy_water").Select(x => x.DisplayName).FirstOrDefault();
+            model.sy_pollution = l_cate.Where(x => x.CategoryCode == "sy_pollution").Select(x => x.DisplayName).FirstOrDefault();
+            model.sy_garbage = l_cate.Where(x => x.CategoryCode == "sy_garbage").Select(x => x.DisplayName).FirstOrDefault();
             return View(model);
         }
 
@@ -76,19 +84,8 @@ namespace ManageShop.Controllers
 
         public ActionResult CreateContent(string id)
         {
-            PATDBDataContext db = new PATDBDataContext();
-            int ID = 0;
-            try
-            {
-                if(!String.IsNullOrEmpty(id))
-                    ID = Int32.Parse(id);
-            }
-            catch (FormatException e)
-            {
-                ID = 0;
-            }
-            Content content = db.Contents.Where(x => x.ID == ID).FirstOrDefault();
-            return View(content);
+
+            return View();
         }
 
         public ActionResult Contact()

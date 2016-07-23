@@ -235,29 +235,16 @@
             }
         }
 
-        function openpopup() {
-            loadpopup('~/Template/introduce.html', 'Giới thiệu công ty', '80%', false);
+        function openpopup(categorycode) {
+            loadpopup("../DisplayContent/Index?CategoryCode=" + categorycode + "",'ESC to close', '80%', false);
         }
-        function openpopup_introduce_industry() {
-            loadpopup('~/Template/introduce_industry.html', 'Giới thiệu khu công nghiệp', '80%', false);
+        function openpopup_item(categorycode) {
+            loadpopup("../DisplayContent/ItemIndex?CategoryCode=" + categorycode + "", 'ESC to close', '80%', false);
         }
-        function openpopup_industry_land() {
-            loadpopup('~/Template/introduce_industry_land.html', 'Đất công nghiệp', '80%', false);
+        function openpopup_map(categorycode) {
+            loadpopup("../DisplayContent/MapIndex", 'ESC to close', '80%', false);
         }
-        function openpopup_introduce_environment() {
-            loadpopup('~/Template/introduce_environment.html', 'Thân thiên môi trường', '80%', false);
-        }
-        function openpopup_introduce_map() {
-            loadpopup('~/Template/introduce_map.html', 'Bản đồ', '80%', false);
-        }
-
-        function openpopup_location_map() {
-            loadpopup('~/Template/introduce_map.html', 'Vị trí khu công nghiệp', '80%', false);
-        }
-
-        function openpopup_location_totalmap() {
-            loadpopup('~/Template/location_totalmap.html', 'Bản đồ tổng thể', '80%', false);
-        }
+      
 
         function openpopup_construction_electricity() {
             loadpopup('~/Template/construction_electricity.html', 'Hệ thống cấp điện', '80%', false);
@@ -272,38 +259,11 @@
             loadpopup('~/Template/construction_garbage.html', 'Thu gom và xử lý chất thải', '80%', false);
         }
 
-        function openpopup_benefit_land() {
-            loadpopup('~/Template/benefit_land.html', 'Giá thuê đất và các loại chi phí', '80%', false);
-        }
-
-        function openpopup_benefit_saving() {
-            loadpopup('~/Template/benefit_saving.html', 'Tiết kiệm chi phí', '80%', false);
-        }
-        function openpopup_benefit_develop() {
-            loadpopup('~/Template/benefit_develop.html', 'Phát triển bền vững', '80%', false);
-        }
-
-        function openpopup_benefit_savethetime() {
-            loadpopup('~/Template/benefit_savethetime.html', 'Tiết kiệm thời gian', '80%', false);
-        }
+       
         function openpopup_contact() {
             loadpopup('~/Template/contact.html', 'Liên hệ', '80%', false);
         }
-        function openpopup_library_law() {
-            loadpopup('~/Template/library_law.html', 'Pháp luật kinh doanh', '80%', false);
-        }
-
-        function openpopup_library_pat() {
-            loadpopup('~/Template/library_pat.html', 'thông tin PAT', '80%', false);
-        }
-
-        function openpopup_library_photo() {
-            loadpopup('~/Template/library_photo.html', 'Hình ảnh', '80%', false);
-        }
-
-        function openpopup_library_question() {
-            loadpopup('~/Template/library_question.html', 'Hỏi đáp', '80%', false);
-        }
+       
 
         function openpopup_new() {
             loadpopup('~/Template/new.html', 'Tin tức', '80%', false);

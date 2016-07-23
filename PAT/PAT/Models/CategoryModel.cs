@@ -30,5 +30,11 @@ namespace ManageShop.Models
         public string ne_picture { get; set; }
         public string ne_video { get; set; }
         public string ne_recruit { get; set; }
+        public string contact_in { get; set; }
+
+        public string sy_electric { get; set; }
+        public string sy_water { get; set; }
+        public string sy_pollution { get; set; }
+        public string sy_garbage { get; set; }
     }
 }

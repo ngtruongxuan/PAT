@@ -60,6 +60,9 @@ namespace ManageShop.Models
     partial void InsertCategory(Category instance);
     partial void UpdateCategory(Category instance);
     partial void DeleteCategory(Category instance);
+    partial void InsertContactEdit(ContactEdit instance);
+    partial void UpdateContactEdit(ContactEdit instance);
+    partial void DeleteContactEdit(ContactEdit instance);
     #endregion
 		
 		public PATDBDataContext() : 
@@ -169,6 +172,14 @@ namespace ManageShop.Models
 			get
 			{
 				return this.GetTable<Category>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ContactEdit> ContactEdits
+		{
+			get
+			{
+				return this.GetTable<ContactEdit>();
 			}
 		}
 	}
@@ -3682,6 +3693,692 @@ namespace ManageShop.Models
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
 		public System.DateTime LastUpdatedDateTime
+		{
+			get
+			{
+				return this._LastUpdatedDateTime;
+			}
+			set
+			{
+				if ((this._LastUpdatedDateTime != value))
+				{
+					this.OnLastUpdatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedDateTime = value;
+					this.SendPropertyChanged("LastUpdatedDateTime");
+					this.OnLastUpdatedDateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ContactEdit")]
+	public partial class ContactEdit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _CompanyName;
+		
+		private string _Hotline;
+		
+		private string _Phone;
+		
+		private string _Fax;
+		
+		private string _Email;
+		
+		private string _CompanyNameContent;
+		
+		private string _HotlineContent;
+		
+		private string _PhoneContent;
+		
+		private string _FaxContent;
+		
+		private string _EmailContent;
+		
+		private string _Description;
+		
+		private string _CustomerName;
+		
+		private string _CustomerMail;
+		
+		private string _CustomerPhone;
+		
+		private string _CustomerSubject;
+		
+		private string _Send;
+		
+		private string _Refresh;
+		
+		private string _Language;
+		
+		private string _Reftype;
+		
+		private string _Refcode;
+		
+		private string _Remark;
+		
+		private string _Status;
+		
+		private string _CreatedBy;
+		
+		private System.DateTime _CreatedDateTime;
+		
+		private string _LastUpdatedBy;
+		
+		private System.Nullable<System.DateTime> _LastUpdatedDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnCompanyNameChanging(string value);
+    partial void OnCompanyNameChanged();
+    partial void OnHotlineChanging(string value);
+    partial void OnHotlineChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnFaxChanging(string value);
+    partial void OnFaxChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnCompanyNameContentChanging(string value);
+    partial void OnCompanyNameContentChanged();
+    partial void OnHotlineContentChanging(string value);
+    partial void OnHotlineContentChanged();
+    partial void OnPhoneContentChanging(string value);
+    partial void OnPhoneContentChanged();
+    partial void OnFaxContentChanging(string value);
+    partial void OnFaxContentChanged();
+    partial void OnEmailContentChanging(string value);
+    partial void OnEmailContentChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnCustomerNameChanging(string value);
+    partial void OnCustomerNameChanged();
+    partial void OnCustomerMailChanging(string value);
+    partial void OnCustomerMailChanged();
+    partial void OnCustomerPhoneChanging(string value);
+    partial void OnCustomerPhoneChanged();
+    partial void OnCustomerSubjectChanging(string value);
+    partial void OnCustomerSubjectChanged();
+    partial void OnSendChanging(string value);
+    partial void OnSendChanged();
+    partial void OnRefreshChanging(string value);
+    partial void OnRefreshChanged();
+    partial void OnLanguageChanging(string value);
+    partial void OnLanguageChanged();
+    partial void OnReftypeChanging(string value);
+    partial void OnReftypeChanged();
+    partial void OnRefcodeChanging(string value);
+    partial void OnRefcodeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnCreatedDateTimeChanging(System.DateTime value);
+    partial void OnCreatedDateTimeChanged();
+    partial void OnLastUpdatedByChanging(string value);
+    partial void OnLastUpdatedByChanged();
+    partial void OnLastUpdatedDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastUpdatedDateTimeChanged();
+    #endregion
+		
+		public ContactEdit()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyName", DbType="NVarChar(500)")]
+		public string CompanyName
+		{
+			get
+			{
+				return this._CompanyName;
+			}
+			set
+			{
+				if ((this._CompanyName != value))
+				{
+					this.OnCompanyNameChanging(value);
+					this.SendPropertyChanging();
+					this._CompanyName = value;
+					this.SendPropertyChanged("CompanyName");
+					this.OnCompanyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hotline", DbType="NVarChar(500)")]
+		public string Hotline
+		{
+			get
+			{
+				return this._Hotline;
+			}
+			set
+			{
+				if ((this._Hotline != value))
+				{
+					this.OnHotlineChanging(value);
+					this.SendPropertyChanging();
+					this._Hotline = value;
+					this.SendPropertyChanged("Hotline");
+					this.OnHotlineChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(50)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fax", DbType="NVarChar(50)")]
+		public string Fax
+		{
+			get
+			{
+				return this._Fax;
+			}
+			set
+			{
+				if ((this._Fax != value))
+				{
+					this.OnFaxChanging(value);
+					this.SendPropertyChanging();
+					this._Fax = value;
+					this.SendPropertyChanged("Fax");
+					this.OnFaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyNameContent", DbType="NVarChar(500)")]
+		public string CompanyNameContent
+		{
+			get
+			{
+				return this._CompanyNameContent;
+			}
+			set
+			{
+				if ((this._CompanyNameContent != value))
+				{
+					this.OnCompanyNameContentChanging(value);
+					this.SendPropertyChanging();
+					this._CompanyNameContent = value;
+					this.SendPropertyChanged("CompanyNameContent");
+					this.OnCompanyNameContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HotlineContent", DbType="NVarChar(500)")]
+		public string HotlineContent
+		{
+			get
+			{
+				return this._HotlineContent;
+			}
+			set
+			{
+				if ((this._HotlineContent != value))
+				{
+					this.OnHotlineContentChanging(value);
+					this.SendPropertyChanging();
+					this._HotlineContent = value;
+					this.SendPropertyChanged("HotlineContent");
+					this.OnHotlineContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneContent", DbType="NVarChar(50)")]
+		public string PhoneContent
+		{
+			get
+			{
+				return this._PhoneContent;
+			}
+			set
+			{
+				if ((this._PhoneContent != value))
+				{
+					this.OnPhoneContentChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneContent = value;
+					this.SendPropertyChanged("PhoneContent");
+					this.OnPhoneContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FaxContent", DbType="NVarChar(50)")]
+		public string FaxContent
+		{
+			get
+			{
+				return this._FaxContent;
+			}
+			set
+			{
+				if ((this._FaxContent != value))
+				{
+					this.OnFaxContentChanging(value);
+					this.SendPropertyChanging();
+					this._FaxContent = value;
+					this.SendPropertyChanged("FaxContent");
+					this.OnFaxContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailContent", DbType="NVarChar(50)")]
+		public string EmailContent
+		{
+			get
+			{
+				return this._EmailContent;
+			}
+			set
+			{
+				if ((this._EmailContent != value))
+				{
+					this.OnEmailContentChanging(value);
+					this.SendPropertyChanging();
+					this._EmailContent = value;
+					this.SendPropertyChanged("EmailContent");
+					this.OnEmailContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(500)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="NVarChar(200)")]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this.OnCustomerNameChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerName = value;
+					this.SendPropertyChanged("CustomerName");
+					this.OnCustomerNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerMail", DbType="NVarChar(100)")]
+		public string CustomerMail
+		{
+			get
+			{
+				return this._CustomerMail;
+			}
+			set
+			{
+				if ((this._CustomerMail != value))
+				{
+					this.OnCustomerMailChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerMail = value;
+					this.SendPropertyChanged("CustomerMail");
+					this.OnCustomerMailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerPhone", DbType="NVarChar(50)")]
+		public string CustomerPhone
+		{
+			get
+			{
+				return this._CustomerPhone;
+			}
+			set
+			{
+				if ((this._CustomerPhone != value))
+				{
+					this.OnCustomerPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerPhone = value;
+					this.SendPropertyChanged("CustomerPhone");
+					this.OnCustomerPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerSubject", DbType="NVarChar(200)")]
+		public string CustomerSubject
+		{
+			get
+			{
+				return this._CustomerSubject;
+			}
+			set
+			{
+				if ((this._CustomerSubject != value))
+				{
+					this.OnCustomerSubjectChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerSubject = value;
+					this.SendPropertyChanged("CustomerSubject");
+					this.OnCustomerSubjectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Send", DbType="NVarChar(50)")]
+		public string Send
+		{
+			get
+			{
+				return this._Send;
+			}
+			set
+			{
+				if ((this._Send != value))
+				{
+					this.OnSendChanging(value);
+					this.SendPropertyChanging();
+					this._Send = value;
+					this.SendPropertyChanged("Send");
+					this.OnSendChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refresh", DbType="NVarChar(50)")]
+		public string Refresh
+		{
+			get
+			{
+				return this._Refresh;
+			}
+			set
+			{
+				if ((this._Refresh != value))
+				{
+					this.OnRefreshChanging(value);
+					this.SendPropertyChanging();
+					this._Refresh = value;
+					this.SendPropertyChanged("Refresh");
+					this.OnRefreshChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Language
+		{
+			get
+			{
+				return this._Language;
+			}
+			set
+			{
+				if ((this._Language != value))
+				{
+					this.OnLanguageChanging(value);
+					this.SendPropertyChanging();
+					this._Language = value;
+					this.SendPropertyChanged("Language");
+					this.OnLanguageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
+		public string Reftype
+		{
+			get
+			{
+				return this._Reftype;
+			}
+			set
+			{
+				if ((this._Reftype != value))
+				{
+					this.OnReftypeChanging(value);
+					this.SendPropertyChanging();
+					this._Reftype = value;
+					this.SendPropertyChanged("Reftype");
+					this.OnReftypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
+		public string Refcode
+		{
+			get
+			{
+				return this._Refcode;
+			}
+			set
+			{
+				if ((this._Refcode != value))
+				{
+					this.OnRefcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Refcode = value;
+					this.SendPropertyChanged("Refcode");
+					this.OnRefcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDateTime
+		{
+			get
+			{
+				return this._CreatedDateTime;
+			}
+			set
+			{
+				if ((this._CreatedDateTime != value))
+				{
+					this.OnCreatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDateTime = value;
+					this.SendPropertyChanged("CreatedDateTime");
+					this.OnCreatedDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this.OnLastUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedBy = value;
+					this.SendPropertyChanged("LastUpdatedBy");
+					this.OnLastUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastUpdatedDateTime
 		{
 			get
 			{

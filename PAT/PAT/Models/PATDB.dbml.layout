@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 13.75" name="PATDB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 15.875" name="PATDB">
   <DataContextMoniker Name="/PATDBDataContext" />
   <nestedChildShapes>
     <classShape Id="a200a875-0856-41a6-af14-325d93d35b8a" absoluteBounds="3.75, 0.75, 2, 3.6939111328124996">
@@ -60,6 +60,12 @@
       <DataClassMoniker Name="/PATDBDataContext/Category" />
       <nestedChildShapes>
         <elementListCompartment Id="037a5cf7-2209-405d-87c1-0c9f34f119a5" absoluteBounds="1.3900000000000001, 1.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="77f449d7-509f-42bf-a672-fb887553bd1b" absoluteBounds="1, 9.625, 2, 6.0015283203125">
+      <DataClassMoniker Name="/PATDBDataContext/ContactEdit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="34b4ec76-eef4-445a-ba76-7ae87843b8c7" absoluteBounds="1.0149999999999997, 10.085, 1.9700000000000002, 5.4415283203125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
