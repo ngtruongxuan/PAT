@@ -36,13 +36,13 @@
                     <li class="menu_movies"><a style="cursor:pointer" onclick="libraryclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
                     <li class="menu_contact"><a style="cursor:pointer" onclick="contactclick()"></a></li>
                     <li class="menu_langue">
-                        <a href="@Url.Action("Index", "Home", new { lang = "VN"})" >
+                        <a style="cursor:pointer" onclick="languageclick('VN')">
                             <img src="~/Template/img/common/lang_vn.png" />
                         </a>
-                        <a style="float:right;margin-left:2px" href="@Url.Action("Index", "Home", new { lang = "JP"})" >
+                        <a style="float: right; margin-left: 2px; cursor: pointer"  onclick="languageclick('JP')">
                             <img src="~/Template/img/common/lang_jp.png" />
                         </a>
-                        <a style="float:right" href="@Url.Action("Index", "Home", new { lang = "EN"})">
+                        <a style="float: right; cursor: pointer" onclick="languageclick('EN')">
                             <img src="~/Template/img/common/lang_en.png" />
                         </a>
                     </li>
@@ -370,7 +370,7 @@
             <div id="contact">
                 <h2><img style="opacity: 0; left: -100px;" src="~/Template/contact_h.png"></h2>
                 <div id="spec">
-                    <a href="javascript:scrollTo('#contact','.menu_contact','top.html#Contact');" onclick="openpopup_contact();" class="btn_productInfo right mo"><label id="contact_in"> </label></a>
+                    <a style="cursor:pointer" onclick="openpopup_contact();" class="btn_productInfo right mo"><label id="contact_in"> </label></a>
                     <span class="clearfix"></span>
                 </div>
             </div>
@@ -515,7 +515,7 @@
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input id="loginformpopup_txtpassword" class="form-control" type="password" maxlength="100" placeholder="Mật khẩu">
+                        <input id="loginformpopup_txtpassword" class="form-control" type="password" maxlength="100" placeholder="Mật khẩu" onkeydown="onkeydown_login(event);">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
@@ -571,4 +571,11 @@
         $("#sy_pollution").html('@Model.sy_pollution');
         $("#sy_garbage").html('@Model.sy_garbage');
     });
+
+    function onkeydown_login(e) {
+       // alert(e.keyCode);
+        if (e.keyCode == 13) {
+            loginpopup_click();
+        }
+    }
 </script>

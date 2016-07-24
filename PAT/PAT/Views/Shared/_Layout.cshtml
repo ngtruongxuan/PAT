@@ -236,32 +236,29 @@
         }
 
         function openpopup(categorycode) {
-            loadpopup("../DisplayContent/Index?CategoryCode=" + categorycode + "",'ESC to close', '80%', false);
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+                cookie_language='VN';
+            loadpopup("../DisplayContent/Index?CategoryCode=" + categorycode + "&Language=" + cookie_language + "", 'ESC to close', '80%', false);
         }
         function openpopup_item(categorycode) {
-            loadpopup("../DisplayContent/ItemIndex?CategoryCode=" + categorycode + "", 'ESC to close', '80%', false);
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+                cookie_language = 'VN';
+            loadpopup("../DisplayContent/ItemIndex?CategoryCode=" + categorycode + "&Language=" + cookie_language + "", 'ESC to close', '80%', false);
         }
         function openpopup_map(categorycode) {
             loadpopup("../DisplayContent/MapIndex", 'ESC to close', '80%', false);
         }
       
 
-        function openpopup_construction_electricity() {
-            loadpopup('~/Template/construction_electricity.html', 'Hệ thống cấp điện', '80%', false);
-        }
-        function openpopup_construction_water() {
-            loadpopup('~/Template/construction_water.html', 'Hệ thống cung cấp nước sạch', '80%', false);
-        }
-        function openpopup_construction_water_filter() {
-            loadpopup('~/Template/construction_water_filter.html', 'Hệ thống xử lý nước thải', '80%', false);
-        }
-        function openpopup_construction_garbage() {
-            loadpopup('~/Template/construction_garbage.html', 'Thu gom và xử lý chất thải', '80%', false);
-        }
-
+    
        
         function openpopup_contact() {
-            loadpopup('~/Template/contact.html', 'Liên hệ', '80%', false);
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+                cookie_language = 'VN';
+            loadpopup("../DisplayContent/ContactIndex?Language=" + cookie_language + "", 'ESC to close', '80%', false);
         }
        
 
@@ -356,8 +353,41 @@
                 $('#logout').addClass('menu_logout');
                 $('#admin').addClass('menu_admin');
             }
+
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+            {
+                createCookie('language_cookie','VN',1);
+            }
+         //   alert(cookie_language);
             //alert('@Session["UserName"]');
         });
+
+        function createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = "; expires=" + date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function languageclick(language)
+        {
+            createCookie('language_cookie', '' + language + '', 1);
+            window.location.href = "/Home/Index?Language=" + language + "";
+        }
     </script>
     @RenderBody()
 

@@ -1,17 +1,254 @@
-﻿
+﻿@model ManageShop.Models.ContactEditModel
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    .row::before, .row::after {
+        content: " ";
+        display: table;
+        margin-top: 2px;
+    }
+</style>
 
-<!DOCTYPE html>
+<div class="row">
+    <div class="col-sm-12">
+        <section style="background:white; width:1041px; height:75px;margin-left: 22px;">
+            <div id="form" style="margin-left:20px">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+
+
+                <div class="col-md-6 row" style="margin-top:20px">
+                    <label class="col-md-4">Ngôn ngữ</label>
+                    <div class="col-md-8">
+                        <input id="txt_language"
+                               style="width: 100%;" />
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <span id="notification" style="display:none;"></span>
+            <div id="modal_box"></div>
+
+            <br />
+
+            <br />
+        </section>
+
+        <div class="form-group row" style="margin: 20px 0px 0px ;text-align:left;">
+            <section style="background:white; width:1041px; height:550px;margin-left: 22px;">
+
+                <div class="col-md-12 row" style="margin-top:20px">
+                    <label class="col-md-1"></label>
+
+                    <label id="CompanyName" style="cursor:pointer" onclick="OpenDialog_ContactEdit('CompanyName')" class="col-md-10" >@Model.CompanyName</label>
+
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label id="Hotline" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Hotline')" class="col-md-2">@Model.Hotline</label>
+
+                    <label class="col-md-10" id="HotlineContent" style="cursor:pointer" onclick="OpenDialog_ContactEdit('HotlineContent')">@Model.HotlineContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="Address" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Address')">@Model.Address</label>
+
+                    <label class="col-md-10" id="AddressContent" style="cursor:pointer" onclick="OpenDialog_ContactEdit('AddressContent')">@Model.AddressContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="Phone" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Phone')">@Model.Phone</label>
+
+                    <label class="col-md-10" id="PhoneContent" style="cursor:pointer" onclick="OpenDialog_ContactEdit('PhoneContent')">@Model.PhoneContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="Fax" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Fax')">@Model.Fax</label>
+
+                    <label class="col-md-10" id="FaxContent" style="cursor:pointer" onclick="OpenDialog_ContactEdit('FaxContent')">@Model.FaxContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="Email" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Email')">@Model.Email</label>
+
+                    <label class="col-md-10" id="EmailContent" style="cursor:pointer" onclick="OpenDialog_ContactEdit('EmailContent')"> @Model.EmailContent</label>
+
+
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-12" id="Description" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Description')"> @Model.Description</label>
+
+
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="CustomerName" style="cursor:pointer" onclick="OpenDialog_ContactEdit('CustomerName')">@Model.CustomerName</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="CustomerMail" style="cursor:pointer" onclick="OpenDialog_ContactEdit('CustomerMail')">@Model.CustomerMail</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="CustomerPhone" style="cursor:pointer" onclick="OpenDialog_ContactEdit('CustomerPhone')">@Model.CustomerPhone</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="CustomerContent" style="cursor:pointer" onclick="OpenDialog_ContactEdit('CustomerContent')">@Model.CustomerContent</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label class="col-md-2" id="CustomerContent" style="cursor:pointer" onclick="OpenDialog_ContactEdit('CustomerContent')">@Model.CustomerContent</label>
+                    <div class="col-md-8">
+                        <textarea class="k-textbox" style="width:100%" rows="5" id="comment"></textarea>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row" style="margin-top:20px">
+                    <button class="btn btn-md btn-primary"
+                            id="Send" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Send')">
+                        <i class="fa fa-plus"></i>@Model.Send
+                    </button>
+
+                    <button class="btn btn-md btn-warning"
+                            id="Refresh" style="cursor:pointer" onclick="OpenDialog_ContactEdit('Refresh')">
+                        <i class="fa fa-refresh"></i>@Model.Refresh
+                        </button>
+
+                </div>
+
+            </section>
+
+         
+              
+            
+          
+        </div>
     </div>
-</body>
-</html>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+
+        $("#txt_language").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "LanguageName",
+            dataValueField: "LanguageCode",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "../ContactEdit/getLanguage",
+                                dataType: "json",
+                                type: "POST",
+                            }
+                        },
+                    },
+            change: group_onChange,
+            //          filter: "contains",
+            suggest: true,
+            //index: 0
+        });
+
+
+        $('#txt_language').data('kendoComboBox').value('VN');
+
+
+        function group_onChange() {
+            // alert('aaa');
+            var value = $("#txt_language").val();
+            var text = $("#txt_language").data('kendoComboBox').text();
+            if (value == text) {
+                $("#txt_language").data('kendoComboBox').value("");
+            }
+            var additionalData = JSON.stringify({
+
+                Language: $.trim($('#txt_language').val()),
+
+            });
+            $.ajax({
+                url: "../ContactEdit/searchContactEdit",
+                type: "post",
+                data: additionalData,
+                dataType: "json",
+                contentType: "application/json",
+
+                success: function ($result) {
+
+                  
+                    $("#CompanyName").html($result['CompanyName']);
+                    $("#Hotline").html($result['Hotline']);
+                    $("#Phone").html($result['Phone']);
+                    $("#Address").html($result['Address']);
+                    $("#Fax").html($result['Fax']);
+                    $("#Email").html($result['Email']);
+                    $("#HotlineContent").html($result['HotlineContent']);
+                    $("#PhoneContent").html($result['PhoneContent']);
+                    $("#AddressContent").html($result['AddressContent']);
+                    $("#FaxContent").html($result['FaxContent']);
+                    $("#EmailContent").html($result['EmailContent']);
+                    $("#Description").html($result['Description']);
+                    $("#CustomerName").html($result['CustomerName']);
+                    $("#CustomerMail").html($result['CustomerMail']);
+                    $("#CustomerPhone").html($result['CustomerPhone']);
+                    $("#CustomerSubject").html($result['CustomerSubject']);
+                    $("#CustomerContent").html($result['CustomerContent']);
+                    $("#Send").html($result['Send']);
+                    $("#Refresh").html($result['Refresh']);
+
+                },
+            });
+        }
+
+
+        //$('#txt_group').data('kendoComboBox').value(1);
+
+
+
+
+        // editable: true
+
+
+
+    });
+    function OpenDialog_ContactEdit(ContactEditCode)
+    {
+        var language = $('#txt_language').data('kendoComboBox').value();
+        loadpopup("../ContactEdit/Edit?ContactEditCode=" + ContactEditCode + "&language=" + language + "", 'ESC to close', '80%', false);
+    }
+</script>

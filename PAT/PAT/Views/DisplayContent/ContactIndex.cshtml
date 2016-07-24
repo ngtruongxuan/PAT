@@ -1,0 +1,160 @@
+﻿@model ManageShop.Models.ContactEditModel
+@{
+    Layout =null;
+}
+<style>
+    .row::before, .row::after {
+        content: " ";
+        display: table;
+        margin-top: 2px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12">
+   
+
+        <div class="form-group row" style="margin: 20px 0px 0px ;text-align:left;">
+            <section style="background:white; width:1041px; height:550px;margin-left: 22px;">
+
+                <div class="col-md-12 row" >
+                    <label class="col-md-1"></label>
+
+                    <label  class="col-md-10">@Model.CompanyName</label>
+
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label  class="col-md-2">@Model.Hotline</label>
+
+                    <label class="col-md-10" >@Model.HotlineContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.Address</label>
+
+                    <label class="col-md-10" >@Model.AddressContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.Phone</label>
+
+                    <label class="col-md-10" >@Model.PhoneContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.Fax</label>
+
+                    <label class="col-md-10" >@Model.FaxContent</label>
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.Email</label>
+
+                    <label class="col-md-10" > @Model.EmailContent</label>
+
+
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-12" > @Model.Description</label>
+
+
+
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.CustomerName</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.CustomerMail</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.CustomerPhone</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label class="col-md-2" >@Model.CustomerContent</label>
+                    <div class="col-md-8">
+                        <input class="k-textbox"
+                               style="width: 100%;" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row">
+                    <label class="col-md-2"  >@Model.CustomerContent</label>
+                    <div class="col-md-8">
+                        <textarea class="k-textbox" style="width:100%" rows="5" id="comment"></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 row" style="margin-top:20px">
+                    <button class="btn btn-md btn-primary"
+                            id="Send" >
+                        <i class="fa fa-plus"></i>@Model.Send
+                    </button>
+
+                    <button class="btn btn-md btn-warning"
+                            id="Refresh"  >
+                        <i class="fa fa-refresh"></i>@Model.Refresh
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+
+       
+    
+
+
+    });
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = evt.key == "Escape";
+        } else {
+            isEscape = evt.keyCode == 27;
+        }
+        if (isEscape) {
+            $('#windowpopup').modal('hide');
+        }
+    };
+</script>

@@ -11,16 +11,12 @@ namespace ManageShop.Controllers
     public class HomeController : Base
     {
 
-        public ActionResult Index(string lang)
+        public ActionResult Index(string Language)
         {
               PATDBDataContext db = new PATDBDataContext();
             CategoryModel model = new CategoryModel();
-            if(lang==null)
-            {
-                lang = "VN";
-            }
-            Session["Language"] = lang;
-            List<Category> l_cate = db.Categories.Where(x => x.Status == "A" && x.Language == lang).ToList();
+
+            List<Category> l_cate = db.Categories.Where(x => x.Status == "A" && x.Language == Language).ToList();
             //gioi thieu
             model.in_company = l_cate.Where(x => x.CategoryCode == "in_company").Select(x => x.DisplayName).FirstOrDefault();
             model.in_environment = l_cate.Where(x => x.CategoryCode == "in_environment").Select(x => x.DisplayName).FirstOrDefault();
