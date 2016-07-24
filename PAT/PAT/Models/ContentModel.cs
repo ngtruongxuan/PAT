@@ -7,30 +7,30 @@ namespace ManageShop.Models
 {
     public class ContentModel
     {
-        private long ID{ get; set;}
+        public long ID{ get; set;}
 
-        private string ContentName{ get; set;}
+        public string ContentName{ get; set;}
 
-        private long CategoryID{ get; set;}
+        public long CategoryID{ get; set;}
 
-        private string ContentDisplay{ get; set;}
+        public string ContentDisplay{ get; set;}
 
-        private string Language{ get; set;}
+        public string Language{ get; set;}
 
-        private string Reftype{ get; set;}
+        public string Reftype{ get; set;}
 
-        private string Refcode{ get; set;}
+        public string Refcode{ get; set;}
 
-        private string Remark{ get; set;}
+        public string Remark{ get; set;}
 
-        private string Status{ get; set;}
+        public string Status{ get; set;}
 
-        private string CreatedBy{ get; set;}
+        public string CreatedBy{ get; set;}
 
-        private System.DateTime CreatedDateTime{ get; set;}
+        public System.DateTime CreatedDateTime{ get; set;}
 
-        private string LastUpdatedBy{ get; set;}
+        public string LastUpdatedBy{ get; set;}
 
-        private System.DateTime LastUpdatedDateTime{ get; set;}
+        public System.DateTime LastUpdatedDateTime{ get; set;}
     }
 }
