@@ -2,15 +2,9 @@
 @{
 
 
-    string iscontent = Request.QueryString["_isbl"].ToString();
-    if (iscontent == "false")
-    {
+  
         Layout = "~/Views/Shared/_PopupInnerLayout.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    }
+   
 
 
 

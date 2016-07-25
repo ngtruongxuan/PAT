@@ -16,16 +16,31 @@
         <label id="con_title"> </label>
     </div>
 
-    <div>
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a style="cursor:pointer">Ban</a>
-         
-            </li>
-            <li role="presentation"><a style="cursor:pointer">Cho thue</a>
-          
-            </li>
-          
-        </ul>
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#item" data-toggle="tab">
+                Bán
+            </a>
+        </li>
+        <li>
+            <a href="#category" data-toggle="tab">
+                Cho Thuê
+            </a>
+        </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+
+        <div class="tab-pane fade in active" id="item">
+
+            Bán
+
+        </div>
+
+        <div class="tab-pane fade" id="category">
+
+            Cho Thuê
+        </div>
     </div>
 </body>
 </html>

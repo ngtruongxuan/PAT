@@ -15,7 +15,10 @@ namespace ManageShop.Controllers
         {
               PATDBDataContext db = new PATDBDataContext();
             CategoryModel model = new CategoryModel();
-
+            if (Language == null || Language == "")
+            {
+                Language = "VN";
+            }
             List<Category> l_cate = db.Categories.Where(x => x.Status == "A" && x.Language == Language).ToList();
             //gioi thieu
             model.in_company = l_cate.Where(x => x.CategoryCode == "in_company").Select(x => x.DisplayName).FirstOrDefault();
