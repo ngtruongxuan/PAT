@@ -46,7 +46,7 @@
         </section>
        
         <div class="form-group row" style="margin: 20px 0px 0px ;text-align:left;">
-            <section style="background:white; width:1041px; height:260px;margin-left: 22px;">
+            <section style="background:white; width:1041px; height:280px;margin-left: 22px;">
 
                 <div class="checkbox">
                     <label><input type="checkbox" id="checkAll" onclick="setFullPermission()" value="">Full quyền</label>
@@ -73,12 +73,14 @@
                     <label><input type="checkbox" class="checkItem" id="ck_7" onclick="setPermission(7, 'ck_7')" value="" >Quản lý giá</label>
                 </div>
                 <div class="checkbox checkchild">
-                    <label><input type="checkbox" class="checkItem" id="ck_8" onclick="setPermission(8, 'ck_8')" value="">Chỉnh sửa thông tin liên hệ</label>
+                    <label><input type="checkbox" class="checkItem" id="ck_8" onclick="setPermission(8, 'ck_8')" value="">Chỉnh sửa form liên hệ</label>
                 </div>
                 <div class="checkbox checkchild">
                     <label><input type="checkbox" class="checkItem" id="ck_9" onclick="setPermission(9, 'ck_9')" value="">Quản lý thông tin liên hệ</label>
                 </div>
-               
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_10" onclick="setPermission(10, 'ck_10')" value="">Chỉnh sửa menu</label>
+                </div>
 
 
               
@@ -179,7 +181,7 @@
                 && $('#ck_3').is(":checked") == true && $('#ck_4').is(":checked") == true
                 && $('#ck_5').is(":checked") == true && $('#ck_6').is(":checked") == true
                 && $('#ck_7').is(":checked") == true && $('#ck_8').is(":checked") == true
-                 && $('#ck_9').is(":checked") == true) {
+                && $('#ck_9').is(":checked") == true && $('#ck_10').is(":checked") == true) {
                     $('#checkAll').prop('checked', true);
                 }
                 else
@@ -211,7 +213,7 @@
             success: function ($result) {
 
             //    alert($result[2]['ModuleID']);
-                for (var i = 1; i <= 9; i++)
+                for (var i = 1; i <= 10; i++)
                 {
                     $('#ck_' + i + '').prop('checked', false);
                 }
@@ -226,7 +228,7 @@
                && $('#ck_3').is(":checked") == true && $('#ck_4').is(":checked") == true
                && $('#ck_5').is(":checked") == true && $('#ck_6').is(":checked") == true
                && $('#ck_7').is(":checked") == true && $('#ck_8').is(":checked") == true
-               && $('#ck_9').is(":checked") == true) {
+               && $('#ck_9').is(":checked") == true && $('#ck_10').is(":checked") == true) {
                     $('#checkAll').prop('checked', true);
                 }
                 else {

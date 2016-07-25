@@ -36,5 +36,32 @@ namespace ManageShop.Models
         public string sy_water { get; set; }
         public string sy_pollution { get; set; }
         public string sy_garbage { get; set; }
+
+        public List<CategoryCodeModel> l_code = new List<CategoryCodeModel>();
+        public List<CategoryCodeModel> l_code_new = new List<CategoryCodeModel>();
+    }
+
+    public class CategoryTreeModel
+    {
+        public long ID { get; set; }
+        public string Name { get; set; }
+        public string CategoryCode { get; set; }
+        public List<CategoryTreeModel> Child = new List<CategoryTreeModel>();
+        
+    }
+    public class CategoryCodeModel
+    {
+        public string CategoryCode { get; set; }
+    }
+
+    public class CategoryPopupModel
+    {
+        public string Language { get; set; }
+        public string LanguageCode { get; set; }
+        public string LanguageVN { get; set; }
+        public string LanguageCurent { get; set; }
+        public string ContentEdit { get; set; }
+        public string CategoryCode { get; set; }
+        public string CategoryContent { get; set; }
     }
 }

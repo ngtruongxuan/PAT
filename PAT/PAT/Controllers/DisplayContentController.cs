@@ -14,7 +14,10 @@ namespace ManageShop.Controllers
         public ActionResult Index(String CategoryCode, string Language)
         {
             PATDBDataContext db = new PATDBDataContext();
-
+                if(Session["Language"]!=null)
+                {
+                    Language = Session["Language"].ToString();
+                }
             Category cate = db.Categories.Where(x => x.Status == "A" && x.Language == Language && x.CategoryCode == CategoryCode).FirstOrDefault();
             DisplayContentModel model = new DisplayContentModel();
             if(cate!=null)
@@ -25,11 +28,17 @@ namespace ManageShop.Controllers
             {
                 model.Title = "None Content";
             }
+            model.Content = db.Contents.Where(x => x.CategoryID == cate.ID && x.Language == Language).Select(x => x.ContentDisplay).FirstOrDefault();
+
             return View(model);
         }
 
         public ActionResult ItemIndex(String CategoryCode, string Language)
         {
+            if (Session["Language"] != null)
+            {
+                Language = Session["Language"].ToString();
+            }
             PATDBDataContext db = new PATDBDataContext();
 
             Category cate = db.Categories.Where(x => x.Status == "A" && x.Language == Language && x.CategoryCode == CategoryCode).FirstOrDefault();
@@ -52,6 +61,10 @@ namespace ManageShop.Controllers
 
          public ActionResult ContactIndex(string Language)
          {
+             if (Session["Language"] != null)
+             {
+                 Language = Session["Language"].ToString();
+             }
              PATDBDataContext db = new PATDBDataContext();
              List<ContactEdit> l_edit = db.ContactEdits.Where(x => x.Language == "VN").ToList();
              ContactEditModel model = new ContactEditModel();

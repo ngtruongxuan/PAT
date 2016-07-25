@@ -1,0 +1,183 @@
+﻿@model List<ManageShop.Models.CategoryTreeModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <section style="background:white; width:1041px; height:75px;margin-left: 22px;">
+            <div id="form" style="margin-left:20px">
+
+
+
+                <div class="col-md-6 row" style="margin-top:20px">
+                    <label class="col-md-4">Ngôn ngữ</label>
+                    <div class="col-md-8">
+                        <input id="txt_language"
+                               style="width: 100%;" />
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <span id="notification" style="display:none;"></span>
+            <div id="modal_box"></div>
+
+            <br />
+
+            <br />
+        </section>
+
+        <div class="form-group row" style="margin: 20px 0px 0px ;text-align:left;">
+            <ul id="treeview">
+                <li data-expanded="true">
+                    <span class="k-sprite folder"></span>
+                   Menu
+                    <ul>
+                        @foreach (var item in @Model)
+                        {
+                            <li data-expanded="true">
+                                <span class="k-sprite folder"></span>@item.Name
+                                @if (@item.Child.Count > 0)
+                                {
+                                    <ul>
+                                        @foreach (var child in @item.Child)
+                                        {
+                                            <li><span class="k-sprite"></span><span style="cursor:pointer;" onclick="OpenDialog_CategoryEdit('@child.CategoryCode')">@child.Name <label id="@child.CategoryCode"></label></span></li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#treeview").kendoTreeView();
+
+        $("#txt_language").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "LanguageName",
+            dataValueField: "LanguageCode",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "../ContactEdit/getLanguage",
+                                dataType: "json",
+                                type: "POST",
+                            }
+                        },
+                    },
+            change: group_onChange,
+            //          filter: "contains",
+            suggest: true,
+            //index: 0
+        });
+
+
+        $('#txt_language').data('kendoComboBox').value('VN');
+
+        searchCategory();
+        function group_onChange() {
+            // alert('aaa');
+            var value = $("#txt_language").val();
+            var text = $("#txt_language").data('kendoComboBox').text();
+            if (value == text) {
+                $("#txt_language").data('kendoComboBox').value("");
+            }
+            var additionalData = JSON.stringify({
+
+                Language: $.trim($('#txt_language').val()),
+
+            });
+            $.ajax({
+                url: "../Category/searchCategory",
+                type: "post",
+                data: additionalData,
+                dataType: "json",
+                contentType: "application/json",
+
+                success: function ($result) {
+
+                  //  alert($result.l_code[0]['CategoryCode']);
+                  
+                    for (var i = 0; i < $result.l_code_new.length; i++) {
+                        setTreeNoneContent($result.l_code_new[i]['CategoryCode']);
+                    }
+                    for (var i = 0; i < $result.l_code.length; i++) {
+                        setTreeContent($result.l_code[i]['CategoryCode']);
+                    }
+                },
+            });
+        }
+
+
+        //$('#txt_group').data('kendoComboBox').value(1);
+
+
+
+
+        // editable: true
+
+
+
+    });
+
+    function searchCategory()
+    {
+        var additionalData = JSON.stringify({
+
+            Language: "VN",
+
+        });
+        $.ajax({
+            url: "../Category/searchCategory",
+            type: "post",
+            data: additionalData,
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+                //  alert($result.l_code[0]['CategoryCode']);
+
+                for (var i = 0; i < $result.l_code_new.length; i++) {
+                    setTreeNoneContent($result.l_code_new[i]['CategoryCode']);
+                }
+                for (var i = 0; i < $result.l_code.length; i++) {
+                    setTreeContent($result.l_code[i]['CategoryCode']);
+                }
+            },
+        });
+    }
+    function setTreeContent(id)
+    {
+        $("#" + id + "").html(' - đã được dịch').css("color", "black");
+    }
+
+    function setTreeNoneContent(id) {
+        $("#" + id + "").html(' - chưa được dịch').css("color", "red");
+    }
+    function OpenDialog_CategoryEdit(CategoryCode) {
+        var language = $('#txt_language').data('kendoComboBox').value();
+        loadpopup("../Category/Detail?CategoryCode=" + CategoryCode + "&language=" + language + "", 'ESC to close', '80%', false);
+    }
+</script>
+

@@ -84,7 +84,7 @@ namespace ManageShop.Controllers
         public JsonResult setFullPermission(PermissionModel model)
         {
             PATDBDataContext db = new PATDBDataContext();
-            for (int i = 1; i <= 9;i++ )
+            for (int i = 1; i <= 10;i++ )
             {
                 Permission per = db.Permissions.Where(x => x.GroupID == model.GroupID && x.ModuleID == i).FirstOrDefault();
                 if (per != null)

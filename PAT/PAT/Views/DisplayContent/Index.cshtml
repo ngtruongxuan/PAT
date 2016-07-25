@@ -15,6 +15,10 @@
     <div> 
         <label id="con_title"> </label>
     </div>
+    <div >
+        @Html.Raw(Model.Content)
+        <div id="con_display"></div>
+    </div>
 </body>
 </html>
 <script>
@@ -31,6 +35,6 @@
         }
     };
     $("#con_title").html('@Model.Title');
-
+    //$("con_display").html('@Html.Raw(Json.Encode(Model.Content))');
 
 </script>

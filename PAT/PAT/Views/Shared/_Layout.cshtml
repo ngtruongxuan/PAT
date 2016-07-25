@@ -237,6 +237,7 @@
 
         function openpopup(categorycode) {
             var cookie_language = readCookie('language_cookie');
+         //   alert(cookie_language);
             if (cookie_language == null)
                 cookie_language='VN';
             loadpopup("../DisplayContent/Index?CategoryCode=" + categorycode + "&Language=" + cookie_language + "", 'ESC to close', '80%', false);
@@ -359,6 +360,8 @@
             {
                 createCookie('language_cookie','VN',1);
             }
+            var language = readCookie('language_cookie');
+           // window.location.href = "/Home/Index?Language=" + language + "";
          //   alert(cookie_language);
             //alert('@Session["UserName"]');
         });
