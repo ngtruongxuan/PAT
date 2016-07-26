@@ -111,5 +111,32 @@ namespace ManageShop.Controllers
             var question = new ManageShop.Controllers.Base.Question { Title = commend, Success = "1" };
             return Json(question);
         }
+        public JsonResult searchCategoryLanguage(string Language)
+        {
+            PATDBDataContext db = new PATDBDataContext();
+
+            CategoryModel model = new CategoryModel();
+
+
+            List<Category> l_cate = db.Categories.Where(x => x.Status == "A" && x.Language == Language && x.CategoryCode != null).ToList();
+            model.l_code = new List<CategoryCodeModel>();
+            foreach (var item in l_cate)
+            {
+                CategoryCodeModel newcate = new CategoryCodeModel();
+                newcate.CategoryCode = item.CategoryCode;
+                model.l_code.Add(newcate);
+            }
+
+            List<Category> l_cate_vn = db.Categories.Where(x => x.Status == "A" && x.Language == "VN" && x.CategoryCode != null).ToList();
+            model.l_code_new = new List<CategoryCodeModel>();
+            foreach (var item in l_cate_vn)
+            {
+                CategoryCodeModel newcate = new CategoryCodeModel();
+                newcate.CategoryCode = item.CategoryCode;
+                model.l_code_new.Add(newcate);
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
 	}
 }

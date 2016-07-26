@@ -388,8 +388,27 @@
         }
         function languageclick(language)
         {
-            createCookie('language_cookie', '' + language + '', 1);
-            window.location.href = "/Home/Index?Language=" + language + "";
+            var additionalData = JSON.stringify({
+
+                Language: "VN",
+
+            });
+            $.ajax({
+                url: "../Category/searchCategory",
+                type: "post",
+                data: additionalData,
+                dataType: "json",
+                contentType: "application/json",
+
+                success: function ($result) {
+
+                    //  alert($result.l_code[0]['CategoryCode']);
+
+                   
+                },
+            });
+           // createCookie('language_cookie', '' + language + '', 1);
+           // window.location.href = "/Home/Index?Language=" + language + "";
         }
     </script>
     @RenderBody()
