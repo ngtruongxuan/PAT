@@ -110,5 +110,56 @@ namespace ManageShop.Controllers
             question.Title = "Có lỗi trong quá trình xử lý";
             return Json(question);
         }
+        public JsonResult SearchNews(string CategoryID)
+        {
+            int ID = 0;
+            try
+            {
+                if (!String.IsNullOrEmpty(CategoryID))
+                    ID = Int32.Parse(CategoryID);
+            }
+            catch (FormatException e)
+            {
+                ID = 0;
+            }
+            List<New> data = new List<New>();
+           PATDBDataContext db = new PATDBDataContext();
+            //var data = (from n in db.News
+            //            where (n.CategoryID == ID || ID == 0)
+            //                && n.Status == "A"
+            //            select n
+            //            ).ToList();
+            if (ID != 0)
+            {
+                data = db.News.Where(x => x.CategoryID == ID && x.Status == "A").ToList();
+            }
+            else
+            {
+                data = db.News.Where(x => x.Status == "A").ToList();
+            }
+            List<NewsModel> ls_News = new List<NewsModel>();
+            if (data != null)
+            {
+                foreach (var item in data)
+                {
+                    NewsModel news = new NewsModel();
+                    var categroy = db.Categories.Where(x => x.ID == item.ID && x.Status == "A").FirstOrDefault();
+                    if (categroy != null)
+                    {
+                        news.CategoryName = categroy.CategoryName;
+                    }
+                    news.CategoryID = item.CategoryID;
+                    news.NewsContent = item.NewsContent;
+                    news.NewsDate = item.NewsDate;
+                    news.NewsDecription = item.NewsDecription;
+                    news.Language = item.Language;
+                    var language = db.Languages.Where(x => x.LanguageCode == item.Language && x.Status == "A").FirstOrDefault();
+                    if (language != null)
+                        news.LanguageName = language.LanguageName;
+
+                }
+            }
+            return Json(ls_News);
+        }
     }
 }
