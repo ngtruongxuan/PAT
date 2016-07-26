@@ -39,6 +39,9 @@ namespace ManageShop.Models
         public System.Nullable<int> CategoryID { get; set; }
 
         public string Image { get; set; }
+        public string CategoryName { get; set; }
+        public string StatusName { get; set; }
+        public string LanguageName { get; set; }
 
     }
 }
