@@ -31,7 +31,7 @@ namespace ManageShop.Controllers
             }
             return View(list);
         }
-        public ActionResult CreateContent(string categoryID)
+        public ActionResult Detail(string categoryID)
         {
             PATDBDataContext db = new PATDBDataContext();
             int category = 0;

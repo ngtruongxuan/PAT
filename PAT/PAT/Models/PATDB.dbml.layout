@@ -38,12 +38,6 @@
         <elementListCompartment Id="2556fa5a-507c-4c75-83af-d84298679a5a" absoluteBounds="9.765, 1.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4b8f070d-4c12-4ddd-af4b-cffa0e7c8a3f" absoluteBounds="3.75, 9.75, 2, 3.6939111328124987">
-      <DataClassMoniker Name="/PATDBDataContext/New" />
-      <nestedChildShapes>
-        <elementListCompartment Id="96f19c40-dc7c-4df7-82f8-24b8de1b1679" absoluteBounds="3.765, 10.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="3e83b476-9585-4692-bb1e-473b2eae28fa" absoluteBounds="9.75, 4.75, 2, 3.5016097005208326">
       <DataClassMoniker Name="/PATDBDataContext/Permission" />
       <nestedChildShapes>
@@ -62,16 +56,22 @@
         <elementListCompartment Id="037a5cf7-2209-405d-87c1-0c9f34f119a5" absoluteBounds="1.3900000000000001, 1.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="130b5c99-edeb-4ac9-ad1b-1949168b3d6b" absoluteBounds="4.125, 4.75, 2, 2.9247054036458331">
+    <classShape Id="130b5c99-edeb-4ac9-ad1b-1949168b3d6b" absoluteBounds="5.25, 3.5, 2, 2.9247054036458331">
       <DataClassMoniker Name="/PATDBDataContext/Language" />
       <nestedChildShapes>
-        <elementListCompartment Id="f2f3fa4c-b754-4e8b-abf0-ba1511b41b16" absoluteBounds="4.14, 5.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f2f3fa4c-b754-4e8b-abf0-ba1511b41b16" absoluteBounds="5.265, 3.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="53539535-96b4-4282-84c7-18080ed555a9" absoluteBounds="0.875, 10.5, 2, 3.1170068359375">
       <DataClassMoniker Name="/PATDBDataContext/ContactEdit" />
       <nestedChildShapes>
         <elementListCompartment Id="4bedef1f-e614-453a-bcdd-e9b1ea67e463" absoluteBounds="0.89000000000000012, 10.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7ba61694-7e14-409a-b45a-6a92befa7a5a" absoluteBounds="4, 9.5, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/PATDBDataContext/New" />
+      <nestedChildShapes>
+        <elementListCompartment Id="328d936b-5863-4d50-827f-55ae6200d427" absoluteBounds="4.015, 9.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
