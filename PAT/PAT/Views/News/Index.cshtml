@@ -45,12 +45,12 @@
                 CategoryID: $.trim($('#txt_username').val())
             };
         }
-        $("#grid_user").kendoGrid({
+        $("#grid_news").kendoGrid({
             dataSource: {
                 type: "json",
                 transport: {
                     read: {
-                        url: "../News/searchNews",
+                        url: "../News/SearchNews",
                         type: "POST",
                         dataType: "json",
                         data: additionalData,
@@ -78,7 +78,7 @@
                     headerAttributes: {
                         style: "text-align:center"
                     },
-                    template: '#=checkedRemoveUser(ID)#'
+                    template: '#=checkedRemoveNews(ID)#'
                 },
                 {
                     title: "STT",
@@ -86,26 +86,30 @@
                     attributes: { style: "text-align:left" }
                 },
                 {
-                    field: "UserName",
-                    title: "Username ",
+                    field: "NewsName",
+                    title: "Tên tin tức",
                     width: 120,
-                    template: "#=OpenUserDetail(UserName)#"
+                    template: "#=OpenNewsDetail(ID,NewsName)#"
                 },
                  {
-                     field: "FullName",
-                     title: "Tên đầy đủ ",
+                     field: "NewsDescription",
+                     title: "Mô tả tin tức",
                      width: 150,
                  },
 
-                { field: "Email", title: "Email", width: 90 },
+                { 
+                    field: "NewsContent", 
+                    title: "Nộ dung tin tức",
+                    width: 90 
+                },
                 {
-                    field: "GroupName",
-                    title: "Nhóm",
+                    field: "NewsDate",
+                    title: "Ngày tạo",
                     width: 90,
                 },
                 {
                     field: "StatusName",
-                    title: "Active",
+                    title: "Trạng thái",
                     width: 50,
                     attributes: { style: "text-align:center" },
                     headerAttributes: {
@@ -125,6 +129,46 @@
             // editable: true
         });
     });
+    function checkedRemoveNews(ID) {
+        var img = '<img src="../Content/image/delete-icon.gif" style="cursor:pointer" alt="Delete" title="Delete" class="btn_delete_grid" onclick="checkedRemoveNews_click(\'' + ID + '\')" />';
+        return img;
+    }
+    function checkedRemoveNews_click(ID) {
+        // alert(ID);
+        var message = 'Bạn có muốn xóa tin tức này không?';
+        $body = $("body");
+        if (confirm(message)) {
+           
+            $.ajax({
+                url: "News/Delete",
+                type: "post",
+                data: JSON.stringify({ID:ID}),
+                dataType: "json",
+                contentType: "application/json",
+                beforeSend: function () {
+                    $body.addClass("loading");
+                },
+                error: function (msg) {
+                    $body.removeClass("loading");
+                },
+                success: function ($result) {
+                  
+                    $("#grid_news").data("kendoGrid").dataSource.read();
+                    $("#grid_news").data("kendoGrid").dataSource.page(1);
+                    
+                },
+                error: function () {
+                    alert("Không kết nối được với máy chủ");
+                }
+            });
+        }
+    }
+    function OpenUserDetail(ID,NewsName) {
+        return '<a style="cursor:pointer"  onclick="btnCreateOnClick(\'' + ID + '\')">' + NewsName + '</a>';
+    }
+    //function OpenNewsDetail1(ID) {
+    //    loadpopup("../News/Detail?newsID=" + ID, 'ESC to Exit', '80%', false);
+    //}
     function btnCreateOnClick(id) {
         loadpopup("../News/Detail?newsID="+id, 'ESC to Exit', '100%', false);
     }
