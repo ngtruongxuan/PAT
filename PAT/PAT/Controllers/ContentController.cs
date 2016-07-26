@@ -9,7 +9,29 @@ namespace ManageShop.Controllers
 {
     public class ContentController : Base
     {
-        public ActionResult Index(string categoryID)
+        public ActionResult Index()
+        {
+            List<TreeViewModel> list = new List<TreeViewModel>();
+            PATDBDataContext db = new PATDBDataContext();
+            var ls_category = db.Categories.Where(x => x.Status == "A" && x.ParentID == 0 && x.Reftype == "C").ToList();
+            foreach (var item in ls_category)
+            {
+                TreeViewModel category = new TreeViewModel();
+                category.ID = item.ID;
+                category.Name = item.CategoryName;
+                var ls_category_child = db.Categories.Where(x => x.Status == "A" && x.ParentID == item.ID && x.Reftype == "C").ToList();
+                foreach (var child in ls_category_child)
+                {
+                    TreeViewModel ls_child = new TreeViewModel();
+                    ls_child.ID = child.ID;
+                    ls_child.Name = child.CategoryName;
+                    category.Child.Add(ls_child);
+                }
+                list.Add(category);
+            }
+            return View(list);
+        }
+        public ActionResult CreateContent(string categoryID)
         {
             PATDBDataContext db = new PATDBDataContext();
             int category = 0;
@@ -28,6 +50,7 @@ namespace ManageShop.Controllers
                 category = 0;
             }
             Content data = db.Contents.Where(x =>x.CategoryID == category && x.Status=="A").FirstOrDefault();
+            var categoryName = db.Categories.Where(x => x.ID == category && x.Status == "A").FirstOrDefault();
             ContentModel rep = new ContentModel();
             if(data!= null)
             {
@@ -36,6 +59,10 @@ namespace ManageShop.Controllers
                 rep.ContentDisplay = data.ContentDisplay;
                 rep.ContentName = data.ContentName;
                 rep.Language = data.Language;
+                if (categoryName != null)
+                {
+                    rep.CategoryName = categoryName.CategoryName;
+                }
             }
             else
             {
@@ -43,14 +70,23 @@ namespace ManageShop.Controllers
             }
             return View(rep);
         }
-        public JsonResult Load(string categoryID, string language)
+        public JsonResult Load(ContentModel model)
         {
             PATDBDataContext db = new PATDBDataContext();
-            int category = 0;
-            if (!String.IsNullOrEmpty(categoryID))
-                category = Int32.Parse(categoryID);
-            var data = db.Contents.Where(x => x.CategoryID == category && x.Language == language && x.Status == "A").FirstOrDefault();
-            return Json(data);
+            if (model != null)
+            {
+                var data = db.Contents.Where(x => x.CategoryID == model.CategoryID && x.Language == model.Language && x.Status == "A").FirstOrDefault();
+                if(data!=null)
+                    return Json(data);
+                else
+                    return Json(new { error = "Chưa có dữ liệu" });
+            }
+            else
+            {
+                return Json(new {error="Không lấy được dữ liệu" });
+            }
+                
+            
         }
         public JsonResult GetLanguage()
         {
@@ -62,7 +98,7 @@ namespace ManageShop.Controllers
         {
             PATDBDataContext db = new PATDBDataContext();
            
-            if(model.ID==0 && model.CategoryID != 0 && !String.IsNullOrEmpty(model.ContentDisplay) && !String.IsNullOrEmpty(model.Language))
+            if(model.CategoryID != 0 && !String.IsNullOrEmpty(model.ContentDisplay) && !String.IsNullOrEmpty(model.Language))
             {
                 var temp = db.Contents.Where(x => x.CategoryID == model.CategoryID && x.Language == model.Language && x.Status == "A").FirstOrDefault();
                 if (temp == null)
@@ -86,37 +122,21 @@ namespace ManageShop.Controllers
                 }
                 else
                 {
-                    var commend = "Dữ liệu đã có";
-                    var question = new Question { Title = commend };
-                    return Json(question);
-                }
-                
-            }
-            else if(model.ID != 0 && model.CategoryID != 0 && !String.IsNullOrEmpty(model.ContentDisplay) && !String.IsNullOrEmpty(model.Language))
-            {
-                var ct = db.Contents.Where(x => x.ID == model.ID && x.CategoryID==model.CategoryID && x.Language==model.Language).FirstOrDefault();
-                if (ct != null)
-                {
-                    ct.CategoryID = model.CategoryID;
-                    ct.ContentDisplay = model.ContentDisplay;
-                    ct.ContentName = model.ContentName;
-                    ct.LastUpdatedBy = Session["UserName"].ToString();
-                    ct.LastUpdatedDateTime = DateTime.Now;
-                    ct.Language = model.Language;
-                    ct.Remark = model.Remark;
+
+                    temp.CategoryID = model.CategoryID;
+                    temp.ContentDisplay = model.ContentDisplay;
+                    temp.ContentName = model.ContentName;
+                    temp.LastUpdatedBy = Session["UserName"].ToString();
+                    temp.LastUpdatedDateTime = DateTime.Now;
+                    temp.Language = model.Language;
+                    temp.Remark = model.Remark;
 
                     db.SubmitChanges();
                     var commend = "Cập nhật dữ liệu thành công";
                     var question = new Question { Title = commend };
                     return Json(question);
                 }
-                else
-                {
-                    var commend = "Cập nhật dữ liệu thành công";
-                    var question = new Question { Title = commend };
-                    return Json(question);
-                }
-               
+                
             }
             else
             {

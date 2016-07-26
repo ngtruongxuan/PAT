@@ -12,6 +12,7 @@ namespace ManageShop.Models
         public string ContentName{ get; set;}
 
         public long CategoryID{ get; set;}
+        public string CategoryName { get; set; }
 
         public string ContentDisplay{ get; set;}
 
