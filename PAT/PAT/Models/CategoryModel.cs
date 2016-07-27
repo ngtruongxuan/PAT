@@ -36,6 +36,15 @@ namespace ManageShop.Models
         public string sy_water { get; set; }
         public string sy_pollution { get; set; }
         public string sy_garbage { get; set; }
+        public string infastructure_l { get; set; }
+        public string menu_info { get; set; }
+        public string menu_resident { get; set; }
+        public string menu_industry { get; set; }
+        public string menu_infrastructure { get; set; }
+        public string menu_investor { get; set; }
+        public string menu_library { get; set; }
+        public string menu_contact { get; set; }
+
 
         public List<CategoryCodeModel> l_code = new List<CategoryCodeModel>();
         public List<CategoryCodeModel> l_code_new = new List<CategoryCodeModel>();

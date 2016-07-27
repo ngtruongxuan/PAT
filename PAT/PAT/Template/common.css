@@ -63,8 +63,8 @@ position:relative;
 #menu .menu_logo{
 position:absolute;
 top:5px;
-left:-22px;
-width:130px;
+left:-90px;
+width:114px;
 }
 
 #menu .menu_logo img{
@@ -73,35 +73,37 @@ width:100%;
 
 #menu li.menu_top{
 display:block;
-width:66px;
+width:83px;
 height:15px;
 position:absolute;
 top:17px;
-left:86px;
+left:-4px;
 }
 
 #menu li.menu_top a{
 display:block;
 width:100%;
 height:100%;
-background-image:url("img/common/menu_top.png");
+
 background-position:center top;
 }
 
+
+
 #menu li.menu_features{
 display:block;
-width:115px;
+width:138px;
 height:15px;
 position:absolute;
 top:17px;
-left:251px;
+left:177px;
 }
 
 #menu li.menu_features a{
 display:block;
 width:100%;
 height:100%;
-background-image:url("img/common/menu_industryzone.png");
+
 background-position:center top;
 }
 
@@ -114,11 +116,11 @@ left:30px;
 
 #menu li.menu_resident{
 display:block;
-width:80px;
+width:99px;
 height:15px;
 position:absolute;
 top:17px;
-left:162px;
+left:73px;
 }
 
 #menu li.menu_resident a{
@@ -139,18 +141,18 @@ left:30px;
 
 #menu li.menu_characters{
 display:block;
-width:133px;
+width:192px;
 height:15px;
 position:absolute;
 top:17px;
-left:376px;
+left:311px;
 }
 
 #menu li.menu_characters a{
 display:block;
 width:100%;
 height:100%;
-background-image:url("img/common/menu_characters.png");
+
 background-position:center top;
 }
 
@@ -163,7 +165,7 @@ left:45px;
 
 #menu li.menu_stages{
 display:block;
-width:132px;
+width:144px;
 height:15px;
 position:absolute;
 top:17px;
@@ -187,11 +189,11 @@ left:20px;
 
 #menu li.menu_movies{
 display:block;
-width:131px;
+width:158px;
 height:15px;
 position:absolute;
 top:17px;
-left:653px;
+left:669px;
 }
 
 #menu li.menu_movies a{
@@ -212,7 +214,7 @@ left:18px;
 
 #menu li.menu_contact{
 display:block;
-width:51px;
+width:65px;
 height:15px;
 position:absolute;
 top:17px;
@@ -453,11 +455,11 @@ left:955px;
 
 #menu li.menu_login{
 display:block;
-width:43px;
+width:45px;
 height:15px;
 position:absolute;
 top:17px;
-left:900px;
+left:910px;
 }
 
 #menu li.menu_login a{

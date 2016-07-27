@@ -17,24 +17,24 @@
             <div class="inner">
                 <a href="javascript:scrollTo('#visual','.menu_top','top.html');" class="menu_logo hide_sp"><img src="~/Template/menu_logo.png" alt="DEAD OR ALIVE 5 Last Round"></a>
                 <ul class="hide_sp">
-                    <li class="menu_top"><a class="active" style="cursor:pointer" onclick="topclick()"></a></li>
+                    <li class="menu_top" ><a id="menu_info" class="active" style="cursor: pointer; background-image: url('/Template/img/common/menu_info_vn.png'); " onclick="topclick()"></a></li>
                     <li class="menu_features">
-                        <a style="cursor:pointer" onclick="locationclick()"></a>
+                        <a id="menu_industry" style="cursor: pointer; background-image: url('/Template/img/common/menu_industry_vn.png');" onclick="locationclick()"></a>
 
                     </li>
 
                     <li class="menu_resident">
-                        <a style="cursor:pointer" onclick="residentclick()"></a>
+                        <a id="menu_resident" style="cursor: pointer; background-image: url('/Template/img/common/menu_resident_vn.png');" onclick="residentclick()"></a>
 
                     </li>
 
                     <li class="menu_characters">
-                        <a style="cursor:pointer" onclick="constructionclick()"></a>
-                        <img src="~/Template/newicon.gif" class="icon">
+                        <a id="menu_infrastructure" style="cursor: pointer; background-image: url('/Template/img/common/menu_infrastructure_vn.png');" onclick="constructionclick()"></a>
+                        
                     </li>
-                    <li class="menu_stages"><a style="cursor:pointer" onclick="gainclick()"></a></li>
-                    <li class="menu_movies"><a style="cursor:pointer" onclick="libraryclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
-                    <li class="menu_contact"><a style="cursor:pointer" onclick="contactclick()"></a></li>
+                    <li class="menu_stages"><a id="menu_investor" style="cursor: pointer; background-image: url('/Template/img/common/menu_investor_vn.png');" onclick="gainclick()"></a></li>
+                    <li class="menu_movies"><a id="menu_library" style="cursor: pointer; background-image: url('/Template/img/common/menu_library_vn.png');" onclick="libraryclick()"></a><img src="~/Template/newicon.gif" class="icon"></li>
+                    <li class="menu_contact"><a id="menu_contact" style="cursor: pointer; background-image: url('/Template/img/common/menu_contact_vn.png');" onclick="contactclick()"></a></li>
                     <li class="menu_langue">
                         <a style="cursor:pointer" onclick="languageclick('VN')">
                             <img src="~/Template/img/common/lang_vn.png" />
@@ -238,7 +238,7 @@
 
             <!--▼▼CHARACTERS-->
             <div style="height: 1208px;" id="characters">
-                <h2><img style="opacity: 0; left: -100px;" src="~/Template/characters_h.png"></h2>
+                <h2><img id="infastructure_l" style="opacity: 0; left: -100px;" src="~/Template/infrastructure_vn.png"></h2>
                 <div style="opacity: 1; display: none;" id="characters_layerTop"></div>
                 <div style="opacity: 1; display: block;" id="characters_base">
                     <div class="inner">
@@ -580,9 +580,74 @@
     });
 
     function onkeydown_login(e) {
-       // alert(e.keyCode);
+        // alert(e.keyCode);
         if (e.keyCode == 13) {
             loginpopup_click();
         }
+    }
+
+    function languageclick(language) {
+        var additionalData = JSON.stringify({
+
+            Language: language,
+
+        });
+        $.ajax({
+            url: "../Category/searchCategoryLanguage",
+            type: "post",
+            data: additionalData,
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+               // alert($result["in_company"]);
+                //gioi thieu cong ty
+                $("#in_company").html($result["in_company"]);
+                $("#in_environment").html($result['in_environment']);
+                $("#in_industry").html($result['in_industry']);
+                $("#in_land").html($result['in_land']);
+                $("#in_location").html($result['in_location']);
+                $("#in_map").html($result['in_map']);
+                //khu dan cu
+                $("#re_flathouse").html($result['re_flathouse']);
+                $("#re_gardenhouse").html($result['re_gardenhouse']);
+                $("#re_house1").html($result['re_house1']);
+                $("#re_house2").html($result['re_house2']);
+                $("#re_nexthouse").html($result['re_nexthouse']);
+                $("#re_workerhouse").html($result['re_workerhouse']);
+                //khu cong nghiep
+                $("#fa_factory").html($result['fa_factory']);
+                $("#fa_land").html($result['fa_land']);
+                //loi ich nha dau tu
+                $("#co_cost").html($result['co_cost']);
+                $("#co_develop").html($result['co_develop']);
+                $("#co_savecost").html($result['co_savecost']);
+                $("#co_savetime").html($result['co_savetime']);
+                //thu vien thong tin
+                $("#ne_law").html($result['ne_law']);
+                $("#ne_pat").html($result['ne_pat']);
+                $("#ne_picture").html($result['ne_picture']);
+                $("#ne_recruit").html($result['ne_recruit']);
+                $("#ne_video").html($result['ne_video']);
+                //lien he
+                $("#contact_in").html($result['contact_in']);
+                //ha tang tien ich
+                $("#sy_electric").html($result['sy_electric']);
+                $("#sy_water").html($result['sy_water']);
+                $("#sy_pollution").html($result['sy_pollution']);
+                $("#sy_garbage").html($result['sy_garbage']);
+
+                $("#infastructure_l").attr("src", $result['infastructure_l']);
+                $('#menu_info').css('background-image', 'url('+$result['menu_info']+')');
+                $('#menu_resident').css('background-image', 'url(' + $result['menu_resident'] + ')');
+                $('#menu_industry').css('background-image', 'url(' + $result['menu_industry'] + ')');
+                $('#menu_infrastructure').css('background-image', 'url(' + $result['menu_infrastructure'] + ')');
+                $('#menu_investor').css('background-image', 'url(' + $result['menu_investor'] + ')');
+                $('#menu_library').css('background-image', 'url(' + $result['menu_library'] + ')');
+                $('#menu_contact').css('background-image', 'url(' + $result['menu_contact'] + ')');
+            },
+        });
+        // createCookie('language_cookie', '' + language + '', 1);
+        // window.location.href = "/Home/Index?Language=" + language + "";
     }
 </script>
