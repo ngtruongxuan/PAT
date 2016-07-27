@@ -15,7 +15,7 @@
                         <ul>
                             @foreach (var child in @item.Child)
                             {
-                                <li><span class="k-sprite"></span><span style="cursor:pointer;" onclick="btnCreateOnClick(@child.ID)">@child.Name</span></li>
+                                <li><span class="k-sprite"></span><span style="cursor:pointer;" onclick="searchOnClick(@child.ID)">@child.Name</span></li>
                             }
                         </ul>
                     }
@@ -24,25 +24,29 @@
         </ul>
     </div>
 </div>
+<input id="txt_category" type="hidden" value="" />
 <div class="form-group row" style="margin: 20px 0px 0px 0px;text-align:left;">
     <button id="btnCreate" class="btn btn-md btn-primary" onclick="btnCreateOnClick()">
         <i class="fa fa-plus"></i>Add
-    </button>
-    <button id="btnSearch" class="btn btn-md btn-info" onclick="btnSearchOnClick()">
-        <i class="fa fa-search"></i>Search
     </button>
     <button id="btnRepresh" class="btn btn-md btn-warning" onclick="btnRefreshOnClick()">
         <i class="fa fa-refresh"></i>Refresh
     </button>
 </div>
 <br />
-<div id="grid_news" style="margin: 0px 20px 0px 20px"></div>
+<div id="grid_news" style="margin: 0px 0px 0px 0px"></div>
 <script>
+    function btnRefreshOnClick() {
+        $("#txt_category").val(" ");
+      
+        $("#grid_news").data("kendoGrid").dataSource.read();
+        $("#grid_news").data("kendoGrid").dataSource.page(1);
+    }
     $(document).ready(function () {
         $("#treeview").kendoTreeView();
         function additionalData() {
             return {
-                CategoryID: $.trim($('#txt_username').val())
+                CategoryID: $.trim($('#txt_category').val())
             };
         }
         $("#grid_news").kendoGrid({
@@ -82,7 +86,9 @@
                 },
                 {
                     title: "STT",
-                    template: "<span class='row-number'></span>", height: "5px", width: "60px",
+                    template: "<span class='row-number'></span>",
+                    height: "5px",
+                    width: "30px",
                     attributes: { style: "text-align:left" }
                 },
                 {
@@ -92,31 +98,28 @@
                     template: "#=OpenNewsDetail(ID,NewsName)#"
                 },
                  {
-                     field: "NewsDescription",
+                     field: "NewsDecription",
                      title: "Mô tả tin tức",
                      width: 150,
                  },
 
                 { 
-                    field: "NewsContent", 
-                    title: "Nộ dung tin tức",
+                    field: "CategoryName", 
+                    title: "Thư viện thông tin",
                     width: 90 
                 },
                 {
                     field: "NewsDate",
                     title: "Ngày tạo",
                     width: 90,
+                    template: "#= kendo.toString(kendo.parseDate(NewsDate, 'yyyy-MM-dd'), 'dd/MM/yyyy') #"
                 },
                 {
-                    field: "StatusName",
-                    title: "Trạng thái",
-                    width: 50,
-                    attributes: { style: "text-align:center" },
-                    headerAttributes: {
-                        style: "text-align:center"
-                    },
-
+                    field: "CreatedBy",
+                    title: "Người tạo",
+                    width: 50
                 },
+               
             ],
             dataBound: function () {
                 var rows = this.items();
@@ -140,7 +143,7 @@
         if (confirm(message)) {
            
             $.ajax({
-                url: "News/Delete",
+                url: "../News/Delete",
                 type: "post",
                 data: JSON.stringify({ID:ID}),
                 dataType: "json",
@@ -151,8 +154,8 @@
                 error: function (msg) {
                     $body.removeClass("loading");
                 },
-                success: function ($result) {
-                  
+                success: function (result) {
+                    alert(result.Title);
                     $("#grid_news").data("kendoGrid").dataSource.read();
                     $("#grid_news").data("kendoGrid").dataSource.page(1);
                     
@@ -163,13 +166,15 @@
             });
         }
     }
-    function OpenUserDetail(ID,NewsName) {
+    function OpenNewsDetail(ID,NewsName) {
         return '<a style="cursor:pointer"  onclick="btnCreateOnClick(\'' + ID + '\')">' + NewsName + '</a>';
     }
-    //function OpenNewsDetail1(ID) {
-    //    loadpopup("../News/Detail?newsID=" + ID, 'ESC to Exit', '80%', false);
-    //}
     function btnCreateOnClick(id) {
         loadpopup("../News/Detail?newsID="+id, 'ESC to Exit', '100%', false);
+    }
+    function searchOnClick(ID) {
+        $('#txt_category').val(ID);
+        $("#grid_news").data("kendoGrid").dataSource.read();
+        $("#grid_news").data("kendoGrid").dataSource.page(1);
     }
 </script>

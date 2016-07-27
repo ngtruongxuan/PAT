@@ -31,6 +31,30 @@ namespace ManageShop.Controllers
             }
             return View(list);
         }
+        public ActionResult Delete(NewsModel model)
+        {
+            PATDBDataContext db = new PATDBDataContext();
+            Question question = new Question();
+            if (model != null)
+            {
+                var news = db.News.Where(x => x.ID == model.ID && x.Status == "A").FirstOrDefault();
+                news.LastUpdatedBy = Session["UserName"].ToString();
+                news.LastUpdatedDateTime = DateTime.Now;
+                news.Status = "I";
+                db.SubmitChanges();
+                question.Title = "Đã xóa tin tức";
+                return Json(question);
+            }
+            question.Title = "Chưa xóa được tin tức";
+            return Json(question);
+            
+        }
+        public ActionResult GetCategory()
+        {
+            PATDBDataContext db = new PATDBDataContext();
+            var ls_category = db.Categories.Where(x => x.Status == "A" && x.ParentID==31).ToList();
+            return Json(ls_category);
+        }
         public ActionResult Detail(string newsID)
         {
             PATDBDataContext db = new PATDBDataContext();
@@ -49,6 +73,11 @@ namespace ManageShop.Controllers
             if (news != null)
             {
                 model.CategoryID = news.CategoryID;
+                var categroy = db.Categories.Where(x => x.ID == news.CategoryID && x.Status == "A").FirstOrDefault();
+                if (categroy != null)
+                {
+                    model.CategoryName = categroy.CategoryName;
+                }
                 model.ID = news.ID;
                 model.NewsContent = news.NewsContent;
                 model.NewsDecription = news.NewsDecription;
@@ -123,12 +152,7 @@ namespace ManageShop.Controllers
                 ID = 0;
             }
             List<New> data = new List<New>();
-           PATDBDataContext db = new PATDBDataContext();
-            //var data = (from n in db.News
-            //            where (n.CategoryID == ID || ID == 0)
-            //                && n.Status == "A"
-            //            select n
-            //            ).ToList();
+            PATDBDataContext db = new PATDBDataContext();
             if (ID != 0)
             {
                 data = db.News.Where(x => x.CategoryID == ID && x.Status == "A").ToList();
@@ -143,20 +167,24 @@ namespace ManageShop.Controllers
                 foreach (var item in data)
                 {
                     NewsModel news = new NewsModel();
-                    var categroy = db.Categories.Where(x => x.ID == item.ID && x.Status == "A").FirstOrDefault();
+                    var categroy = db.Categories.Where(x => x.ID == item.CategoryID && x.Status == "A").FirstOrDefault();
                     if (categroy != null)
                     {
                         news.CategoryName = categroy.CategoryName;
                     }
+                    news.ID = item.ID;
                     news.CategoryID = item.CategoryID;
+                    news.NewsName = item.NewsName;
                     news.NewsContent = item.NewsContent;
                     news.NewsDate = item.NewsDate;
                     news.NewsDecription = item.NewsDecription;
                     news.Language = item.Language;
+                    news.CreatedBy = item.CreatedBy;
+                    news.CreatedDateTime = item.CreatedDateTime;
                     var language = db.Languages.Where(x => x.LanguageCode == item.Language && x.Status == "A").FirstOrDefault();
                     if (language != null)
                         news.LanguageName = language.LanguageName;
-
+                    ls_News.Add(news);
                 }
             }
             return Json(ls_News);

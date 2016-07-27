@@ -37,6 +37,12 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <label class="col-md-3" style="padding-top: 5px;">Thể loại </label>
+                    <div class="col-md-9">
+                        <input id="cbo_category" class="" style="width: 100% ;" value="@Model.CategoryID" />
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <label class="col-md-3" style="padding-top: 5px;">Hình đại diện </label>
                     <div class="col-md-9">
                         <input id="txt_image" class="k-textbox" style="width: 100% ;" value="@Model.Image" />
@@ -134,7 +140,26 @@
                         }
                     },
                 },
-        change: language_onChange,
+        //change: language_onChange,
+        //          filter: "contains",
+        suggest: true,
+        index: 0
+    });
+    $("#cbo_category").kendoDropDownList({
+        dataTextField: "CategoryName",
+        dataValueField: "ID",
+        dataSource:
+                {
+                    // type:"json",
+                    transport: {
+                        read: {
+                            url: "../News/GetCategory",
+                            dataType: "json",
+                            type: "POST",
+                        }
+                    },
+                },
+        //change: language_onChange,
         //          filter: "contains",
         suggest: true,
         index: 0
@@ -146,7 +171,7 @@
     function ModelData() {
         return {
             ID:$("#ID").val(),
-            CategoryID : $("#CategoryID").val(),
+            CategoryID : $("#cbo_category").val(),
             Language: $("#cbo_language").val(),
             NewsName: $("#txt_newsName").val(),
             NewsDecription: $("#txt_newsDecription").val(),
@@ -171,6 +196,7 @@
                 //},
                 success: function (result) {
                     alert(result.Title);
+
                     //alert("Lưu dữ liệu thành công");
                     //showNotification("Lưu dữ liệu thành công", "success");
                 },
@@ -180,6 +206,9 @@
                 }
             });
         }
+        $('#windowpopup').modal('hide');
+        $("#grid_news").data("kendoGrid").dataSource.read();
+        $("#grid_news").data("kendoGrid").dataSource.page(1);
     }
 
     function checkBeforSent() {
