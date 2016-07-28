@@ -35,7 +35,13 @@ namespace ManageShop.Models
 
         public string LastUpdatedBy{get; set;}
 
-        public System.DateTime LastUpdatedDateTime{get; set;}
+        public System.DateTime LastUpdatedDateTime {get; set;}
+        public System.Nullable<int> CategoryID { get; set; }
+
+        public string Image { get; set; }
+        public string CategoryName { get; set; }
+        public string StatusName { get; set; }
+        public string LanguageName { get; set; }
 
     }
 }

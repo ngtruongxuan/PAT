@@ -25,17 +25,57 @@ namespace ManageShop.Controllers
                     TreeViewModel ls_child = new TreeViewModel();
                     ls_child.ID = child.ID;
                     ls_child.Name = child.CategoryName;
+                    var ls_category_child2 = db.Categories.Where(x => x.Status == "A" && x.ParentID == child.ID && x.Reftype == "C").ToList();
+                    foreach(var child2 in ls_category_child2)
+                    {
+                        TreeViewModel ls_child2 = new TreeViewModel();
+                        ls_child2.ID = child2.ID;
+                        ls_child2.Name = child2.CategoryName;
+                        ls_child.Child.Add(ls_child2);
+                    }
                     category.Child.Add(ls_child);
                 }
                 list.Add(category);
             }
             return View(list);
         }
-        public ActionResult CreateContent(string categoryID)
+        public JsonResult SearchConetentLanguage(string Language)
+        {
+            List<TreeViewModel> list = new List<TreeViewModel>();
+            PATDBDataContext db = new PATDBDataContext();
+            var ls_category = db.Categories.Where(x => x.Status == "A" && x.ParentID == 0 && x.Reftype == "C").ToList();
+            foreach (var item in ls_category)
+            {
+                TreeViewModel category = new TreeViewModel();
+                category.ID = item.ID;
+                category.Name = item.CategoryName;
+                var ls_category_child = db.Categories.Where(x => x.Status == "A" && x.ParentID == item.ID && x.Reftype == "C").ToList();
+                foreach (var child in ls_category_child)
+                {
+                    TreeViewModel ls_child = new TreeViewModel();
+                    ls_child.ID = child.ID;
+                    ls_child.Name = child.CategoryName;
+                    ls_child.NumContent = db.Contents.Where(x => x.Language == Language && x.CategoryID == child.ID && x.Status == "A").Count();
+                    var ls_category_child2 = db.Categories.Where(x => x.Status == "A" && x.ParentID == child.ID && x.Reftype == "C").ToList();
+                    foreach (var child2 in ls_category_child2)
+                    {
+                        TreeViewModel ls_child2 = new TreeViewModel();
+                        ls_child2.ID = child2.ID;
+                        ls_child2.Name = child2.CategoryName;
+                        ls_child2.NumContent = db.Contents.Where(x => x.Language == Language && x.CategoryID == child2.ID && x.Status == "A").Count();
+                        ls_child.Child.Add(ls_child2);
+                    }
+                    category.Child.Add(ls_child);
+                }
+                list.Add(category);
+            }
+            return Json(list);
+        }
+        public ActionResult Detail(string categoryID, string language)
         {
             PATDBDataContext db = new PATDBDataContext();
             int category = 0;
-            string language="";
+            
             try
             {
                 if (!String.IsNullOrEmpty(categoryID))
@@ -49,9 +89,10 @@ namespace ManageShop.Controllers
             {
                 category = 0;
             }
-            Content data = db.Contents.Where(x =>x.CategoryID == category && x.Status=="A").FirstOrDefault();
+            Content data = db.Contents.Where(x =>x.CategoryID == category && x.Language==language && x.Status=="A").FirstOrDefault();
             var categoryName = db.Categories.Where(x => x.ID == category && x.Status == "A").FirstOrDefault();
             ContentModel rep = new ContentModel();
+            
             if(data!= null)
             {
                 rep.ID = data.ID;
@@ -67,6 +108,9 @@ namespace ManageShop.Controllers
             else
             {
                 rep.CategoryID = category;
+                if (categoryName != null) 
+                    rep.CategoryName = categoryName.CategoryName;
+                rep.Language = language;
             }
             return View(rep);
         }
