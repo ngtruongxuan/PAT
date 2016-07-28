@@ -30,15 +30,27 @@ namespace ManageShop.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertCategory(Category instance);
+    partial void UpdateCategory(Category instance);
+    partial void DeleteCategory(Category instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertContactEdit(ContactEdit instance);
+    partial void UpdateContactEdit(ContactEdit instance);
+    partial void DeleteContactEdit(ContactEdit instance);
     partial void InsertContent(Content instance);
     partial void UpdateContent(Content instance);
     partial void DeleteContent(Content instance);
     partial void InsertGroup(Group instance);
     partial void UpdateGroup(Group instance);
     partial void DeleteGroup(Group instance);
+    partial void InsertItem(Item instance);
+    partial void UpdateItem(Item instance);
+    partial void DeleteItem(Item instance);
+    partial void InsertMenuPicture(MenuPicture instance);
+    partial void UpdateMenuPicture(MenuPicture instance);
+    partial void DeleteMenuPicture(MenuPicture instance);
     partial void InsertMessage(Message instance);
     partial void UpdateMessage(Message instance);
     partial void DeleteMessage(Message instance);
@@ -54,18 +66,6 @@ namespace ManageShop.Models
     partial void InsertPrice(Price instance);
     partial void UpdatePrice(Price instance);
     partial void DeletePrice(Price instance);
-    partial void InsertCategory(Category instance);
-    partial void UpdateCategory(Category instance);
-    partial void DeleteCategory(Category instance);
-    partial void InsertContactEdit(ContactEdit instance);
-    partial void UpdateContactEdit(ContactEdit instance);
-    partial void DeleteContactEdit(ContactEdit instance);
-    partial void InsertMenuPicture(MenuPicture instance);
-    partial void UpdateMenuPicture(MenuPicture instance);
-    partial void DeleteMenuPicture(MenuPicture instance);
-    partial void InsertItem(Item instance);
-    partial void UpdateItem(Item instance);
-    partial void DeleteItem(Item instance);
     #endregion
 		
 		public PATDBDataContext() : 
@@ -98,11 +98,27 @@ namespace ManageShop.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Category> Categories
+		{
+			get
+			{
+				return this.GetTable<Category>();
+			}
+		}
+		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ContactEdit> ContactEdits
+		{
+			get
+			{
+				return this.GetTable<ContactEdit>();
 			}
 		}
 		
@@ -119,6 +135,30 @@ namespace ManageShop.Models
 			get
 			{
 				return this.GetTable<Group>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Item> Items
+		{
+			get
+			{
+				return this.GetTable<Item>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Language> Languages
+		{
+			get
+			{
+				return this.GetTable<Language>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MenuPicture> MenuPictures
+		{
+			get
+			{
+				return this.GetTable<MenuPicture>();
 			}
 		}
 		
@@ -161,44 +201,402 @@ namespace ManageShop.Models
 				return this.GetTable<Price>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Category")]
+	public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<Category> Categories
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _CategoryName;
+		
+		private string _DisplayName;
+		
+		private string _CategoryCode;
+		
+		private long _ParentID;
+		
+		private string _Type;
+		
+		private string _Language;
+		
+		private string _Reftype;
+		
+		private string _Refcode;
+		
+		private string _Remark;
+		
+		private string _Status;
+		
+		private string _CreatedBy;
+		
+		private System.DateTime _CreatedDateTime;
+		
+		private string _LastUpdatedBy;
+		
+		private System.DateTime _LastUpdatedDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnCategoryNameChanging(string value);
+    partial void OnCategoryNameChanged();
+    partial void OnDisplayNameChanging(string value);
+    partial void OnDisplayNameChanged();
+    partial void OnCategoryCodeChanging(string value);
+    partial void OnCategoryCodeChanged();
+    partial void OnParentIDChanging(long value);
+    partial void OnParentIDChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnLanguageChanging(string value);
+    partial void OnLanguageChanged();
+    partial void OnReftypeChanging(string value);
+    partial void OnReftypeChanged();
+    partial void OnRefcodeChanging(string value);
+    partial void OnRefcodeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnCreatedDateTimeChanging(System.DateTime value);
+    partial void OnCreatedDateTimeChanged();
+    partial void OnLastUpdatedByChanging(string value);
+    partial void OnLastUpdatedByChanged();
+    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
+    partial void OnLastUpdatedDateTimeChanged();
+    #endregion
+		
+		public Category()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
-				return this.GetTable<Category>();
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
 			}
 		}
 		
-		public System.Data.Linq.Table<Language> Languages
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CategoryName
 		{
 			get
 			{
-				return this.GetTable<Language>();
+				return this._CategoryName;
+			}
+			set
+			{
+				if ((this._CategoryName != value))
+				{
+					this.OnCategoryNameChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryName = value;
+					this.SendPropertyChanged("CategoryName");
+					this.OnCategoryNameChanged();
+				}
 			}
 		}
 		
-		public System.Data.Linq.Table<ContactEdit> ContactEdits
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayName", DbType="NVarChar(200)")]
+		public string DisplayName
 		{
 			get
 			{
-				return this.GetTable<ContactEdit>();
+				return this._DisplayName;
+			}
+			set
+			{
+				if ((this._DisplayName != value))
+				{
+					this.OnDisplayNameChanging(value);
+					this.SendPropertyChanging();
+					this._DisplayName = value;
+					this.SendPropertyChanged("DisplayName");
+					this.OnDisplayNameChanged();
+				}
 			}
 		}
 		
-		public System.Data.Linq.Table<MenuPicture> MenuPictures
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryCode", DbType="NVarChar(50)")]
+		public string CategoryCode
 		{
 			get
 			{
-				return this.GetTable<MenuPicture>();
+				return this._CategoryCode;
+			}
+			set
+			{
+				if ((this._CategoryCode != value))
+				{
+					this.OnCategoryCodeChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryCode = value;
+					this.SendPropertyChanged("CategoryCode");
+					this.OnCategoryCodeChanged();
+				}
 			}
 		}
 		
-		public System.Data.Linq.Table<Item> Items
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="BigInt NOT NULL")]
+		public long ParentID
 		{
 			get
 			{
-				return this.GetTable<Item>();
+				return this._ParentID;
+			}
+			set
+			{
+				if ((this._ParentID != value))
+				{
+					this.OnParentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ParentID = value;
+					this.SendPropertyChanged("ParentID");
+					this.OnParentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(20)")]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Language
+		{
+			get
+			{
+				return this._Language;
+			}
+			set
+			{
+				if ((this._Language != value))
+				{
+					this.OnLanguageChanging(value);
+					this.SendPropertyChanging();
+					this._Language = value;
+					this.SendPropertyChanged("Language");
+					this.OnLanguageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
+		public string Reftype
+		{
+			get
+			{
+				return this._Reftype;
+			}
+			set
+			{
+				if ((this._Reftype != value))
+				{
+					this.OnReftypeChanging(value);
+					this.SendPropertyChanging();
+					this._Reftype = value;
+					this.SendPropertyChanged("Reftype");
+					this.OnReftypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
+		public string Refcode
+		{
+			get
+			{
+				return this._Refcode;
+			}
+			set
+			{
+				if ((this._Refcode != value))
+				{
+					this.OnRefcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Refcode = value;
+					this.SendPropertyChanged("Refcode");
+					this.OnRefcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDateTime
+		{
+			get
+			{
+				return this._CreatedDateTime;
+			}
+			set
+			{
+				if ((this._CreatedDateTime != value))
+				{
+					this.OnCreatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDateTime = value;
+					this.SendPropertyChanged("CreatedDateTime");
+					this.OnCreatedDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this.OnLastUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedBy = value;
+					this.SendPropertyChanged("LastUpdatedBy");
+					this.OnLastUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastUpdatedDateTime
+		{
+			get
+			{
+				return this._LastUpdatedDateTime;
+			}
+			set
+			{
+				if ((this._LastUpdatedDateTime != value))
+				{
+					this.OnLastUpdatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedDateTime = value;
+					this.SendPropertyChanged("LastUpdatedDateTime");
+					this.OnLastUpdatedDateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -416,6 +814,332 @@ namespace ManageShop.Models
 					this._Type = value;
 					this.SendPropertyChanged("Type");
 					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
+		public string Reftype
+		{
+			get
+			{
+				return this._Reftype;
+			}
+			set
+			{
+				if ((this._Reftype != value))
+				{
+					this.OnReftypeChanging(value);
+					this.SendPropertyChanging();
+					this._Reftype = value;
+					this.SendPropertyChanged("Reftype");
+					this.OnReftypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
+		public string Refcode
+		{
+			get
+			{
+				return this._Refcode;
+			}
+			set
+			{
+				if ((this._Refcode != value))
+				{
+					this.OnRefcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Refcode = value;
+					this.SendPropertyChanged("Refcode");
+					this.OnRefcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDateTime
+		{
+			get
+			{
+				return this._CreatedDateTime;
+			}
+			set
+			{
+				if ((this._CreatedDateTime != value))
+				{
+					this.OnCreatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDateTime = value;
+					this.SendPropertyChanged("CreatedDateTime");
+					this.OnCreatedDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this.OnLastUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedBy = value;
+					this.SendPropertyChanged("LastUpdatedBy");
+					this.OnLastUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastUpdatedDateTime
+		{
+			get
+			{
+				return this._LastUpdatedDateTime;
+			}
+			set
+			{
+				if ((this._LastUpdatedDateTime != value))
+				{
+					this.OnLastUpdatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedDateTime = value;
+					this.SendPropertyChanged("LastUpdatedDateTime");
+					this.OnLastUpdatedDateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ContactEdit")]
+	public partial class ContactEdit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _ContactEditCode;
+		
+		private string _ContactEditContent;
+		
+		private string _Language;
+		
+		private string _Reftype;
+		
+		private string _Refcode;
+		
+		private string _Remark;
+		
+		private string _Status;
+		
+		private string _CreatedBy;
+		
+		private System.DateTime _CreatedDateTime;
+		
+		private string _LastUpdatedBy;
+		
+		private System.DateTime _LastUpdatedDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnContactEditCodeChanging(string value);
+    partial void OnContactEditCodeChanged();
+    partial void OnContactEditContentChanging(string value);
+    partial void OnContactEditContentChanged();
+    partial void OnLanguageChanging(string value);
+    partial void OnLanguageChanged();
+    partial void OnReftypeChanging(string value);
+    partial void OnReftypeChanged();
+    partial void OnRefcodeChanging(string value);
+    partial void OnRefcodeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnCreatedDateTimeChanging(System.DateTime value);
+    partial void OnCreatedDateTimeChanged();
+    partial void OnLastUpdatedByChanging(string value);
+    partial void OnLastUpdatedByChanged();
+    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
+    partial void OnLastUpdatedDateTimeChanged();
+    #endregion
+		
+		public ContactEdit()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactEditCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ContactEditCode
+		{
+			get
+			{
+				return this._ContactEditCode;
+			}
+			set
+			{
+				if ((this._ContactEditCode != value))
+				{
+					this.OnContactEditCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ContactEditCode = value;
+					this.SendPropertyChanged("ContactEditCode");
+					this.OnContactEditCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactEditContent", DbType="NVarChar(500)")]
+		public string ContactEditContent
+		{
+			get
+			{
+				return this._ContactEditContent;
+			}
+			set
+			{
+				if ((this._ContactEditContent != value))
+				{
+					this.OnContactEditContentChanging(value);
+					this.SendPropertyChanging();
+					this._ContactEditContent = value;
+					this.SendPropertyChanged("ContactEditContent");
+					this.OnContactEditContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Language
+		{
+			get
+			{
+				return this._Language;
+			}
+			set
+			{
+				if ((this._Language != value))
+				{
+					this.OnLanguageChanging(value);
+					this.SendPropertyChanging();
+					this._Language = value;
+					this.SendPropertyChanged("Language");
+					this.OnLanguageChanged();
 				}
 			}
 		}
@@ -1044,6 +1768,889 @@ namespace ManageShop.Models
 					this._GroupName = value;
 					this.SendPropertyChanged("GroupName");
 					this.OnGroupNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
+		public string Reftype
+		{
+			get
+			{
+				return this._Reftype;
+			}
+			set
+			{
+				if ((this._Reftype != value))
+				{
+					this.OnReftypeChanging(value);
+					this.SendPropertyChanging();
+					this._Reftype = value;
+					this.SendPropertyChanged("Reftype");
+					this.OnReftypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
+		public string Refcode
+		{
+			get
+			{
+				return this._Refcode;
+			}
+			set
+			{
+				if ((this._Refcode != value))
+				{
+					this.OnRefcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Refcode = value;
+					this.SendPropertyChanged("Refcode");
+					this.OnRefcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDateTime
+		{
+			get
+			{
+				return this._CreatedDateTime;
+			}
+			set
+			{
+				if ((this._CreatedDateTime != value))
+				{
+					this.OnCreatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDateTime = value;
+					this.SendPropertyChanged("CreatedDateTime");
+					this.OnCreatedDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this.OnLastUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedBy = value;
+					this.SendPropertyChanged("LastUpdatedBy");
+					this.OnLastUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastUpdatedDateTime
+		{
+			get
+			{
+				return this._LastUpdatedDateTime;
+			}
+			set
+			{
+				if ((this._LastUpdatedDateTime != value))
+				{
+					this.OnLastUpdatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedDateTime = value;
+					this.SendPropertyChanged("LastUpdatedDateTime");
+					this.OnLastUpdatedDateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Item")]
+	public partial class Item : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _ItemName;
+		
+		private string _CategoryCode;
+		
+		private string _Type;
+		
+		private string _Reftype;
+		
+		private string _Refcode;
+		
+		private string _Remark;
+		
+		private string _Status;
+		
+		private string _CreatedBy;
+		
+		private System.DateTime _CreatedDateTime;
+		
+		private string _LastUpdatedBy;
+		
+		private System.DateTime _LastUpdatedDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnItemNameChanging(string value);
+    partial void OnItemNameChanged();
+    partial void OnCategoryCodeChanging(string value);
+    partial void OnCategoryCodeChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnReftypeChanging(string value);
+    partial void OnReftypeChanged();
+    partial void OnRefcodeChanging(string value);
+    partial void OnRefcodeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnCreatedDateTimeChanging(System.DateTime value);
+    partial void OnCreatedDateTimeChanged();
+    partial void OnLastUpdatedByChanging(string value);
+    partial void OnLastUpdatedByChanged();
+    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
+    partial void OnLastUpdatedDateTimeChanged();
+    #endregion
+		
+		public Item()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string ItemName
+		{
+			get
+			{
+				return this._ItemName;
+			}
+			set
+			{
+				if ((this._ItemName != value))
+				{
+					this.OnItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._ItemName = value;
+					this.SendPropertyChanged("ItemName");
+					this.OnItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string CategoryCode
+		{
+			get
+			{
+				return this._CategoryCode;
+			}
+			set
+			{
+				if ((this._CategoryCode != value))
+				{
+					this.OnCategoryCodeChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryCode = value;
+					this.SendPropertyChanged("CategoryCode");
+					this.OnCategoryCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(20)")]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
+		public string Reftype
+		{
+			get
+			{
+				return this._Reftype;
+			}
+			set
+			{
+				if ((this._Reftype != value))
+				{
+					this.OnReftypeChanging(value);
+					this.SendPropertyChanging();
+					this._Reftype = value;
+					this.SendPropertyChanged("Reftype");
+					this.OnReftypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
+		public string Refcode
+		{
+			get
+			{
+				return this._Refcode;
+			}
+			set
+			{
+				if ((this._Refcode != value))
+				{
+					this.OnRefcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Refcode = value;
+					this.SendPropertyChanged("Refcode");
+					this.OnRefcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDateTime
+		{
+			get
+			{
+				return this._CreatedDateTime;
+			}
+			set
+			{
+				if ((this._CreatedDateTime != value))
+				{
+					this.OnCreatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDateTime = value;
+					this.SendPropertyChanged("CreatedDateTime");
+					this.OnCreatedDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this.OnLastUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedBy = value;
+					this.SendPropertyChanged("LastUpdatedBy");
+					this.OnLastUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastUpdatedDateTime
+		{
+			get
+			{
+				return this._LastUpdatedDateTime;
+			}
+			set
+			{
+				if ((this._LastUpdatedDateTime != value))
+				{
+					this.OnLastUpdatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LastUpdatedDateTime = value;
+					this.SendPropertyChanged("LastUpdatedDateTime");
+					this.OnLastUpdatedDateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Language")]
+	public partial class Language
+	{
+		
+		private long _ID;
+		
+		private string _LanguageCode;
+		
+		private string _LanguageName;
+		
+		private string _Reftype;
+		
+		private string _Refcode;
+		
+		private string _Remark;
+		
+		private string _Status;
+		
+		private string _CreatedBy;
+		
+		private System.DateTime _CreatedDateTime;
+		
+		private string _LastUpdatedBy;
+		
+		private System.DateTime _LastUpdatedDateTime;
+		
+		public Language()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="BigInt NOT NULL IDENTITY", IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LanguageCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LanguageCode
+		{
+			get
+			{
+				return this._LanguageCode;
+			}
+			set
+			{
+				if ((this._LanguageCode != value))
+				{
+					this._LanguageCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LanguageName", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string LanguageName
+		{
+			get
+			{
+				return this._LanguageName;
+			}
+			set
+			{
+				if ((this._LanguageName != value))
+				{
+					this._LanguageName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
+		public string Reftype
+		{
+			get
+			{
+				return this._Reftype;
+			}
+			set
+			{
+				if ((this._Reftype != value))
+				{
+					this._Reftype = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
+		public string Refcode
+		{
+			get
+			{
+				return this._Refcode;
+			}
+			set
+			{
+				if ((this._Refcode != value))
+				{
+					this._Refcode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this._Remark = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDateTime
+		{
+			get
+			{
+				return this._CreatedDateTime;
+			}
+			set
+			{
+				if ((this._CreatedDateTime != value))
+				{
+					this._CreatedDateTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this._LastUpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastUpdatedDateTime
+		{
+			get
+			{
+				return this._LastUpdatedDateTime;
+			}
+			set
+			{
+				if ((this._LastUpdatedDateTime != value))
+				{
+					this._LastUpdatedDateTime = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuPicture")]
+	public partial class MenuPicture : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _MenuCode;
+		
+		private string _URL;
+		
+		private string _Type;
+		
+		private string _Language;
+		
+		private string _Reftype;
+		
+		private string _Refcode;
+		
+		private string _Remark;
+		
+		private string _Status;
+		
+		private string _CreatedBy;
+		
+		private System.DateTime _CreatedDateTime;
+		
+		private string _LastUpdatedBy;
+		
+		private System.DateTime _LastUpdatedDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnMenuCodeChanging(string value);
+    partial void OnMenuCodeChanged();
+    partial void OnURLChanging(string value);
+    partial void OnURLChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnLanguageChanging(string value);
+    partial void OnLanguageChanged();
+    partial void OnReftypeChanging(string value);
+    partial void OnReftypeChanged();
+    partial void OnRefcodeChanging(string value);
+    partial void OnRefcodeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnCreatedDateTimeChanging(System.DateTime value);
+    partial void OnCreatedDateTimeChanged();
+    partial void OnLastUpdatedByChanging(string value);
+    partial void OnLastUpdatedByChanged();
+    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
+    partial void OnLastUpdatedDateTimeChanged();
+    #endregion
+		
+		public MenuPicture()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string MenuCode
+		{
+			get
+			{
+				return this._MenuCode;
+			}
+			set
+			{
+				if ((this._MenuCode != value))
+				{
+					this.OnMenuCodeChanging(value);
+					this.SendPropertyChanging();
+					this._MenuCode = value;
+					this.SendPropertyChanged("MenuCode");
+					this.OnMenuCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string URL
+		{
+			get
+			{
+				return this._URL;
+			}
+			set
+			{
+				if ((this._URL != value))
+				{
+					this.OnURLChanging(value);
+					this.SendPropertyChanging();
+					this._URL = value;
+					this.SendPropertyChanged("URL");
+					this.OnURLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Language
+		{
+			get
+			{
+				return this._Language;
+			}
+			set
+			{
+				if ((this._Language != value))
+				{
+					this.OnLanguageChanging(value);
+					this.SendPropertyChanging();
+					this._Language = value;
+					this.SendPropertyChanged("Language");
+					this.OnLanguageChanged();
 				}
 			}
 		}
@@ -1965,6 +3572,10 @@ namespace ManageShop.Models
 		
 		private System.DateTime _LastUpdatedDateTime;
 		
+		private System.Nullable<long> _CategoryID;
+		
+		private string _Image;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1999,6 +3610,10 @@ namespace ManageShop.Models
     partial void OnLastUpdatedByChanged();
     partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
     partial void OnLastUpdatedDateTimeChanged();
+    partial void OnCategoryIDChanging(System.Nullable<long> value);
+    partial void OnCategoryIDChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
     #endregion
 		
 		public New()
@@ -2302,6 +3917,46 @@ namespace ManageShop.Models
 					this._LastUpdatedDateTime = value;
 					this.SendPropertyChanged("LastUpdatedDateTime");
 					this.OnLastUpdatedDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="BigInt")]
+		public System.Nullable<long> CategoryID
+		{
+			get
+			{
+				return this._CategoryID;
+			}
+			set
+			{
+				if ((this._CategoryID != value))
+				{
+					this.OnCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryID = value;
+					this.SendPropertyChanged("CategoryID");
+					this.OnCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(200)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
 				}
 			}
 		}
@@ -2827,1613 +4482,6 @@ namespace ManageShop.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this.OnTypeChanging(value);
-					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
-		public string Reftype
-		{
-			get
-			{
-				return this._Reftype;
-			}
-			set
-			{
-				if ((this._Reftype != value))
-				{
-					this.OnReftypeChanging(value);
-					this.SendPropertyChanging();
-					this._Reftype = value;
-					this.SendPropertyChanged("Reftype");
-					this.OnReftypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
-		public string Refcode
-		{
-			get
-			{
-				return this._Refcode;
-			}
-			set
-			{
-				if ((this._Refcode != value))
-				{
-					this.OnRefcodeChanging(value);
-					this.SendPropertyChanging();
-					this._Refcode = value;
-					this.SendPropertyChanged("Refcode");
-					this.OnRefcodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDateTime
-		{
-			get
-			{
-				return this._CreatedDateTime;
-			}
-			set
-			{
-				if ((this._CreatedDateTime != value))
-				{
-					this.OnCreatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDateTime = value;
-					this.SendPropertyChanged("CreatedDateTime");
-					this.OnCreatedDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastUpdatedBy
-		{
-			get
-			{
-				return this._LastUpdatedBy;
-			}
-			set
-			{
-				if ((this._LastUpdatedBy != value))
-				{
-					this.OnLastUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedBy = value;
-					this.SendPropertyChanged("LastUpdatedBy");
-					this.OnLastUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime LastUpdatedDateTime
-		{
-			get
-			{
-				return this._LastUpdatedDateTime;
-			}
-			set
-			{
-				if ((this._LastUpdatedDateTime != value))
-				{
-					this.OnLastUpdatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedDateTime = value;
-					this.SendPropertyChanged("LastUpdatedDateTime");
-					this.OnLastUpdatedDateTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Category")]
-	public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private string _CategoryName;
-		
-		private string _DisplayName;
-		
-		private string _CategoryCode;
-		
-		private long _ParentID;
-		
-		private string _Type;
-		
-		private string _Language;
-		
-		private string _Reftype;
-		
-		private string _Refcode;
-		
-		private string _Remark;
-		
-		private string _Status;
-		
-		private string _CreatedBy;
-		
-		private System.DateTime _CreatedDateTime;
-		
-		private string _LastUpdatedBy;
-		
-		private System.DateTime _LastUpdatedDateTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnCategoryNameChanging(string value);
-    partial void OnCategoryNameChanged();
-    partial void OnDisplayNameChanging(string value);
-    partial void OnDisplayNameChanged();
-    partial void OnCategoryCodeChanging(string value);
-    partial void OnCategoryCodeChanged();
-    partial void OnParentIDChanging(long value);
-    partial void OnParentIDChanged();
-    partial void OnTypeChanging(string value);
-    partial void OnTypeChanged();
-    partial void OnLanguageChanging(string value);
-    partial void OnLanguageChanged();
-    partial void OnReftypeChanging(string value);
-    partial void OnReftypeChanged();
-    partial void OnRefcodeChanging(string value);
-    partial void OnRefcodeChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnCreatedDateTimeChanging(System.DateTime value);
-    partial void OnCreatedDateTimeChanged();
-    partial void OnLastUpdatedByChanging(string value);
-    partial void OnLastUpdatedByChanged();
-    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
-    partial void OnLastUpdatedDateTimeChanged();
-    #endregion
-		
-		public Category()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string CategoryName
-		{
-			get
-			{
-				return this._CategoryName;
-			}
-			set
-			{
-				if ((this._CategoryName != value))
-				{
-					this.OnCategoryNameChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryName = value;
-					this.SendPropertyChanged("CategoryName");
-					this.OnCategoryNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayName", DbType="NVarChar(200)")]
-		public string DisplayName
-		{
-			get
-			{
-				return this._DisplayName;
-			}
-			set
-			{
-				if ((this._DisplayName != value))
-				{
-					this.OnDisplayNameChanging(value);
-					this.SendPropertyChanging();
-					this._DisplayName = value;
-					this.SendPropertyChanged("DisplayName");
-					this.OnDisplayNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryCode", DbType="NVarChar(50)")]
-		public string CategoryCode
-		{
-			get
-			{
-				return this._CategoryCode;
-			}
-			set
-			{
-				if ((this._CategoryCode != value))
-				{
-					this.OnCategoryCodeChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryCode = value;
-					this.SendPropertyChanged("CategoryCode");
-					this.OnCategoryCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="BigInt NOT NULL")]
-		public long ParentID
-		{
-			get
-			{
-				return this._ParentID;
-			}
-			set
-			{
-				if ((this._ParentID != value))
-				{
-					this.OnParentIDChanging(value);
-					this.SendPropertyChanging();
-					this._ParentID = value;
-					this.SendPropertyChanged("ParentID");
-					this.OnParentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(20)")]
-		public string Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this.OnTypeChanging(value);
-					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string Language
-		{
-			get
-			{
-				return this._Language;
-			}
-			set
-			{
-				if ((this._Language != value))
-				{
-					this.OnLanguageChanging(value);
-					this.SendPropertyChanging();
-					this._Language = value;
-					this.SendPropertyChanged("Language");
-					this.OnLanguageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
-		public string Reftype
-		{
-			get
-			{
-				return this._Reftype;
-			}
-			set
-			{
-				if ((this._Reftype != value))
-				{
-					this.OnReftypeChanging(value);
-					this.SendPropertyChanging();
-					this._Reftype = value;
-					this.SendPropertyChanged("Reftype");
-					this.OnReftypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
-		public string Refcode
-		{
-			get
-			{
-				return this._Refcode;
-			}
-			set
-			{
-				if ((this._Refcode != value))
-				{
-					this.OnRefcodeChanging(value);
-					this.SendPropertyChanging();
-					this._Refcode = value;
-					this.SendPropertyChanged("Refcode");
-					this.OnRefcodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDateTime
-		{
-			get
-			{
-				return this._CreatedDateTime;
-			}
-			set
-			{
-				if ((this._CreatedDateTime != value))
-				{
-					this.OnCreatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDateTime = value;
-					this.SendPropertyChanged("CreatedDateTime");
-					this.OnCreatedDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastUpdatedBy
-		{
-			get
-			{
-				return this._LastUpdatedBy;
-			}
-			set
-			{
-				if ((this._LastUpdatedBy != value))
-				{
-					this.OnLastUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedBy = value;
-					this.SendPropertyChanged("LastUpdatedBy");
-					this.OnLastUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime LastUpdatedDateTime
-		{
-			get
-			{
-				return this._LastUpdatedDateTime;
-			}
-			set
-			{
-				if ((this._LastUpdatedDateTime != value))
-				{
-					this.OnLastUpdatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedDateTime = value;
-					this.SendPropertyChanged("LastUpdatedDateTime");
-					this.OnLastUpdatedDateTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Language")]
-	public partial class Language
-	{
-		
-		private long _ID;
-		
-		private string _LanguageCode;
-		
-		private string _LanguageName;
-		
-		private string _Reftype;
-		
-		private string _Refcode;
-		
-		private string _Remark;
-		
-		private string _Status;
-		
-		private string _CreatedBy;
-		
-		private System.DateTime _CreatedDateTime;
-		
-		private string _LastUpdatedBy;
-		
-		private System.DateTime _LastUpdatedDateTime;
-		
-		public Language()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="BigInt NOT NULL IDENTITY", IsDbGenerated=true)]
-		public long ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LanguageCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LanguageCode
-		{
-			get
-			{
-				return this._LanguageCode;
-			}
-			set
-			{
-				if ((this._LanguageCode != value))
-				{
-					this._LanguageCode = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LanguageName", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string LanguageName
-		{
-			get
-			{
-				return this._LanguageName;
-			}
-			set
-			{
-				if ((this._LanguageName != value))
-				{
-					this._LanguageName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
-		public string Reftype
-		{
-			get
-			{
-				return this._Reftype;
-			}
-			set
-			{
-				if ((this._Reftype != value))
-				{
-					this._Reftype = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
-		public string Refcode
-		{
-			get
-			{
-				return this._Refcode;
-			}
-			set
-			{
-				if ((this._Refcode != value))
-				{
-					this._Refcode = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this._Remark = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this._CreatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDateTime
-		{
-			get
-			{
-				return this._CreatedDateTime;
-			}
-			set
-			{
-				if ((this._CreatedDateTime != value))
-				{
-					this._CreatedDateTime = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastUpdatedBy
-		{
-			get
-			{
-				return this._LastUpdatedBy;
-			}
-			set
-			{
-				if ((this._LastUpdatedBy != value))
-				{
-					this._LastUpdatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime LastUpdatedDateTime
-		{
-			get
-			{
-				return this._LastUpdatedDateTime;
-			}
-			set
-			{
-				if ((this._LastUpdatedDateTime != value))
-				{
-					this._LastUpdatedDateTime = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ContactEdit")]
-	public partial class ContactEdit : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private string _ContactEditCode;
-		
-		private string _ContactEditContent;
-		
-		private string _Language;
-		
-		private string _Reftype;
-		
-		private string _Refcode;
-		
-		private string _Remark;
-		
-		private string _Status;
-		
-		private string _CreatedBy;
-		
-		private System.DateTime _CreatedDateTime;
-		
-		private string _LastUpdatedBy;
-		
-		private System.DateTime _LastUpdatedDateTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnContactEditCodeChanging(string value);
-    partial void OnContactEditCodeChanged();
-    partial void OnContactEditContentChanging(string value);
-    partial void OnContactEditContentChanged();
-    partial void OnLanguageChanging(string value);
-    partial void OnLanguageChanged();
-    partial void OnReftypeChanging(string value);
-    partial void OnReftypeChanged();
-    partial void OnRefcodeChanging(string value);
-    partial void OnRefcodeChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnCreatedDateTimeChanging(System.DateTime value);
-    partial void OnCreatedDateTimeChanged();
-    partial void OnLastUpdatedByChanging(string value);
-    partial void OnLastUpdatedByChanged();
-    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
-    partial void OnLastUpdatedDateTimeChanged();
-    #endregion
-		
-		public ContactEdit()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactEditCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string ContactEditCode
-		{
-			get
-			{
-				return this._ContactEditCode;
-			}
-			set
-			{
-				if ((this._ContactEditCode != value))
-				{
-					this.OnContactEditCodeChanging(value);
-					this.SendPropertyChanging();
-					this._ContactEditCode = value;
-					this.SendPropertyChanged("ContactEditCode");
-					this.OnContactEditCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactEditContent", DbType="NVarChar(500)")]
-		public string ContactEditContent
-		{
-			get
-			{
-				return this._ContactEditContent;
-			}
-			set
-			{
-				if ((this._ContactEditContent != value))
-				{
-					this.OnContactEditContentChanging(value);
-					this.SendPropertyChanging();
-					this._ContactEditContent = value;
-					this.SendPropertyChanged("ContactEditContent");
-					this.OnContactEditContentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Language
-		{
-			get
-			{
-				return this._Language;
-			}
-			set
-			{
-				if ((this._Language != value))
-				{
-					this.OnLanguageChanging(value);
-					this.SendPropertyChanging();
-					this._Language = value;
-					this.SendPropertyChanged("Language");
-					this.OnLanguageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
-		public string Reftype
-		{
-			get
-			{
-				return this._Reftype;
-			}
-			set
-			{
-				if ((this._Reftype != value))
-				{
-					this.OnReftypeChanging(value);
-					this.SendPropertyChanging();
-					this._Reftype = value;
-					this.SendPropertyChanged("Reftype");
-					this.OnReftypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
-		public string Refcode
-		{
-			get
-			{
-				return this._Refcode;
-			}
-			set
-			{
-				if ((this._Refcode != value))
-				{
-					this.OnRefcodeChanging(value);
-					this.SendPropertyChanging();
-					this._Refcode = value;
-					this.SendPropertyChanged("Refcode");
-					this.OnRefcodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDateTime
-		{
-			get
-			{
-				return this._CreatedDateTime;
-			}
-			set
-			{
-				if ((this._CreatedDateTime != value))
-				{
-					this.OnCreatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDateTime = value;
-					this.SendPropertyChanged("CreatedDateTime");
-					this.OnCreatedDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastUpdatedBy
-		{
-			get
-			{
-				return this._LastUpdatedBy;
-			}
-			set
-			{
-				if ((this._LastUpdatedBy != value))
-				{
-					this.OnLastUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedBy = value;
-					this.SendPropertyChanged("LastUpdatedBy");
-					this.OnLastUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime LastUpdatedDateTime
-		{
-			get
-			{
-				return this._LastUpdatedDateTime;
-			}
-			set
-			{
-				if ((this._LastUpdatedDateTime != value))
-				{
-					this.OnLastUpdatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedDateTime = value;
-					this.SendPropertyChanged("LastUpdatedDateTime");
-					this.OnLastUpdatedDateTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuPicture")]
-	public partial class MenuPicture : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private string _MenuCode;
-		
-		private string _URL;
-		
-		private string _Type;
-		
-		private string _Language;
-		
-		private string _Reftype;
-		
-		private string _Refcode;
-		
-		private string _Remark;
-		
-		private string _Status;
-		
-		private string _CreatedBy;
-		
-		private System.DateTime _CreatedDateTime;
-		
-		private string _LastUpdatedBy;
-		
-		private System.DateTime _LastUpdatedDateTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnMenuCodeChanging(string value);
-    partial void OnMenuCodeChanged();
-    partial void OnURLChanging(string value);
-    partial void OnURLChanged();
-    partial void OnTypeChanging(string value);
-    partial void OnTypeChanged();
-    partial void OnLanguageChanging(string value);
-    partial void OnLanguageChanged();
-    partial void OnReftypeChanging(string value);
-    partial void OnReftypeChanged();
-    partial void OnRefcodeChanging(string value);
-    partial void OnRefcodeChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnCreatedDateTimeChanging(System.DateTime value);
-    partial void OnCreatedDateTimeChanged();
-    partial void OnLastUpdatedByChanging(string value);
-    partial void OnLastUpdatedByChanged();
-    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
-    partial void OnLastUpdatedDateTimeChanged();
-    #endregion
-		
-		public MenuPicture()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string MenuCode
-		{
-			get
-			{
-				return this._MenuCode;
-			}
-			set
-			{
-				if ((this._MenuCode != value))
-				{
-					this.OnMenuCodeChanging(value);
-					this.SendPropertyChanging();
-					this._MenuCode = value;
-					this.SendPropertyChanged("MenuCode");
-					this.OnMenuCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string URL
-		{
-			get
-			{
-				return this._URL;
-			}
-			set
-			{
-				if ((this._URL != value))
-				{
-					this.OnURLChanging(value);
-					this.SendPropertyChanging();
-					this._URL = value;
-					this.SendPropertyChanged("URL");
-					this.OnURLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this.OnTypeChanging(value);
-					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Language
-		{
-			get
-			{
-				return this._Language;
-			}
-			set
-			{
-				if ((this._Language != value))
-				{
-					this.OnLanguageChanging(value);
-					this.SendPropertyChanging();
-					this._Language = value;
-					this.SendPropertyChanged("Language");
-					this.OnLanguageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reftype", DbType="VarChar(20)")]
-		public string Reftype
-		{
-			get
-			{
-				return this._Reftype;
-			}
-			set
-			{
-				if ((this._Reftype != value))
-				{
-					this.OnReftypeChanging(value);
-					this.SendPropertyChanging();
-					this._Reftype = value;
-					this.SendPropertyChanged("Reftype");
-					this.OnReftypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Refcode", DbType="VarChar(20)")]
-		public string Refcode
-		{
-			get
-			{
-				return this._Refcode;
-			}
-			set
-			{
-				if ((this._Refcode != value))
-				{
-					this.OnRefcodeChanging(value);
-					this.SendPropertyChanging();
-					this._Refcode = value;
-					this.SendPropertyChanged("Refcode");
-					this.OnRefcodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(500)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CreatedDateTime
-		{
-			get
-			{
-				return this._CreatedDateTime;
-			}
-			set
-			{
-				if ((this._CreatedDateTime != value))
-				{
-					this.OnCreatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDateTime = value;
-					this.SendPropertyChanged("CreatedDateTime");
-					this.OnCreatedDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastUpdatedBy
-		{
-			get
-			{
-				return this._LastUpdatedBy;
-			}
-			set
-			{
-				if ((this._LastUpdatedBy != value))
-				{
-					this.OnLastUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedBy = value;
-					this.SendPropertyChanged("LastUpdatedBy");
-					this.OnLastUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime LastUpdatedDateTime
-		{
-			get
-			{
-				return this._LastUpdatedDateTime;
-			}
-			set
-			{
-				if ((this._LastUpdatedDateTime != value))
-				{
-					this.OnLastUpdatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._LastUpdatedDateTime = value;
-					this.SendPropertyChanged("LastUpdatedDateTime");
-					this.OnLastUpdatedDateTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Item")]
-	public partial class Item : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private string _ItemName;
-		
-		private string _CategoryCode;
-		
-		private string _Type;
-		
-		private string _Reftype;
-		
-		private string _Refcode;
-		
-		private string _Remark;
-		
-		private string _Status;
-		
-		private string _CreatedBy;
-		
-		private System.DateTime _CreatedDateTime;
-		
-		private string _LastUpdatedBy;
-		
-		private System.DateTime _LastUpdatedDateTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnItemNameChanging(string value);
-    partial void OnItemNameChanged();
-    partial void OnCategoryCodeChanging(string value);
-    partial void OnCategoryCodeChanged();
-    partial void OnTypeChanging(string value);
-    partial void OnTypeChanged();
-    partial void OnReftypeChanging(string value);
-    partial void OnReftypeChanged();
-    partial void OnRefcodeChanging(string value);
-    partial void OnRefcodeChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnCreatedDateTimeChanging(System.DateTime value);
-    partial void OnCreatedDateTimeChanged();
-    partial void OnLastUpdatedByChanging(string value);
-    partial void OnLastUpdatedByChanged();
-    partial void OnLastUpdatedDateTimeChanging(System.DateTime value);
-    partial void OnLastUpdatedDateTimeChanged();
-    #endregion
-		
-		public Item()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string ItemName
-		{
-			get
-			{
-				return this._ItemName;
-			}
-			set
-			{
-				if ((this._ItemName != value))
-				{
-					this.OnItemNameChanging(value);
-					this.SendPropertyChanging();
-					this._ItemName = value;
-					this.SendPropertyChanged("ItemName");
-					this.OnItemNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryCode", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string CategoryCode
-		{
-			get
-			{
-				return this._CategoryCode;
-			}
-			set
-			{
-				if ((this._CategoryCode != value))
-				{
-					this.OnCategoryCodeChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryCode = value;
-					this.SendPropertyChanged("CategoryCode");
-					this.OnCategoryCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(20)")]
 		public string Type
 		{
 			get
