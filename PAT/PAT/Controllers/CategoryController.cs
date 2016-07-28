@@ -229,6 +229,12 @@ namespace ManageShop.Controllers
             model.menu_investor = db.MenuPictures.Where(x => x.MenuCode == "menu_investor" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
             model.menu_library = db.MenuPictures.Where(x => x.MenuCode == "menu_library" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
             model.menu_contact = db.MenuPictures.Where(x => x.MenuCode == "menu_contact" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
+            model.info = db.MenuPictures.Where(x => x.MenuCode == "info" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
+            model.resident = db.MenuPictures.Where(x => x.MenuCode == "resident" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
+            model.industry = db.MenuPictures.Where(x => x.MenuCode == "industry" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
+            model.library = db.MenuPictures.Where(x => x.MenuCode == "library" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
+            model.investor = db.MenuPictures.Where(x => x.MenuCode == "investor" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
+            model.contact = db.MenuPictures.Where(x => x.MenuCode == "contact" && x.Language == Language).Select(x => x.URL).FirstOrDefault();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

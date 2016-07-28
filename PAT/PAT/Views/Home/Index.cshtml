@@ -75,7 +75,7 @@
                 <!--△△logo-->
                 <!--▼▼information-->
                 <div id="information">
-                    <h3 style="opacity: 1; left: 0px;"><img src="~/Template/information_h.png" alt="Information"></h3>
+                    <h3 style="opacity: 1; left: 0px;"><img src="~/Template/info_vn.png" alt="Information" id="info"></h3>
                     <div style="height: 189px;" class="inner">
                         <ul>
                             <!-----gioi thieu cong ty-->
@@ -155,7 +155,8 @@
             <div class="line"></div>
             <!--▼▼FEATURES resident-->
             <div id="resident">
-                <h2><img style="opacity: 0; left: -100px;" src="~/Template/resident_h.png"></h2>
+                <h2><img style="opacity: 0; left: -100px;" src="~/Template/resident_vn.png" id="resident_img"></h2>
+                @*<h2><img style="opacity: 0; left: -100px;" id="resident" src="~/Template/resident_vn.png"></h2>*@
                 <div class="inner">
                     <ul>
                         <!----- NHÀ PHỐ LOẠI I-->
@@ -221,7 +222,7 @@
 
             <!--▼▼FEATURES resident-->
             <div id="industryzone">
-                <h2><img style="opacity: 0; left: -100px;" src="~/Template/industryzone_h.png"></h2>
+                <h2><img style="opacity: 0; left: -100px;" id="industry" src="~/Template/industry_vn.png"></h2>
                 <div class="inner">
                     <ul>
                         <!-----   NHÀ XUONG-->
@@ -334,7 +335,7 @@
             <div class="line"></div>
             <!--▼▼STAGES-->
             <div id="benefit">
-                <h2><img style="opacity: 0; left: -100px;" src="~/Template/stages_h.png"></h2>
+                <h2><img style="opacity: 0;  left: -100px;" id="investor" src="~/Template/investor_vn.png"></h2>
                 <div class="inner">
                     <ul>
                         <!-----   GIÁ THUÊ ĐẤT VÀ CÁC LOẠI PHÍ-->
@@ -354,7 +355,7 @@
             <div class="line"></div>
             <!--▼▼MOVIES-->
             <div id="movies">
-                <h2><img style="opacity: 0; left: -100px;" src="~/Template/movies_h.png"></h2>
+                <h2><img style="opacity: 0; left: -100px;" id="library" src="~/Template/library_vn.png"></h2>
                 <div class="inner">
                     <ul>
                         <!-----   PHÁP LUẬT KINH DOANH-->
@@ -375,7 +376,7 @@
             <div class="line"></div>
             <!--▼▼CONTACT-->
             <div id="contact">
-                <h2><img style="opacity: 0; left: -100px;" src="~/Template/contact_h.png"></h2>
+                <h2><img style="opacity: 0; left: -100px;" id="contact_img" src="~/Template/contact_vn.png"></h2>
                 <div id="spec">
                     <a style="cursor:pointer" onclick="openpopup_contact();" class="btn_productInfo right mo"><label id="contact_in"> </label></a>
                     <span class="clearfix"></span>
@@ -638,6 +639,12 @@
                 $("#sy_garbage").html($result['sy_garbage']);
 
                 $("#infastructure_l").attr("src", $result['infastructure_l']);
+                $("#info").attr("src", $result['info']);
+                $("#resident_img").attr("src", $result['resident']);
+                $("#industry").attr("src", $result['industry']);
+                $("#investor").attr("src", $result['investor']);
+                $("#library").attr("src", $result['library']);
+                $("#contact_img").attr("src", $result['contact']);
                 $('#menu_info').css('background-image', 'url('+$result['menu_info']+')');
                 $('#menu_resident').css('background-image', 'url(' + $result['menu_resident'] + ')');
                 $('#menu_industry').css('background-image', 'url(' + $result['menu_industry'] + ')');

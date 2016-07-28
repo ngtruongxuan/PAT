@@ -44,6 +44,13 @@ namespace ManageShop.Models
         public string menu_investor { get; set; }
         public string menu_library { get; set; }
         public string menu_contact { get; set; }
+        public string info { get; set; }
+        public string resident { get; set; }
+        public string industry { get; set; }
+        public string library { get; set; }
+        public string investor { get; set; }
+        public string contact { get; set; }
+
 
 
         public List<CategoryCodeModel> l_code = new List<CategoryCodeModel>();
