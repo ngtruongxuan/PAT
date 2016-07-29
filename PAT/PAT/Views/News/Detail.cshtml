@@ -44,11 +44,34 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <label class="col-md-3" style="padding-top: 5px;">Hình đại diện </label>
-                        <div class="col-md-9">
-                            <input id="txt_image" class="k-textbox" style="width: 100% ;" value="@Model.Image" />
+                        <div class="col-xs-3" id="imagelink">
+                            @*<p class="lead">Ảnh đại diện</p>*@
+                            @* <img src="../../dist/img/credit/visa.png" style="height:200px; width:300px;" />*@
+                            <script type="text/javascript">
+                                linkimage = '@Model.Image';
+                                linkpath = "../../" + linkimage;
+                                var elem = document.createElement("img");
+                                if (linkimage == null || linkimage == "") {
+                                    elem.setAttribute("src", "../../Content/NewsImageDefault.png");
+                                    elem.setAttribute("class", "img1");
+                                    elem.setAttribute("height", "130");
+                                    elem.setAttribute("width", "130");
+                                }
+                                else {
+                                    elem.setAttribute("src", linkpath);
+                                    elem.setAttribute("class", "img1");
+                                    elem.setAttribute("height", "130");
+                                    elem.setAttribute("width", "130");
+                                }
+                                document.getElementById("imagelink").appendChild(elem);
+                            </script>
+                            @*<img src="~/Content/Images/user.png" />*@
+                        </div><!-- /.col -->
+                        <div class="col-xs-9">
+                            <a id="btnUpload" class="btn btn-default"><i class="fa fa-upload"></i> Chon hình đại diện</a>
+                            <input id="txt_image" class="" style="width: 100% ; display:none;" value="@Model.Image" />
                         </div>
-                    </div>
+                    </div
                 </div>
             </div>
             <div class="form-group row">
@@ -85,7 +108,15 @@
                 </div>
             </div>
         </div>
-    </form
+    </form>
+</div>
+<div id="uploadimage-window" style="display:none;">
+    <form method="post" id="fileinfo" name="fileinfo" onsubmit="return saveImageForm();">
+        <div class="form-group ">
+            <input type="file" style="float: left; height: 35px;" id="filename" name="filename" />
+            <input type="submit" style="float:right" class="btn btn-md btn-primary" value="Lưu" onclick="return CheckFileName();" />
+        </div>
+    </form>
 </div>
 <div class="row groupformbutton">
     <form id="frmSearchlist">
@@ -97,7 +128,88 @@
 </div>
 <span id="centeredNotification" style="display:none;"></span>
 <script>
+    function CheckFileName() {
+        //var fileName = document.getElementById("filename").value
+        ////debugger;
+        //if (fileName == "") {
+        //    alert("Định dạng file không hợp lệ, chỉ được dùng xls / xlsx");
+        //    return false;
+        //}
+        //else if (fileName.split(".")[1].toUpperCase() == "XLS" || fileName.split(".")[1].toUpperCase() == "XLSX")
+        //    return true;
+        //else {
+        //    alert("Định dạng file không hợp lệ, chỉ được dùng xls / xlsx");
+        //    return false;
+        //}
+        //return true;
+        var test_value = $("#filename").val();
+        var extension = test_value.split('.').pop().toLowerCase();
+        
+        fileSize = $("#" + 'filename')[0].files[0].size
+        if (fileSize > 5242880) {
+            alert("File ảnh lớn hơn 5MB!");
+            return false;
+        }
+        if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
+            alert("File ảnh không hợp lệ!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function saveImageForm() {
+        //console.log("submit event");
+        var fd = new FormData(document.getElementById("fileinfo"));
+
+        //  fd.append("label", "WEBUPLOAD");
+        $.ajax({
+            url: "../../News/UploadImage",
+            type: "POST",
+            data: fd,
+            async:false,
+            enctype: 'multipart/form-data',
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,   // tell jQuery not to set contentType
+            //beforeSend: function () {
+            //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
+            //},
+            error: function (msg) {
+                //waitingDialog.hide();
+                //show(false, 'File lớn hơn 5MB hoặc không đúng định dạng. Vui lòng thử lại', true);
+                alert("File lớn hơn 5MB hoặc không đúng định dạng. Vui lòng thử lại");
+            }
+        }).done(function (result) {
+            $('#txt_image').val(result.data);
+            var window = $("#uploadimage-window");
+            window.data('kendoWindow').close();
+            //waitingDialog.hide();
+            //$("#img1").attr('src', result.data);
+            //document.getElementById('img1').src = result.data;
+            //var image = document.getElementByClassName(".img1");
+            //image.src = result.data;
+            $(".img1").attr("src", result.data);
+            
+            
+            //reloadheaderAfterLogin();
+            
+        });
+      
+        return false;
+    }
     $(document).ready(function () {
+        $("#btnUpload").click(function (e) {
+            e.preventDefault();
+            var window = $("#uploadimage-window");
+            if (!window.data("kendoWindow")) {
+                window.kendoWindow({
+                    modal: true,
+                    width: "500px",
+                    title: "Upload",
+                    actions: ["Close"]
+                });
+            }
+            window.data('kendoWindow').center().open();
+        });
         html = @Html.Raw(Json.Encode(Model.NewsContent));
         CKEDITOR.instances['editor1'].setData(html);
         function onShow(e) {

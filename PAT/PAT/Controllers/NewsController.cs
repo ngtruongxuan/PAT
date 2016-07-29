@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ManageShop.Models;
+using System.IO;
 
 namespace ManageShop.Controllers
 {
@@ -30,6 +31,40 @@ namespace ManageShop.Controllers
                 list.Add(category);
             }
             return View(list);
+        }
+        public ActionResult UploadImage(HttpPostedFileBase filename)
+        {
+            try
+            {
+                if (filename != null && filename.ContentLength > 0)
+                {
+                    string upFolder = Server.MapPath("~/Upload/NewsImage/");
+
+                    if (!Directory.Exists(upFolder))
+                    {
+                        Directory.CreateDirectory(upFolder);
+                    }
+                    var fileName =  Path.GetFileName(filename.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Upload/NewsImage/"), fileName);
+                    filename.SaveAs(path);
+                    var pathsaveData = "../../Upload/NewsImage/" + fileName;
+                    //_username = this.CurrentUsername;
+                    //userService.SaveImage(_username, pathsaveData);
+                    //SessionEntity CustomerLogin = SessionWrapper.GetFromSession<SessionEntity>(Constants.CustomerLogin);
+                    //if (CustomerLogin != null)
+                    //{
+                    //    CustomerLogin.ProfileLinkImg = pathsaveData;
+                    //    SessionWrapper.SetInSession(Constants.CustomerLogin, CustomerLogin);
+                    //}
+                    return Json(new { data = pathsaveData, mess = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index");
+            }
         }
         public ActionResult Delete(NewsModel model)
         {
@@ -153,6 +188,7 @@ namespace ManageShop.Controllers
             }
             List<New> data = new List<New>();
             PATDBDataContext db = new PATDBDataContext();
+            List<NewsModel> ls_News = new List<NewsModel>();
             if (ID != 0)
             {
                 data = db.News.Where(x => x.CategoryID == ID && x.Status == "A").ToList();
@@ -161,7 +197,7 @@ namespace ManageShop.Controllers
             {
                 data = db.News.Where(x => x.Status == "A").ToList();
             }
-            List<NewsModel> ls_News = new List<NewsModel>();
+            
             if (data != null)
             {
                 foreach (var item in data)
