@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html style="width: 100%; height: 100%;" lang="en_US">
+<head @*prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"*@>
+    @*<meta http-equiv="content-type" content="text/html; charset=UTF-8">*@
+    <script async="" src="~/Template/www-widgetapi.js" id="www-widgetapi-script" type="text/javascript"></script>
+    <title>PAT demo</title>
+    @*<meta name="keyrds" content="DEAD OR ALIVE 5 Last Round, DOA5LR ,DOA ,KOEITECMO ,TECMO ">
+        <meta name="description" content="Experience Dead or Alive 5 on PS4™ and Xbox One!">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">*@
+    <meta charset="utf-8">
+    @*<meta name="viewport" content="width=device-width">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">*@
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <!--▼meta-->
+    @*<meta property="og:title" content="DEAD OR ALIVE 5 Last Round">
+    <meta property="og:type" content="activity">
+    <meta property="og:description" content="Experience Dead or Alive 5 on PS4 and Xbox One!">
+    <meta property="og:url" content="http://teamninja-studio.com/doa5/lastround">
+
+    <meta property="og:site_name" content="DEAD OR ALIVE 5 Last Round">
+    <meta property="og:locale" content="en_US">*@
+
+    <link rel="stylesheet" href="~/TemplateAdmin/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/TemplateAdmin/css/skins/_all-skins.min.css">
+    <style>
+        #slider_features li img {
+            margin-top: 120px;
+        }
+
+        #features_base .flex-control-nav {
+            bottom: -20px !important;
+        }
+
+        .flexslider {
+            border-radius: 4px;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2) !important;
+            margin: 0;
+            position: relative;
+        }
+
+        #hotnew {
+            background-color: #cae8ca;
+            border-style: solid;
+            border-width: 3px;
+            bottom: 0;
+            max-width: 300px;
+            padding: 5px;
+            position: fixed;
+            right: 0;
+            z-index: 999;
+        }
+
+        .right_3_1 {
+            float: left;
+            padding-right: 5px;
+        }
+
+       
+    </style>
+    <!-- Style -->
+    @*<link href="~/Template/shadowbox.css" rel="stylesheet" type="text/css">*@
+    <link href="~/Template/default.css" rel="stylesheet" type="text/css">
+    <link href="~/Template/common.css" rel="stylesheet" type="text/css">
+    <link href="~/Template/top.css" rel="stylesheet" type="text/css">
+    <link href="~/Template/flexslider.css" rel="stylesheet" type="text/css">
+    <link href="~/Template/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- End Style -->
+</head>
+<body class="">
+    <!-- Script -->
+    <script src="~/Template/widgets.js" id="twitter-wjs"></script>
+    @*<script src="~/Template/iframe_api"></script>*@
+    @*<script src="~/Template/analytics.js" async=""></script>*@
+    <script src="~/Template/jquery_005.js"></script>
+    <script type="text/javascript" src="~/Template/shadowbox.js"></script>
+    <script type="text/javascript" src="~/Template/jquery_002.js"></script>
+    @*<script type="text/javascript" src="~/Template/ga.js"></script>*@
+    @*<script type="text/javascript" src="~/Scripts/scrollAnimate.js"></script>*@
+    <script type="text/javascript" src="~/Template/main.js"></script>
+    @*<script type="text/javascript" src="~/Template/init.js"></script>*@
+    <script type="text/javascript" src="~/Template/top.js"></script>
+    <script type="text/javascript" src="~/Template/jquery_003.js"></script>
+    @*<script type="text/javascript" src="~/Template/agecheck.js"></script>*@
+    <script type="text/javascript" src="~/Template/jquery.js"></script>
+    @*<script src="~/Template/xenforo.js"></script>*@
+    @*<script type="text/javascript" src="~/Template/jquery.color-2.1.1.js"></script>*@
+    @*<script type="text/javascript" src="~/Template/jquery.tubular.1.0.js"></script>*@
+    <script src="~/Template/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/aes.js"></script>
+    @*<script gapi_processed="true" type="text/javascript" src="~/Template/plusone.js"></script>*@
+    @*<link rel="apple-touch-icon" href="http://teamninja-studio.com/doa5/lastround/us/img/common/icon.jpg">*@
+    @*<script src="~/Template/timeline.js" async="" charset="utf-8" type="text/javascript"></script>*@
+    <!--▼▼loadObjct-->
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide"
+            });
+        });
+        //$(document).ready(function () {
+        //    var options = { videoId: 'ix6gnsUvTdU', start: 22, end: 103 };
+        //    var listColorSwitch = false;
+        //    setInterval(function () {
+        //        if (listColorSwitch) {
+        //            $("li.new").animate({ "backgroundColor": "#666" }, 800);
+        //            listColorSwitch = false;
+        //        } else {
+        //            $("li.new").animate({ "backgroundColor": "#d90" }, 800);
+        //            listColorSwitch = true;
+        //        }
+        //    }, 1000);
+        //});
+        //$("#menu_top").click(function () {
+        //    $('html, body').animate({
+        //        scrollTop: $("#top").offset().top
+        //    }, 2000);
+        //});
+        function topclick() {
+            $('html, body').animate({
+                scrollTop: $("#top").offset().top
+            }, 2000);
+        }
+        function locationclick() {
+            $('html, body').animate({
+                scrollTop: $("#industryzone").offset().top
+            }, 2000);
+        }
+        function residentclick()
+        {
+            $('html, body').animate({
+                scrollTop: $("#resident").offset().top
+            }, 2000);
+        }
+        function constructionclick() {
+            $('html, body').animate({
+                scrollTop: $("#characters").offset().top
+            }, 2000);
+        }
+        function gainclick() {
+            $('html, body').animate({
+                scrollTop: $("#benefit").offset().top
+            }, 2000);
+        }
+        function libraryclick() {
+            $('html, body').animate({
+                scrollTop: $("#movies").offset().top
+            }, 2000);
+        }
+        function contactclick() {
+            $('html, body').animate({
+                scrollTop: $("#contact").offset().top
+            }, 2000);
+        }
+        function scrollTo2(targetName) {
+            var $scrollTarget = $(targetName);
+            var amount = $scrollTarget.offset().top;
+            amount -= 58;
+            $('html,body').animate({ scrollTop: amount }, 'swing');
+        }
+    </script>
+    <!--△△loadObjct-->
+    <!-- End Script-->
+
+    @*<div id="tubular-container" style="overflow: hidden; position: fixed; z-index: 1; width: 100%; height: 100%"><iframe src="~/Template/ix6gnsUvTdU.htm" title="YouTube video player" allowfullscreen="1" id="tubular-player" style="position: absolute; width: 1349px; height: 759px; left: 0px; top: -76px;" frameborder="0" height="769" width="1366"></iframe></div><div id="tubular-shield" style="width: 100%; height: 100%; z-index: 2; position: absolute; left: 0; top: 0;"></div>*@
+    <!------------------------------------->
+  
+    <!-- /.modal -->
+
+    <script>
+        var checkparameterURL = function (url) {
+            if (url.indexOf("?") > 0) {
+                return true;
+            }
+            return false;
+        }
+        var loadpopup = function (url, title, width, isblank) {
+            var _para = '';
+            if (checkparameterURL(url) == true) {
+                _para = '&_isbl=' + isblank;
+            }
+            else {
+                _para = '?_isbl=' + isblank;
+            }
+            //    alert(url);
+            url = url + _para;
+            if (isblank == false) {
+
+                var _process = '<div class="progress">'
+                 + '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">'
+                   + '<span class="sr-only">Vui lòng chờ trong giây lát</span>'
+                 + '</div>'
+                 + '</div>';
+                $('#windowpopup_content').html(_process);
+                $('#windowpopup_title').html(title);
+                $('#windowpopup_content').load(url);
+                //$('modal-body-iframe').attr("src", url);
+                // $('#windowpopup').modal();
+                $('#windowpopup').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
+                if (width != "none") {
+                    $('#windowpopup_size').css(
+                        {
+                            width: function () {
+                                if (width == "") {
+                                    return "80%";
+                                }
+                                else {
+                                    return width;
+                                }
+                            }
+                        });
+                }
+            }
+            else {
+                var w = 630, h = 440; // default sizes
+                if (window.screen) {
+                    w = window.screen.availWidth * 85 / 100;
+                    h = window.screen.availHeight * 85 / 100;
+                }
+                //  javascript: OpenWindow(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+
+                //  var randomnumber = Math.floor((Math.random() * 100) + 1);
+                //  window.open(url, "_blank", title,  "channelmode = 1, scrollbars = 1, status = 0, titlebar = 0, toolbar = 0, resizable = 1, menubar = no, resizable = 1, top = 20, left = 20, fullscreen = yes, location = yes, Width = " + w + ", height = " + h + "");
+                //  window.open(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+                //javascript: OpenWindow(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+                var d = new Date();
+                var n = d.getTime();
+                title = title + n;
+                var _window = window.open(url, title, "channelmode=1,scrollbars=1,status=0,titlebar=0,toolbar=0,resizable=1,menubar=no,resizable=1,top=20,left=20,fullscreen=yes,location=yes,Width=" + w + ",height=" + h + "");
+                _window.focus();
+            }
+        }
+
+        function openpopup(categorycode) {
+            var cookie_language = readCookie('language_cookie');
+         //   alert(cookie_language);
+            if (cookie_language == null)
+                cookie_language='VN';
+            loadpopup("../DisplayContent/Index?CategoryCode=" + categorycode + "&Language=" + cookie_language + "", 'ESC to close', '80%', false);
+        }
+        function openpopup_item(categorycode) {
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+                cookie_language = 'VN';
+            loadpopup("../DisplayContent/ItemIndex?CategoryCode=" + categorycode + "&Language=" + cookie_language + "", 'ESC to close', '80%', false);
+        }
+        function openpopup_map(categorycode) {
+            loadpopup("../DisplayContent/MapIndex", 'ESC to close', '80%', false);
+        }
+      
+        function openpopup_news(categorycode) {
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+                cookie_language = 'VN';
+            loadpopup("../DisplayContent/NewsIndex?CategoryCode=" + categorycode + "&Language=" + cookie_language + "", 'ESC to close', '80%', false);
+        }
+    
+       
+        function openpopup_contact() {
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+                cookie_language = 'VN';
+            loadpopup("../DisplayContent/ContactIndex?Language=" + cookie_language + "", 'ESC to close', '80%', false);
+        }
+       
+
+        function openpopup_new() {
+            loadpopup('~/Template/new.html', 'Tin tức', '80%', false);
+        }
+
+        function openpopup_login() {
+            $('#windowpopup_login').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+
+        function loginpopup_click()
+        {
+           
+
+            var password = $("#loginformpopup_txtpassword").val();
+            var key = CryptoJS.enc.Utf8.parse('8080808080808080');
+            var iv = CryptoJS.enc.Utf8.parse('8080808080808080');
+
+            var encryptedpassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key,
+            {
+                keySize: 128 / 8,
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            }).toString();
+
+            $.ajax({
+                url: "/Account/Login",
+                type: "Post",
+                data: JSON.stringify({
+                    Username: $("#loginformpopup_txtusername").val(),
+                    Pass: encryptedpassword
+                }),
+                // data:postData,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    //  alert(result);
+                    $("#user_name").html($("#loginformpopup_txtusername").val());
+                    $('#login').removeClass('menu_login');
+                    $('#profile').removeClass('menu_profile_hide').addClass('menu_profile');
+                  //  $('#admin').addClass('menu_admin');
+                    $('#windowpopup_login').modal('hide');
+                    // window.location.href = "/Home/Admin";
+                   
+                },
+                Error: function () {
+                    //alert("Không thể kết nối tới máy chủ");
+                    show(false, "Không thể kết nối tới máy chủ", true);
+                }
+            });
+        }
+
+        function adminclick()
+        {
+            window.location.href = "/Home/Admin";
+        }
+
+        function logoutclick()
+        {
+            $('#login').addClass('menu_login');
+            $('#profile').removeClass('menu_profile').addClass('menu_profile_hide');
+         //   $('#admin').removeClass('menu_admin');
+
+            $.ajax({
+                url: "/Home/Logout",
+                type: "Post",
+                data: JSON.stringify({
+                    Username: $("#loginformpopup_txtusername").val()
+                   
+                }),
+                // data:postData,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                  
+
+                },
+                Error: function () {
+                    //alert("Không thể kết nối tới máy chủ");
+                    show(false, "Không thể kết nối tới máy chủ", true);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            if ('@Session["UserName"]'!='')
+            {
+                $('#login').removeClass('menu_login');
+              //  $('#logout').addClass('menu_logout');
+              //  $('#admin').addClass('menu_admin');
+                $('#profile').removeClass('menu_profile_hide').addClass('menu_profile');
+            }
+            else
+            {
+                $('#profile').removeClass('menu_profile').addClass('menu_profile_hide');
+            }
+
+            var cookie_language = readCookie('language_cookie');
+            if (cookie_language == null)
+            {
+                createCookie('language_cookie','VN',1);
+            }
+            var language = readCookie('language_cookie');
+           // window.location.href = "/Home/Index?Language=" + language + "";
+         //   alert(cookie_language);
+            //alert('@Session["UserName"]');
+        });
+
+        function createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = "; expires=" + date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+       
+    </script>
+    @RenderBody()
+
+
+</body>
+</html>

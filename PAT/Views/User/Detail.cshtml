@@ -1,0 +1,511 @@
+﻿@model ManageShop.Models.UserDetail
+@{
+
+    Layout = "~/Views/Shared/_PopupInnerLayout.cshtml";
+}
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+<link href="~/Content/dropdowntree/easyui.css" rel="stylesheet" />
+<style>
+
+    .star:after {
+        content: "\00b*";
+        color: #ff3333;
+    }
+    .t-disable {
+        background-color: #CCCCCC !important;
+    }
+</style>
+
+    <div class="row" style="max-width: 700px;">
+        <div class="col-lg-12">
+            <br />
+            <div class="row" style="padding:5px;">
+              
+
+                   
+                    <div class="row">
+                        <label class="col-md-4 star ">Nhóm</label>
+                        <div class="col-md-6">
+                            <input id="txt_group_popup"
+                                   style="width: 100%;" value="@Model.GroupID" />
+                        </div>
+                    </div>
+                   
+                   
+                    <div class="row">
+                        <label class="col-md-4 star ">UserName</label>
+                        <div class="col-md-6">
+                          
+                            <input id="txt_username_popup" class="k-textbox"
+                                   style="width: 100% ;" value="@Model.UserName" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4 star ">Email</label>
+                        <div class="col-md-6">
+                            <input id="txt_email_popup" class="k-textbox"
+                                   style="width: 100%;" value="@Model.Email" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4 star ">Tên đầy đủ</label>
+                        <div class="col-md-6">
+                            <input id="txt_fullname_popup" class="k-textbox"
+                                   style="width: 100% ;" value="@Model.FullName" />
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <label id="label_Password" class="col-md-4 ">Password<span id="get_Star1" class="star"></span></label>
+                        <div class="col-md-6">
+                            <input id="txt_password_popup" class="k-textbox"
+                                   style="width: 100% ;" type="password" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label id="label_Confirm_Password" class="col-md-4 ">Confirm Password<span id="get_Star2" class="star"></span></label>
+
+                        <div class="col-md-6">
+                            <input id="txt_confirm_password_popup" class="k-textbox"
+                                   style="width: 100% ;" type="password" />
+                        </div>
+                    </div>
+            </div>
+            <span id="notification_popup" style="display:none;"></span>
+            <div id="modal_box"></div>
+           
+        </div>
+        <br />
+       
+          
+        <div class="col-lg-12" style="margin: 20px 0px 0px 15px;text-align:left;">
+            <!--  <button id="btnRepresh_popup" class="btn btn-md btn-warning"
+         onclick="btnRefreshOnClick_popup()"><i class="fa fa-refresh"></i>Refresh</button> -->
+            <div style="float:left">
+                <button id="btnCreate_popup" class="btn btn-md btn-primary"
+                        onclick="btnCreate_popupOnClick()">
+                    <i class="fa fa-plus"></i>Lưu
+                </button>
+            </div>
+            <div style="float:left;margin-left:20px">
+                <button id="btnActive" class="btn btn-md btn-primary" style="display:none"
+                        onclick="btnActiveOnClick()">
+                    <i class="fa fa-plus"></i>Kích hoạt
+                </button>
+            </div>
+           
+        </div>
+           
+       
+        <br />
+    </div>
+   <input id="txt_id" class="k-textbox"
+       style="width: 100% ;display:none" value="@Model.ID" />
+<span id="centeredNotification" style="display:none;"></span>
+<script>
+$(document).ready(function () {
+    var _id = '@Model.ID';
+   // alert(_id);
+    if (_id != 0) {
+       // $("txt_username_popup").attr('disabled', 'disabled');
+        $("#txt_username_popup").prop('disabled', true);
+        $("#txt_username_popup").addClass('t-disable');
+    }
+
+    var _status = '@Model.Status';
+  //  alert(_status);
+    if (_status == 'I')
+    {
+        $('#btnActive').attr('style', "display:block");
+    }
+   
+    
+    function onShow(e) {
+        if (e.sender.getNotifications().length == 1) {
+            var element = e.element.parent(),
+                eWidth = element.width(),
+                eHeight = element.height(),
+                wWidth = $(window).width(),
+                wHeight = $(window).height(),
+                newTop, newLeft;
+
+            newLeft = Math.floor(wWidth / 2 - eWidth / 2);
+            //	            newTop = Math.floor(wHeight / 2 - wHeight / 2);
+            newTop = Math.floor(10);
+            newRight = Math.floor(wWidth - 5);
+            e.element.parent().css({ top: newTop, right: newRight });
+        }
+    }
+
+    function showNotification(content, type) {
+        $(function () {
+            var centered = $("#centeredNotification").kendoNotification({
+                stacking: "down",
+                show: onShow,
+                //		                button: true
+            }).data("kendoNotification");
+            centered.show(content, type);
+        });
+    }
+
+    $("#txt_group_popup").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "GroupName",
+            dataValueField: "ID",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "../User/getGroup",
+                                dataType: "json",
+                                type: "POST",
+                            }
+                        },
+                    },
+            change: group_onChange,
+            //          filter: "contains",
+            suggest: true,
+            // index: -1
+        });
+
+    function group_onChange()
+    {
+        var value = $("#txt_group_popup").val();
+        var text = $("#txt_group_popup").data('kendoComboBox').text();
+            if (value == text)
+            {
+                $("#txt_group_popup").data('kendoComboBox').value("");
+            }
+
+            
+    }
+
+
+
+
+
+
+    //$("#txt_username_popup").bind('keypress', function (event) {
+    //        var regex = new RegExp("^[a-zA-Z0-9]+$");
+    //        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    //        if (!regex.test(key)) {
+    //           event.preventDefault();
+    //           return false;
+    //        }
+    //    });
+
+
+
+
+});
+
+
+
+    function ValidationSpecialCharactersEmail(PromotionName) {
+        var regExp = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        return regExp.test(PromotionName);
+    }
+
+function additionalData()
+    {
+
+        return {
+
+        };
+    }
+
+function checkinput()
+{
+        var _check = false;
+
+
+        var _id = $("#txt_id").val().trim();
+
+        //alert(_id);
+        if (_id == 0)
+        {
+            var _password = $("#txt_password_popup").val().trim();
+            var _confirm_password = $("#txt_confirm_password_popup").val().trim();
+          //  alert(_password);
+            removeError($('#txt_password_popup'));
+            if (_password == '') {
+                setError($('#txt_password_popup'), 'Password is not empty');
+                _check = true;
+            }
+            else {
+                if (_password != _confirm_password) {
+                    setError($('#txt_confirm_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    setError($('#txt_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    _check = true;
+                }
+                else {
+
+                }
+            }
+
+           
+          //  alert(_confirmpassword);
+            removeError($('#txt_confirm_password_popup'));
+            if (_confirm_password == '') {
+                setError($('#txt_confirm_password_popup'), 'Confirm Password is not empty');
+                _check = true;
+            } else if (_confirm_password != _password) {
+                setError($('#txt_confirm_password_popup'), 'Confirm Password is wrong');
+                _check = true;
+            }
+            else {
+                removeError($('#txt_confirm_password_popup'));
+            }
+
+
+            //if (_password != _confirm_password) {
+            //    setError($('#txt_confirm_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+            //    _check = true;
+            //}
+            //else {
+            //    removeError($('#txt_confirm_password_popup'));
+            //}
+        }
+        else
+        {
+            var _password = $("#txt_password_popup").val().trim();
+            var _confirm_password = $("#txt_confirm_password_popup").val().trim();
+            removeError($('#txt_password_popup'));
+            removeError($('#txt_confirm_password_popup'));
+            if (_password == '') {
+               
+            }
+            else {
+                if (_password != _confirm_password) {
+                    setError($('#txt_confirm_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    setError($('#txt_password_popup'), 'Password and confirm password do not match. Please retype and try again!');
+                    _check = true;
+                }
+                else {
+                   
+                }
+            }
+
+        }
+     
+
+
+
+
+        var _group = $("#txt_group_popup").data('kendoComboBox').text();
+         if (_group == '')
+        {
+            setErrorKendoCombo($('#txt_group_popup'), 'Group is not empty');
+            _check = true;
+        }
+        else
+        {
+            removeErrorKendoCombo($('#txt_group_popup'));
+        }
+
+        var _username = $("#txt_username_popup").val().trim();
+        removeError($('#txt_username_popup'));
+        if (_username == '')
+        {
+            setError($('#txt_username_popup'), 'User Name is not empty');
+            _check = true;
+        }else if(!ValidationSpecialCharacters(_username))
+            {
+                setError($('#txt_username_popup'), 'User Name can not have special character');
+                _check = true;
+            }
+         else
+        {
+            removeError($('#txt_username_popup'));
+        }
+
+        var _email = $("#txt_email_popup").val().trim();
+        removeError($('#txt_email_popup'));
+        if (_email == '')
+        {
+            setError($('#txt_email_popup'), 'Email is not empty');
+            _check = true;
+        }
+        else if(!ValidationSpecialCharactersEmail(_email))
+        {
+             setError($('#txt_email_popup'), 'Email incorrect formats');
+            _check = true;
+        }
+         else
+        {
+            removeError($('#txt_email_popup'));
+        }
+
+        var _fullname = $("#txt_fullname_popup").val().trim();
+        removeError($('#txt_fullname_popup'));
+        if (_fullname == '')
+        {
+            setError($('#txt_fullname_popup'), 'FullName is not empty');
+            _check = true;
+        } else if (!ValidationSpecialCharacters(_fullname))
+            {
+                setError($('#txt_fullname_popup'), 'FullName can not have special character');
+                _check = true;
+            }
+        else
+        {
+            removeError($('#txt_fullname_popup'));
+        }
+
+       
+
+        if (_check == true) {
+            //$(function () {
+            //    notification.show({
+            //        title: "Do not save finish. Please check input data",
+            //        message: " "
+            //    }, "error");
+            //});
+            return _check;
+        }
+        return _check;
+}
+
+    function btnCreate_popupOnClick()
+    {
+
+            save();
+
+    }
+
+    function save()
+    {
+        if (checkinput() == true) {
+                return;
+            }
+
+        var additionalData = JSON.stringify({
+            ID:$("#txt_id").val().trim(),
+            UserName: $.trim($('#txt_username_popup').val()),
+            Email: $.trim($('#txt_email_popup').val()),
+            FullName: $.trim($('#txt_fullname_popup').val()),
+            GroupID: $.trim($("#txt_group_popup").val()),
+
+
+
+            Password: $.trim($('#txt_password_popup').val()),
+         });
+
+        $body = $("body");
+
+
+        removeError($('#txt_username_popup'));
+        removeError($('#txt_email_popup'));
+        $.ajax({
+            url: "../User/saveUser",
+            type: "post",
+            data: additionalData,
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+                $("#txt_username_popup").prop('disabled', true);
+                $("#txt_username_popup").addClass('t-disable');
+                $("#txt_id").val($result['ID']);
+              //  alert($result['Title']);
+                showNotification("Lưu dữ liệu thành công. ", "success");
+
+            },
+        });
+    }
+
+    function btnActiveOnClick()
+    {
+
+        $.ajax({
+            url: "../User/ActiveUser",
+            type: "post",
+            data: JSON.stringify({ID:'@Model.ID'}),
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+                //  alert($result['Title']);
+                showNotification("Lưu dữ liệu thành công. ", "success");
+
+            },
+        });
+    }
+
+    function DisableSpace(e)
+    {
+        if(e.keyCode == 32)
+           {
+              return false;
+           }
+    }
+
+   
+
+    document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = evt.key == "Escape";
+    } else {
+        isEscape = evt.keyCode == 27;
+    }
+    if (isEscape) {
+       $('#windowpopup').modal('hide');
+    }
+};
+
+
+    function setError(elementid, content) {
+        //	alert(content);
+        elementid.attr('style', "border-color:#ff3333;width:100%");
+        elementid.attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+        elementid.tooltip({ placement: 'right' });
+    }
+
+
+
+
+
+    function removeError(elementid) {
+        elementid.removeAttr('style', "border-color:#ff3333");
+        elementid.attr('style', "width:100%");
+        elementid.removeAttr('title');
+        elementid.tooltip('destroy');
+    }
+
+    function setErrorKendoCombo(elementid, content) {
+        //	alert(content);
+
+        var cb = elementid.data("kendoComboBox");
+        cb.wrapper.find(".k-dropdown-wrap").css("border", "1px solid red");
+        cb.wrapper.find(".k-dropdown-wrap").attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+        cb.wrapper.find(".k-dropdown-wrap").tooltip({ placement: 'right' });
+    }
+
+    function removeErrorKendoCombo(elementid) {
+        //	alert(content);
+
+        var cb = elementid.data("kendoComboBox");
+        cb.wrapper.find(".k-dropdown-wrap").removeAttr('style', "border-color:#ff3333");
+        cb.wrapper.find(".k-dropdown-wrap").removeAttr('title');
+        cb.wrapper.find(".k-dropdown-wrap").tooltip('destroy');
+    }
+
+    function ValidationSpecialCharacters(CategoryName) {
+        var iChars = "~`!#$%^&*+)(=-[]\\\';,/{}|\":<>?";
+
+        for (var i = 0; i < CategoryName.length; i++) {
+            if (iChars.indexOf(CategoryName.charAt(i)) != -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+
+
+

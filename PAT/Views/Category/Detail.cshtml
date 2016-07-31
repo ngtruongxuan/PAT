@@ -1,0 +1,165 @@
+﻿@model ManageShop.Models.CategoryPopupModel
+@{
+    Layout = null;
+}
+
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+<link href="~/Content/dropdowntree/easyui.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-sm-12">
+
+
+        <div class="form-group row" style="margin: 20px 0px 0px ;text-align:left;">
+           
+
+
+
+                <div class="col-md-12 row">
+                    <label class="col-md-2" id="Hotline">Ngôn ngữ</label>
+
+                    <label class="col-md-10" id="HotlineContent">@Model.Language</label>
+
+
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-2">Nội dung tiếng việt</label>
+
+                    <label class="col-md-10">@Model.LanguageVN</label>
+
+
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-2">Nội dung @Model.Language</label>
+
+                    <label class="col-md-10">@Model.LanguageCurent </label>
+
+
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-2">Nội dung chỉnh sửa theo ngôn ngữ @Model.Language</label>
+
+                    <div class="col-md-8">
+                        <textarea class="k-textbox" style="width:100%" rows="5" id="txt_content"></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="col-md-8 row" style="margin-top:20px">
+                    <button id="btnCreate" class="btn btn-md btn-primary"
+                            onclick="btnSaveClick()">
+                        <i class="fa fa-plus"></i>Save
+                    </button>
+
+
+
+                </div>
+
+          
+
+
+
+
+
+        </div>
+    </div>
+</div>
+<script>
+    function btnSaveClick()
+    {
+        if (checkinput() == true) {
+            return;
+        }
+        var additionalData = JSON.stringify({
+
+            LanguageCode: '@Model.LanguageCode',
+            CategoryCode: '@Model.CategoryCode',
+            CategoryContent:$('#txt_content').val()
+
+        });
+        $.ajax({
+            url: "../Category/saveCategory",
+            type: "post",
+            data: additionalData,
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+
+                alert($result);
+
+            },
+        });
+    }
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = evt.key == "Escape";
+        } else {
+            isEscape = evt.keyCode == 27;
+        }
+        if (isEscape) {
+            $('#windowpopup').modal('hide');
+        }
+    };
+
+    function checkinput() {
+        var _check = false;
+
+
+
+
+        var _content = $("#txt_content").val().trim();
+        removeError($('#txt_content'));
+        if (_content == '') {
+            setError($('#txt_content'), 'Nội dung dịch không được để trống');
+            _check = true;
+        }
+        else {
+           
+        }
+
+
+
+
+
+
+        if (_check == true) {
+            //$(function () {
+            //    notification.show({
+            //        title: "Do not save finish. Please check input data",
+            //        message: " "
+            //    }, "error");
+            //});
+            return _check;
+        }
+        return _check;
+    }
+
+    function setError(elementid, content) {
+        //	alert(content);
+        elementid.attr('style', "border-color:#ff3333;width:100%");
+        elementid.attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+        elementid.tooltip({ placement: 'right' });
+    }
+
+
+
+
+
+    function removeError(elementid) {
+        elementid.removeAttr('style', "border-color:#ff3333");
+        elementid.attr('style', "width:100%");
+        elementid.removeAttr('title');
+        elementid.tooltip('destroy');
+    }
+    function ValidationSpecialCharactersEmail(PromotionName) {
+        var regExp = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        return regExp.test(PromotionName);
+    }
+</script>

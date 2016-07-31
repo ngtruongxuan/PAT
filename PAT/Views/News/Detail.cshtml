@@ -1,0 +1,408 @@
+﻿@model ManageShop.Models.NewsModel
+@{
+    Layout = "~/Views/Shared/_PopupInnerLayout.cshtml";
+}
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+<link href="~/Content/dropdowntree/easyui.css" rel="stylesheet" />
+<script src="~/ckeditor/ckeditor.js"></script>
+<style>
+    .row{
+        margin-bottom:5px;
+    }
+</style>
+<div id="Onfilter" class="row filter-status">
+    <form id="frmUserGuideHelplist">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model=>model.CategoryID)
+        <div class="form-group col-md-12">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="col-md-3" style="padding-top: 5px;">Tên tin tức </label>
+                        <div class="col-md-9">
+                            <input id="txt_newsName" class="k-textbox" style="width: 100%;" value="@Model.NewsName" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-3" style="padding-top: 5px;">Mô tả tin tức </label>
+                        <div class="col-md-9">
+                            <input id="txt_newsDecription" class="k-textbox" style="width: 100% ;" value="@Model.NewsDecription" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-3" style="padding-top: 5px;">Thể loại </label>
+                        <div class="col-md-9">
+                            <input id="cbo_category" class="" style="width: 100% ;" value="@Model.CategoryID" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-3" style="padding-top: 5px;">Ngôn ngữ </label>
+                        <div class="col-md-9">
+                            <input id="cbo_language" class="" style="width: 100% ;" value="@Model.Language" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-xs-3" id="imagelink">
+                            @*<p class="lead">Ảnh đại diện</p>*@
+                            @* <img src="../../dist/img/credit/visa.png" style="height:200px; width:300px;" />*@
+                            <script type="text/javascript">
+                                linkimage = '@Model.Image';
+                                linkpath = "../../" + linkimage;
+                                var elem = document.createElement("img");
+                                if (linkimage == null || linkimage == "") {
+                                    elem.setAttribute("src", "../../Content/NewsImageDefault.png");
+                                    elem.setAttribute("class", "img1");
+                                    elem.setAttribute("height", "130");
+                                    elem.setAttribute("width", "130");
+                                }
+                                else {
+                                    elem.setAttribute("src", linkpath);
+                                    elem.setAttribute("class", "img1");
+                                    elem.setAttribute("height", "130");
+                                    elem.setAttribute("width", "130");
+                                }
+                                document.getElementById("imagelink").appendChild(elem);
+                            </script>
+                            @*<img src="~/Content/Images/user.png" />*@
+                        </div><!-- /.col -->
+                        <div class="col-xs-9">
+                            <a id="btnUpload" class="btn btn-default"><i class="fa fa-upload"></i> Chon hình đại diện</a>
+                            <input id="txt_image" class="" style="width: 100% ; display:none;" value="@Model.Image" />
+                        </div>
+                    </div
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label ">
+                    Nhập nôi dung :
+                </label>
+                <div class="col-md-12">
+
+                    <textarea id="editor1" name="editor1" cols="80" rows="10" style="width:100%; height:400px"></textarea>
+                    <div id="trackingDiv"></div>
+                    <script>
+                        CKEDITOR.replace('editor1', {
+                            //uiColor: '#99CCCC',
+                            toolbar: [{ name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print', '-', 'Templates'] },
+                            { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                            { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] },
+                            { name: 'tools', items: ['Maximize', 'ShowBlocks', '-'] }, '/',
+                                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'] },
+                            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'] },
+                            { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                            { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                            { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                            { name: 'colors', items: ['TextColor', 'BGColor'] },
+                            ],
+                            language: "en",
+                            filebrowserUploadUrl: '../../ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                            filebrowserImageUploadUrl: '../../ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                            filebrowserFlashUploadUrl: '../../ckeditor/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash',
+                            filebrowserWindowHeight: '700'
+                        }
+                        );
+                    </script>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="uploadimage-window" style="display:none;">
+    <form method="post" id="fileinfo" name="fileinfo" onsubmit="return saveImageForm();">
+        <div class="form-group ">
+            <input type="file" style="float: left; height: 35px;" id="filename" name="filename" />
+            <input type="submit" style="float:right" class="btn btn-md btn-primary" value="Lưu" onclick="return CheckFileName();" />
+        </div>
+    </form>
+</div>
+<div class="row groupformbutton">
+    <form id="frmSearchlist">
+        <div class="form-group col-md-12" style="text-align:center;">
+            <a id="btnSave" class="btn btn-md btn-primary" onclick="btnSaveOnClick()"><span class="fa fa-save"></span> Lưu</a>
+            <a class="btn btn-md btn-danger" onclick="btnRefreshOnClick()">Nhập lại</a>
+        </div>
+    </form>
+</div>
+<span id="centeredNotification" style="display:none;"></span>
+<script>
+    function CheckFileName() {
+        //var fileName = document.getElementById("filename").value
+        ////debugger;
+        //if (fileName == "") {
+        //    alert("Định dạng file không hợp lệ, chỉ được dùng xls / xlsx");
+        //    return false;
+        //}
+        //else if (fileName.split(".")[1].toUpperCase() == "XLS" || fileName.split(".")[1].toUpperCase() == "XLSX")
+        //    return true;
+        //else {
+        //    alert("Định dạng file không hợp lệ, chỉ được dùng xls / xlsx");
+        //    return false;
+        //}
+        //return true;
+        var test_value = $("#filename").val();
+        var extension = test_value.split('.').pop().toLowerCase();
+        
+        fileSize = $("#" + 'filename')[0].files[0].size
+        if (fileSize > 5242880) {
+            alert("File ảnh lớn hơn 5MB!");
+            return false;
+        }
+        if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
+            alert("File ảnh không hợp lệ!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function saveImageForm() {
+        //console.log("submit event");
+        var fd = new FormData(document.getElementById("fileinfo"));
+
+        //  fd.append("label", "WEBUPLOAD");
+        $.ajax({
+            url: "../../News/UploadImage",
+            type: "POST",
+            data: fd,
+            async:false,
+            enctype: 'multipart/form-data',
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,   // tell jQuery not to set contentType
+            //beforeSend: function () {
+            //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
+            //},
+            error: function (msg) {
+                //waitingDialog.hide();
+                //show(false, 'File lớn hơn 5MB hoặc không đúng định dạng. Vui lòng thử lại', true);
+                alert("File lớn hơn 5MB hoặc không đúng định dạng. Vui lòng thử lại");
+            }
+        }).done(function (result) {
+            $('#txt_image').val(result.data);
+            var window = $("#uploadimage-window");
+            window.data('kendoWindow').close();
+            //waitingDialog.hide();
+            //$("#img1").attr('src', result.data);
+            //document.getElementById('img1').src = result.data;
+            //var image = document.getElementByClassName(".img1");
+            //image.src = result.data;
+            $(".img1").attr("src", result.data);
+            
+            
+            //reloadheaderAfterLogin();
+            
+        });
+      
+        return false;
+    }
+    $(document).ready(function () {
+        $("#btnUpload").click(function (e) {
+            e.preventDefault();
+            var window = $("#uploadimage-window");
+            if (!window.data("kendoWindow")) {
+                window.kendoWindow({
+                    modal: true,
+                    width: "500px",
+                    title: "Upload",
+                    actions: ["Close"]
+                });
+            }
+            window.data('kendoWindow').center().open();
+        });
+        html = @Html.Raw(Json.Encode(Model.NewsContent));
+        CKEDITOR.instances['editor1'].setData(html);
+        function onShow(e) {
+            if (e.sender.getNotifications().length == 1) {
+                var element = e.element.parent(),
+                    eWidth = element.width(),
+                    eHeight = element.height(),
+                    wWidth = $(window).width(),
+                    wHeight = $(window).height(),
+                    newTop, newLeft;
+
+                newLeft = Math.floor(wWidth / 2 - eWidth / 2);
+                //	            newTop = Math.floor(wHeight / 2 - wHeight / 2);
+                newTop = Math.floor(10);
+                newRight = Math.floor(wWidth - 5);
+                e.element.parent().css({ top: newTop, right: newRight });
+            }
+        }
+
+        function showNotification(content, type) {
+            $(function () {
+                var centered = $("#centeredNotification").kendoNotification({
+                    stacking: "down",
+                    show: onShow,
+                    //		                button: true
+                }).data("kendoNotification");
+                centered.show(content, type);
+            });
+        }
+    });
+    $("#cbo_language").kendoDropDownList({
+        dataTextField: "LanguageName",
+        dataValueField: "LanguageCode",
+        dataSource:
+                {
+                    // type:"json",
+                    transport: {
+                        read: {
+                            url: "../Content/GetLanguage",
+                            dataType: "json",
+                            type: "POST",
+                        }
+                    },
+                },
+        //change: language_onChange,
+        //          filter: "contains",
+        suggest: true,
+        index: 0
+    });
+    $("#cbo_category").kendoDropDownList({
+        dataTextField: "CategoryName",
+        dataValueField: "ID",
+        dataSource:
+                {
+                    // type:"json",
+                    transport: {
+                        read: {
+                            url: "../News/GetCategory",
+                            dataType: "json",
+                            type: "POST",
+                        }
+                    },
+                },
+        //change: language_onChange,
+        //          filter: "contains",
+        suggest: true,
+        index: 0
+    });
+
+    function language_onChange(){
+        
+    }
+    function ModelData() {
+        return {
+            ID:$("#ID").val(),
+            CategoryID : $("#cbo_category").val(),
+            Language: $("#cbo_language").val(),
+            NewsName: $("#txt_newsName").val(),
+            NewsDecription: $("#txt_newsDecription").val(),
+            Image: $("#txt_image").val(),
+            NewsContent: CKEDITOR.instances.editor1.getData(),
+        };
+    }
+    function btnSaveOnClick() {
+        var paramValue = JSON.stringify({
+            data: ModelData(),
+        });
+        if (checkBeforSent()) {
+            $.ajax({
+                url: '../../News/SaveNews',
+                type: 'POST',
+                dataType: 'json',
+                data: paramValue,
+                contentType: 'application/json; charset=utf-8',
+                //beforeSend: function () {
+                //    //
+                //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
+                //},
+                success: function (result) {
+                    alert(result.Title);
+
+                    //alert("Lưu dữ liệu thành công");
+                    //showNotification("Lưu dữ liệu thành công", "success");
+                },
+                error: function (msg) {
+                    alert("Có lỗi trong quá trình xử lý");
+                    //showNotification("Có lỗi trong quá trình xử lý", "error");
+                }
+            });
+        }
+        $('#windowpopup').modal('hide');
+        $("#grid_news").data("kendoGrid").dataSource.read();
+        $("#grid_news").data("kendoGrid").dataSource.page(1);
+    }
+
+    function checkBeforSent() {
+        _check = true;
+        language = $("#cbo_language").val();
+        newsName = $("#txt_newsName").val();
+        newsDecription = $("#txt_newsDecription").val();
+        image = $('#txt_image').val();
+        //ContentName = $("#txt_contentName").val();
+        contentDisplay = CKEDITOR.instances.editor1.getData();
+
+        removeError($('#txt_newsName'));
+        removeError($('#txt_newsDecription'));
+        removeError($('#txt_image'));
+        //removeErrorKendoCombo($('#cbo_language'));
+        //if(Language==null || Language==''){
+        //    setErrorKendoCombo($('#cbo_language'), 'Group is not empty');
+        //    _check = false;
+        //}
+        //else {
+        //    removeErrorKendoCombo($('#cbo_language'));
+        //}
+        if (newsName == null || newsName == '') {
+            setError($('#txt_newsName'), 'Tiêu đề không được để trống');
+            _check = false;
+        }
+        else {
+            removeError($('#txt_newsName'));
+        }
+        if (newsDecription == null || newsDecription == '') {
+            setError($('#txt_newsDecription'), 'Mô tả không được để trống');
+            _check = false;
+        }
+        else {
+            removeError($('#txt_newsDecription'));
+        }
+        if (image == null || image == '') {
+            setError($('#txt_image'), 'Chưa có image');
+            _check = false;
+        }
+        else {
+            removeError($('#txt_image'));
+        }
+        if (contentDisplay == null || contentDisplay == '') {
+            alert("Chưa nhập nội dung ");
+            //showNotification("Chưa nhập nội dung", 'error');
+            _check = false;
+        }
+        return _check;
+    }
+    function setError(elementid, content) {
+        //	alert(content);
+        elementid.attr('style', "border-color:#ff3333;width:100%");
+        elementid.attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+        elementid.tooltip({ placement: 'right' });
+    }
+
+    function removeError(elementid) {
+        elementid.removeAttr('style', "border-color:#ff3333");
+        elementid.attr('style', "width:100%");
+        elementid.removeAttr('title');
+        elementid.tooltip('destroy');
+    }
+
+    //function setErrorKendoCombo(elementid, content) {
+    //    //	alert(content);
+
+    //    var cb = elementid.data("kendoComboBox");
+    //    cb.wrapper.find(".k-dropdown-wrap").css("border", "1px solid red");
+    //    cb.wrapper.find(".k-dropdown-wrap").attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+    //    cb.wrapper.find(".k-dropdown-wrap").tooltip({ placement: 'right' });
+    //}
+
+    //function removeErrorKendoCombo(elementid) {
+    //    //	alert(content);
+
+    //    var cb = elementid.data("kendoComboBox");
+    //    cb.wrapper.find(".k-dropdown-wrap").removeAttr('style', "border-color:#ff3333");
+    //    cb.wrapper.find(".k-dropdown-wrap").removeAttr('title');
+    //    cb.wrapper.find(".k-dropdown-wrap").tooltip('destroy');
+    //}
+</script>
+

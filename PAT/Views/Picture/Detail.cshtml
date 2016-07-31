@@ -1,0 +1,243 @@
+﻿@model ManageShop.Models.PictureModel
+@{
+    Layout = "~/Views/Shared/_PopupInnerLayout.cshtml";
+}
+<style>
+    .row {
+        margin-bottom: 5px;
+    }
+</style>
+<div id="Onfilter" class="row filter-status">
+    <form id="frmUserGuideHelplist">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.CategoryID)
+
+        <div class="form-group row" style="text-align:center;">
+            <div class="row">
+                <label class="col-md-12" style="padding-top: 5px;">Thể loại : @Model.CategoryName</label>
+            </div>
+            <div class="row" id="imagelink">
+                @*<p class="lead">Ảnh đại diện</p>*@
+                @* <img src="../../dist/img/credit/visa.png" style="height:200px; width:300px;" />*@
+                <script type="text/javascript">
+                    linkimage = '@Model.URL';
+                    linkpath = "../../" + linkimage;
+                    var elem = document.createElement("img");
+                    if (linkimage == null || linkimage == "") {
+                        elem.setAttribute("src", "../../Content/NewsImageDefault.png");
+                        elem.setAttribute("class", "img1");
+                        elem.setAttribute("height", "200");
+                        elem.setAttribute("width", "350");
+                    }
+                    else {
+                        elem.setAttribute("src", linkpath);
+                        elem.setAttribute("class", "img1");
+                        elem.setAttribute("height", "200");
+                        elem.setAttribute("width", "350");
+                    }
+                    document.getElementById("imagelink").appendChild(elem);
+                </script>
+                @*<img src="~/Content/Images/user.png" />*@
+            </div><!-- /.col -->
+            <div class="row">
+                <a id="btnUpload" class="btn btn-default"><i class="fa fa-upload"></i> Brown</a>
+                <a id="btnSave" class="btn btn-md btn-primary" onclick="btnSaveOnClick()"><span class="fa fa-save"></span> Lưu</a>
+                <input id="txt_image" class="" style="width: 100% ; display:none;" value="@Model.URL" />
+            </div>
+        </div>
+    </form>
+</div>
+<div id="uploadimage-window" style="display:none;">
+    <form method="post" id="fileinfo" name="fileinfo" onsubmit="return saveImageForm();">
+        <div class="form-group ">
+            <input type="file" style="float: left; height: 35px;" id="filename" name="filename" />
+            <input type="submit" style="float:right" class="btn btn-md btn-primary" value="Lưu" onclick="return CheckFileName();" />
+        </div>
+    </form>
+</div>
+<span id="centeredNotification" style="display:none;"></span>
+<script>
+    function CheckFileName() {
+        var test_value = $("#filename").val();
+        var extension = test_value.split('.').pop().toLowerCase();
+
+        fileSize = $("#" + 'filename')[0].files[0].size
+        if (fileSize > 5242880) {
+            alert("File ảnh lớn hơn 5MB!");
+            return false;
+        }
+        if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
+            alert("File ảnh không hợp lệ!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function saveImageForm() {
+        //console.log("submit event");
+        var fd = new FormData(document.getElementById("fileinfo"));
+
+        //  fd.append("label", "WEBUPLOAD");
+        $.ajax({
+            url: "../../Picture/UploadImage",
+            type: "POST",
+            data: fd,
+            async: false,
+            enctype: 'multipart/form-data',
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,   // tell jQuery not to set contentType
+            //beforeSend: function () {
+            //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
+            //},
+            error: function (msg) {
+                //waitingDialog.hide();
+                //show(false, 'File lớn hơn 5MB hoặc không đúng định dạng. Vui lòng thử lại', true);
+                alert("File lớn hơn 5MB hoặc không đúng định dạng. Vui lòng thử lại");
+            },
+            success: function (result) {
+                $('#txt_image').val(result.data);
+                $(".img1").attr("src", result.data);
+                var window = $("#uploadimage-window");
+                window.data('kendoWindow').close();
+                //waitingDialog.hide();
+                //$("#img1").attr('src', result.data);
+                //document.getElementById('img1').src = result.data;
+                //var image = document.getElementByClassName(".img1");
+                //image.src = result.data;
+
+            },
+        }).done(function (result) {
+        });
+        var window = $("#uploadimage-window");
+        window.data('kendoWindow').close();
+        return false;
+    }
+    $(document).ready(function () {
+        $("#btnUpload").click(function (e) {
+            e.preventDefault();
+            var window = $("#uploadimage-window");
+            if (!window.data("kendoWindow")) {
+                window.kendoWindow({
+                    modal: true,
+                    width: "500px",
+                    title: "Upload",
+                    actions: ["Close"]
+                });
+            }
+            window.data('kendoWindow').center().open();
+        });
+
+        function onShow(e) {
+            if (e.sender.getNotifications().length == 1) {
+                var element = e.element.parent(),
+                    eWidth = element.width(),
+                    eHeight = element.height(),
+                    wWidth = $(window).width(),
+                    wHeight = $(window).height(),
+                    newTop, newLeft;
+
+                newLeft = Math.floor(wWidth / 2 - eWidth / 2);
+                //	            newTop = Math.floor(wHeight / 2 - wHeight / 2);
+                newTop = Math.floor(10);
+                newRight = Math.floor(wWidth - 5);
+                e.element.parent().css({ top: newTop, right: newRight });
+            }
+        }
+
+        function showNotification(content, type) {
+            $(function () {
+                var centered = $("#centeredNotification").kendoNotification({
+                    stacking: "down",
+                    show: onShow,
+                    //		                button: true
+                }).data("kendoNotification");
+                centered.show(content, type);
+            });
+        }
+    });
+    function ModelData() {
+        return {
+            ID: $("#ID").val(),
+            CategoryID: $("#CategoryID").val(),
+            URL: $("#txt_image").val(),
+        };
+    }
+    function btnSaveOnClick() {
+        var paramValue = JSON.stringify({
+            model: ModelData(),
+        });
+        if (checkBeforSent()) {
+            $.ajax({
+                url: '../../Picture/SavePicture',
+                type: 'POST',
+                dataType: 'json',
+                data: paramValue,
+                contentType: 'application/json; charset=utf-8',
+                //beforeSend: function () {
+                //    //
+                //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
+                //},
+                success: function (result) {
+                    alert(result.Title);
+                    //alert("Lưu dữ liệu thành công");
+                    //showNotification("Lưu dữ liệu thành công", "success");
+                },
+                error: function (msg) {
+                    alert("Có lỗi trong quá trình xử lý");
+                    //showNotification("Có lỗi trong quá trình xử lý", "error");
+                }
+            });
+        }
+        $('#windowpopup').modal('hide');
+        searchCategory();
+
+    }
+
+    function checkBeforSent() {
+        _check = true;
+        image = $("#txt_image").val();
+        removeError($('#txt_image'));
+
+        if (image == null || image == '') {
+            setError($('#txt_image'), 'Chưa có image');
+            alert("Chưa chọn hình ảnh")
+            _check = false;
+        }
+        else {
+            removeError($('#txt_image'));
+        }
+        return _check;
+    }
+    function setError(elementid, content) {
+        //	alert(content);
+        elementid.attr('style', "border-color:#ff3333;width:100%");
+        elementid.attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+        elementid.tooltip({ placement: 'right' });
+    }
+
+    function removeError(elementid) {
+        elementid.removeAttr('style', "border-color:#ff3333");
+        elementid.attr('style', "width:100%");
+        elementid.removeAttr('title');
+        elementid.tooltip('destroy');
+    }
+
+    //function setErrorKendoCombo(elementid, content) {
+    //    //	alert(content);
+
+    //    var cb = elementid.data("kendoComboBox");
+    //    cb.wrapper.find(".k-dropdown-wrap").css("border", "1px solid red");
+    //    cb.wrapper.find(".k-dropdown-wrap").attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+    //    cb.wrapper.find(".k-dropdown-wrap").tooltip({ placement: 'right' });
+    //}
+
+    //function removeErrorKendoCombo(elementid) {
+    //    //	alert(content);
+
+    //    var cb = elementid.data("kendoComboBox");
+    //    cb.wrapper.find(".k-dropdown-wrap").removeAttr('style', "border-color:#ff3333");
+    //    cb.wrapper.find(".k-dropdown-wrap").removeAttr('title');
+    //    cb.wrapper.find(".k-dropdown-wrap").tooltip('destroy');
+    //}
+</script>
+

@@ -1,0 +1,175 @@
+﻿@model ManageShop.Models.PriceModel
+@{
+    Layout = "~/Views/Shared/_PopupInnerLayout.cshtml";
+}
+
+<style>
+    .row {
+        margin-bottom: 5px;
+    }
+</style>
+<div id="Onfilter" class="row filter-status">
+    <form id="frmUserGuideHelplist">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.ItemID)
+        <div class="form-group col-md-12" style="text-align:center;">
+            <div class="row">
+                <label class="col-md-3" style="padding-top: 5px;">Chọn loại </label>
+                <div class="col-md-9">
+                    <input id="cbo_type" class="" style="width: 100%;" value="@Model.Type" />
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-3" style="padding-top: 5px;">Giá cũ </label>
+                <div class="col-md-9">
+                    <input id="txt_priceOld" type="number" disabled="disabled" readonly="readonly" style="width: 100%; background:#C0C0C0; color:red" value="@Model.Price1" />
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-3" style="padding-top: 5px;">Giá mới </label>
+                <div class="col-md-9">
+                    <input id="txt_priceNew" type="number" value="0" min="0" max="10000000000" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row groupformbutton">
+    <form id="frmSearchlist">
+        <div class="form-group col-md-12" style="text-align:center;">
+            <a id="btnSave" class="btn btn-md btn-primary" onclick="btnSaveOnClick()"><span class="fa fa-save"></span> Lưu</a>
+        </div>
+    </form>
+</div>
+<span id="centeredNotification" style="display:none;"></span>
+<script>
+    $(document).ready(function () {
+        $("#txt_priceOld").kendoNumericTextBox({
+            spinners: false
+        });
+        $("#txt_priceNew").kendoNumericTextBox({
+            decimals: 3
+        });
+    })
+    $("#cbo_type").kendoDropDownList({
+        dataTextField: "text",
+        dataValueField: "value",
+        dataSource:
+               [
+                        { text: "Bán hoặc chuyển nhượng", value: "sell" },
+                        { text: "Cho thuê", value: "rent" },
+               ],
+        change: type_onchange,
+        //          filter: "contains",
+        suggest: true,
+        index: 0
+    });
+    function ModelData() {
+        return {
+            ID: $("#ID").val(),
+            ItemID: $("#ItemID").val(),
+            Price1: $("#txt_priceNew").val(),
+            Type: $('#cbo_type').val()
+        };
+    }
+    function type_onchange() {
+        var paramValue = JSON.stringify({
+            data: ModelData(),
+        });
+
+        $.ajax({
+            url: '../../Price/ReloadPrice',
+            type: 'POST',
+            dataType: 'json',
+            data: paramValue,
+            contentType: 'application/json; charset=utf-8',
+            //beforeSend: function () {
+            //    //
+            //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
+            //},
+            success: function (result) {
+                console.log(result);
+                if (result != null) {
+
+                    $("#txt_priceOld").val(result.Price1);
+                }
+
+                //alert("Lưu dữ liệu thành công");
+                //showNotification("Lưu dữ liệu thành công", "success");
+            },
+            error: function (msg) {
+                alert("Có lỗi trong quá trình xử lý");
+                //showNotification("Có lỗi trong quá trình xử lý", "error");
+            }
+        });
+
+    }
+
+    function btnSaveOnClick() {
+        var paramValue = JSON.stringify({
+            data: ModelData(),
+        });
+        if (checkBeforSent()) {
+            $.ajax({
+                url: '../../Price/SavePrice',
+                type: 'POST',
+                dataType: 'json',
+                data: paramValue,
+                contentType: 'application/json; charset=utf-8',
+                //beforeSend: function () {
+                //    //
+                //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
+                //},
+                success: function (result) {
+                    alert(result.Title);
+
+                    //alert("Lưu dữ liệu thành công");
+                    //showNotification("Lưu dữ liệu thành công", "success");
+                },
+                error: function (msg) {
+                    alert("Có lỗi trong quá trình xử lý");
+                    //showNotification("Có lỗi trong quá trình xử lý", "error");
+                }
+            });
+        }
+        $('#windowpopup').modal('hide');
+    }
+
+    function checkBeforSent() {
+        _check = true;
+        price = $("#txt_priceNew").val
+        removeError($('#txt_priceNew'));
+        //removeErrorKendoCombo($('#cbo_language'));
+        //if(Language==null || Language==''){
+        //    setErrorKendoCombo($('#cbo_language'), 'Group is not empty');
+        //    _check = false;
+        //}
+        //else {
+        //    removeErrorKendoCombo($('#cbo_language'));
+        //}
+        if (price == null || price == 0) {
+            setError($('#txt_priceNew'), 'Chưa nhập giá');
+            _check = false;
+        }
+        else {
+            removeError($('#txt_priceNew'));
+        }
+
+        return _check;
+    }
+    function setError(elementid, content) {
+        //	alert(content);
+        elementid.attr('style', "border-color:#ff3333;width:100%");
+        elementid.attr('title', "<a style='color:#ff3333'>" + content + "</a>");
+        elementid.tooltip({ placement: 'right' });
+    }
+
+    function removeError(elementid) {
+        elementid.removeAttr('style', "border-color:#ff3333");
+        elementid.attr('style', "width:100%");
+        elementid.removeAttr('title');
+        elementid.tooltip('destroy');
+    }
+</script>
+

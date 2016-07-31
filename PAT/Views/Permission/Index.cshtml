@@ -1,0 +1,274 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style>
+    .row::before, .row::after {
+        content: " ";
+        display: table;
+        margin-top: 1px;
+    }
+
+    .checkchild
+    {
+        margin-left:25px;
+    }
+</style>
+<link href="~/Plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" /> 
+<div class="row">
+    <div class="col-sm-12">
+        <section style="background:white; width:1041px; height:75px;margin-left: 22px;">
+            <div id="form" style="margin-left:20px">
+              
+             
+
+                    <div class="col-md-6 row" style="margin-top:20px">
+                        <label class="col-md-4">Nhóm</label>
+                        <div class="col-md-8">
+                            <input id="txt_group"
+                                   style="width: 100%;" />
+                        </div>
+                    </div>
+               
+
+               
+                  
+           
+            </div>
+            <span id="notification" style="display:none;"></span>
+            <div id="modal_box"></div>
+
+            <br />
+            
+            <br />
+        </section>
+       
+        <div class="form-group row" style="margin: 20px 0px 0px ;text-align:left;">
+            <section style="background:white; width:1041px; height:280px;margin-left: 22px;">
+
+                <div class="checkbox">
+                    <label><input type="checkbox" id="checkAll" onclick="setFullPermission()" value="">Full quyền</label>
+                </div>
+                <div class="checkbox checkchild" >
+                    <label><input type="checkbox" class="checkItem" id="ck_1" onclick="setPermission(1, 'ck_1')" value="">Quản lý người dùng</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_2" onclick="setPermission(2, 'ck_2')" value="">Phân quyền</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_3" onclick="setPermission(3, 'ck_3')" value="">Quản lý nội dung</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_4" onclick="setPermission(4, 'ck_4')" value="">Quản lý tin tức</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_5" onclick="setPermission(5, 'ck_5')" value="" >Quản lý hình ảnh</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_6" onclick="setPermission(6, 'ck_6')" value="" >Quản lý tin nhắn</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_7" onclick="setPermission(7, 'ck_7')" value="" >Quản lý giá</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_8" onclick="setPermission(8, 'ck_8')" value="">Chỉnh sửa form liên hệ</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_9" onclick="setPermission(9, 'ck_9')" value="">Quản lý thông tin liên hệ</label>
+                </div>
+                <div class="checkbox checkchild">
+                    <label><input type="checkbox" class="checkItem" id="ck_10" onclick="setPermission(10, 'ck_10')" value="">Chỉnh sửa menu</label>
+                </div>
+
+
+              
+                </section>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    $(document).ready(function () {
+       
+     
+
+        $("#txt_group").kendoComboBox({
+            placeholder: "-- Select --",
+            dataTextField: "GroupName",
+            dataValueField: "ID",
+            dataSource:
+                    {
+                        // type:"json",
+                        transport: {
+                            read: {
+                                url: "../user/getGroup",
+                                dataType: "json",
+                                type: "POST",
+                            }
+                        },
+                    },
+            change: group_onChange,
+            //          filter: "contains",
+            suggest: true,
+             //index: 0
+        });
+
+
+        $('#txt_group').data('kendoComboBox').value(1);
+
+      
+        function group_onChange() {
+           // alert('aaa');
+            var value = $("#txt_group").val();
+            var text = $("#txt_group").data('kendoComboBox').text();
+            if (value == text) {
+                $("#txt_group").data('kendoComboBox').value("");
+            }
+
+            searchPermission(value);
+        }
+
+        searchPermission(1);
+        //$('#txt_group').data('kendoComboBox').value(1);
+
+
+
+
+        // editable: true
+
+
+
+    });
+
+
+
+    // function that gathers IDs of checked nodes
+
+    $('#checkAll').click(function () {
+       // alert($('#checkAll').is(":checked"));
+        $(':checkbox.checkItem').prop('checked', this.checked);
+    });
+
+    function setPermission(ModuleID,checkbox)
+    {
+        //alert($('#' + checkbox + '').is(":checked"));
+        var status='I';
+        if ($('#' + checkbox + '').is(":checked") == true)
+        {
+            status='A';
+        }
+        //alert(ModuleID);
+        $.ajax({
+            url: "../Permission/setPermission",
+            type: "post",
+            data: JSON.stringify({
+                ModuleID: ModuleID,
+                GroupID: $('#txt_group').val(),
+                Status: status
+            }),
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+                if ($('#ck_1').is(":checked") == true && $('#ck_2').is(":checked") == true
+                && $('#ck_3').is(":checked") == true && $('#ck_4').is(":checked") == true
+                && $('#ck_5').is(":checked") == true && $('#ck_6').is(":checked") == true
+                && $('#ck_7').is(":checked") == true && $('#ck_8').is(":checked") == true
+                && $('#ck_9').is(":checked") == true && $('#ck_10').is(":checked") == true) {
+                    $('#checkAll').prop('checked', true);
+                }
+                else
+                {
+                    $('#checkAll').prop('checked', false);
+                }
+
+            },
+            error: function () {
+                alert("Không kết nối được với máy chủ");
+            }
+        });
+    }
+
+    function searchPermission(GroupID) {
+        //alert($('#' + checkbox + '').is(":checked"));
+      
+        $.ajax({
+            url: "../Permission/searchPermission",
+            type: "post",
+            data: JSON.stringify({
+               
+                GroupID: GroupID
+               
+            }),
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+            //    alert($result[2]['ModuleID']);
+                for (var i = 1; i <= 10; i++)
+                {
+                    $('#ck_' + i + '').prop('checked', false);
+                }
+              
+                for(var i=0;i<$result.length;i++)
+                {
+                    $('#ck_' + $result[i]['ModuleID'] + '').prop('checked', true);
+                    //vd
+                }
+
+                if ($('#ck_1').is(":checked") == true && $('#ck_2').is(":checked") == true
+               && $('#ck_3').is(":checked") == true && $('#ck_4').is(":checked") == true
+               && $('#ck_5').is(":checked") == true && $('#ck_6').is(":checked") == true
+               && $('#ck_7').is(":checked") == true && $('#ck_8').is(":checked") == true
+               && $('#ck_9').is(":checked") == true && $('#ck_10').is(":checked") == true) {
+                    $('#checkAll').prop('checked', true);
+                }
+                else {
+                    $('#checkAll').prop('checked', false);
+                }
+
+            },
+            error: function () {
+                alert("Không kết nối được với máy chủ");
+            }
+        });
+    }
+
+    function setFullPermission() {
+        //alert($('#' + checkbox + '').is(":checked"));
+        var status = 'I';
+        if ($('#checkAll').is(":checked") == true) {
+            status = 'A';
+        }
+        //alert(ModuleID);
+        $.ajax({
+            url: "../Permission/setFullPermission",
+            type: "post",
+            data: JSON.stringify({
+
+                GroupID: $('#txt_group').val(),
+                Status: status
+            }),
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function ($result) {
+
+
+
+            },
+            error: function () {
+                alert("Không kết nối được với máy chủ");
+            }
+        });
+    }
+</script>
+

@@ -1,0 +1,101 @@
+﻿@model ManageShop.Models.DisplayContentModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+
+<body>
+    <div>
+        <label id="con_title"> </label>
+    </div>
+
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#item" data-toggle="tab">
+                <label id="con_sell"> </label>
+                @Model.Sell_language
+            </a>
+        </li>
+        <li>
+            <a href="#category" data-toggle="tab">
+                <label id="con_rent"> </label>
+                @Model.Rent_language
+            </a>
+        </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+
+        <div class="tab-pane fade in active" id="item">
+            <div class="form-group row" style="margin: 20px 0px 0px 22px;text-align:right;">
+                <button id="btnCreate" class="btn btn-md btn-default"
+                       >
+                   <span style="color:red"> 20.590.000₫</span> 
+                </button>
+                <button id="btnSearch" class="btn btn-md btn-info"
+                        onclick="btn360OnClick()">
+                    <i class="fa fa-search"></i>360
+                </button>
+                <button id="btnRepresh" class="btn btn-md btn-warning"
+                        onclick="btnContactOnClick()">
+                    <i class="fa fa-refresh"></i>@Model.contact
+                </button>
+            </div>
+            @Html.Raw(Model.Sell_content)
+
+        </div>
+
+        <div class="tab-pane fade" id="category">
+            <div class="form-group row" style="margin: 20px 0px 0px 22px;text-align:right;">
+                <button id="btnCreate" class="btn btn-md btn-default">
+                    <span style="color:red"> 20.590.000₫</span>
+                </button>
+                <button id="btnSearch" class="btn btn-md btn-info"
+                        onclick="btn360OnClick()">
+                    <i class="fa fa-search"></i>360
+                </button>
+                <button id="btnRepresh" class="btn btn-md btn-warning"
+                        onclick="btnContactOnClick()">
+                    <i class="fa fa-refresh"></i>@Model.contact
+                </button>
+            </div>
+            @Html.Raw(Model.Rent_content)
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = evt.key == "Escape";
+        } else {
+            isEscape = evt.keyCode == 27;
+        }
+        if (isEscape) {
+            $('#windowpopup').modal('hide');
+        }
+    };
+    $("#con_title").html('@Model.Title');
+
+    function btn360OnClick()
+    {
+        alert("hien thi hinh 360");
+    }
+
+    function btnContactOnClick()
+    {
+        var cookie_language = readCookie('language_cookie');
+        if (cookie_language == null)
+            cookie_language = 'VN';
+        loadpopup("../DisplayContent/ContactIndex?Language=" + cookie_language + "", 'ESC to close', '80%', false);
+    }
+</script>

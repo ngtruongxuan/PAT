@@ -1,0 +1,22 @@
+﻿@model ManageShop.Models.DisplayNewsModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <label id="con_title">@Model.categoryName </label>
+    </div>
+    <div>
+        @Html.Raw(Model.content)
+        
+    </div>
+</body>
+</html>

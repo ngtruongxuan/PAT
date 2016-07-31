@@ -1,0 +1,122 @@
+﻿@model ManageShop.Models.DisplayNewsModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        .block-feature
+        {
+            text-align:center;
+        }
+        .img_160_90, .img_160_90 img {
+            height: 87px;
+            width: 153px;
+        }
+        .date-1 {
+            padding: 0 0 3px;
+        }
+
+        .date {
+            color: #666;
+            display: block;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+        .block-left h3 {
+            padding-bottom: 5px;
+        }
+        .block-left h3 {
+            padding-bottom: 5px;
+        }
+        .block-left h3 {
+            padding-bottom: 5px;
+        }
+
+        .highlight {
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+            .highlight h2 {
+                border-bottom: 1px solid #e32c22;
+                font-weight: 400;
+                margin-bottom: 10px;
+                padding: 4px 0;
+                width: 100%;
+            }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+  <title></title>
+</head>
+<body>
+   
+    <div>
+        <label>@Model.categoryName </label>
+    </div>
+
+    <div>
+
+
+        <div class="row">
+@foreach (var item in @Model.l_news)
+                        {
+             <div class="col-sm-12">
+                <div class="col-sm-2">
+                    <a class="img_160_90" style="cursor:pointer" onclick="openpopup_newsDetail('@item.newsID');">
+                        <img src="@item.img" alt="@item.title">
+                    </a>
+                </div>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+
+                        <span class="date date-1">@item.date</span>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <a title="@item.title" style="cursor:pointer" onclick="openpopup_newsDetail('@item.newsID');"> @item.title </a>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <p>@item.description </p>
+                    </div>
+                </div>
+                </div>
+            }
+           
+            </div>
+            </div>
+
+
+
+
+
+    <script>
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = evt.key == "Escape";
+        } else {
+            isEscape = evt.keyCode == 27;
+        }
+        if (isEscape) {
+            $('#windowpopup').modal('hide');
+        }
+    };
+   
+    function openpopup_newsDetail(newsID)
+    {
+        var cookie_language = readCookie('language_cookie');
+        if (cookie_language == null)
+            cookie_language = 'VN';
+        loadpopup("../DisplayContent/NewsDetail?newsID=" + newsID + "&Language=" + cookie_language + "", 'ESC to close', '80%', false);
+
+    }
+    </script>
+</body>
+
+</html>
