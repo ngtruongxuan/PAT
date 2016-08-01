@@ -13,7 +13,11 @@
                     @foreach (var item in @Model)
                     {
                         <li data-expanded="true">
-                            <span class="k-sprite folder"></span>@item.Name
+                            <span class="k-sprite folder"></span>@item.Name 
+                            @if (@item.ID == 1){<span style="color:red;"> 313x176 </span>}
+                            @if (@item.ID == 11){<span style="color:red;"> 290x163 </span>}                                                                                                   
+                            @if (@item.ID == 18){<span style="color:red;"> 450x320 </span>}
+                            @if (@item.ID == 26){<span style="color:red;"> 450x230 </span>}
                             @if (@item.Child.Count > 0)
                             {
                                 <ul>

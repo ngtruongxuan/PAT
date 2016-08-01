@@ -22,7 +22,7 @@
             <div class="row">
                 <label class="col-md-3" style="padding-top: 5px;">Giá cũ </label>
                 <div class="col-md-9">
-                    <input id="txt_priceOld" type="number" disabled="disabled" readonly="readonly" style="width: 100%; background:#C0C0C0; color:red" value="@Model.Price1" />
+                    <input id="txt_priceOld" class="k-textbox" disabled="disabled" readonly="readonly" style="width: 100%; background:#C0C0C0; color:red" value="@Model.Price1" />
                 </div>
             </div>
             <div class="row">
@@ -45,9 +45,7 @@
 <span id="centeredNotification" style="display:none;"></span>
 <script>
     $(document).ready(function () {
-        $("#txt_priceOld").kendoNumericTextBox({
-            spinners: false
-        });
+       
         $("#txt_priceNew").kendoNumericTextBox({
             decimals: 3
         });
@@ -89,9 +87,9 @@
             //    waitingDialog.show('SCM đang xử lý, vui lòng đợi trong giây lát.');
             //},
             success: function (result) {
-                console.log(result);
+                //console.log(result);
+               
                 if (result != null) {
-
                     $("#txt_priceOld").val(result.Price1);
                 }
 

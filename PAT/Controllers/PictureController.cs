@@ -14,7 +14,7 @@ namespace ManageShop.Controllers
         {
             List<TreeViewModel> list = new List<TreeViewModel>();
             PATDBDataContext db = new PATDBDataContext();
-            var ls_category = db.Categories.Where(x => x.Status == "A" && x.ParentID == 0 && x.Reftype == "C").ToList();
+            var ls_category = db.Categories.Where(x => x.Status == "A" && x.ParentID == 0 && x.ID != 21 && x.ID != 38 && x.Reftype == "C").ToList();
             foreach (var item in ls_category)
             {
                 TreeViewModel category = new TreeViewModel();
